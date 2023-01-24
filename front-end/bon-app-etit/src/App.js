@@ -2,7 +2,7 @@ import './App.css';
 import axios from "axios";
 import {useEffect, useState} from "react";
 
-const baseURL = "/api";
+const baseURL = "http://localhost:8000/api";
 
 function App() {
     const [post, setPost] = useState(null);
@@ -17,9 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Bon App Etit</h1>
-        <h1>{post.title}</h1>
-        <p>{post.body}</p>
+      <h1>{post}</h1>
     </div>
   );
 }
