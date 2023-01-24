@@ -1,4 +1,4 @@
-package com.codecool.bae;
+package com.codecool.bonappetit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
