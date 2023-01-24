@@ -1,11 +1,13 @@
 package com.codecool.bonappetit.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@CrossOrigin("http://localhost:3000")
+@RequestMapping("/api")
 public class RecipeController {
 
     private String name = "bon-app-etit";
