@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @CrossOrigin("http://localhost:3000")
-@RequestMapping("/")
+@RequestMapping("/api")
 public class RecipeController {
 
     private String name = "bon-app-etit";
