@@ -5,29 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13cf975c-4cbf-460f-8647-0c04e0e8eafa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/HELP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Recipe.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Navbar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/NavbarSearch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/NavbarUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/controller/RecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/controller/RecipeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

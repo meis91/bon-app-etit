@@ -1,6 +1,7 @@
 import './App.css';
 import axios from "axios";
 import {useEffect, useState} from "react";
+import Navbar from "./components/Navbar";
 
 const baseURL = "http://localhost:8000/api";
 
@@ -17,7 +18,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>{post}</h1>
+        <Navbar title={post}/>
+
     </div>
   );
 }
