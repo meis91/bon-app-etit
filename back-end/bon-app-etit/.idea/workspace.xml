@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="13cf975c-4cbf-460f-8647-0c04e0e8eafa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/controller/RecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/controller/RecipeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
