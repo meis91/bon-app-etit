@@ -13,19 +13,15 @@ import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-const InputTextIngredient = ({measurement})=> {
+const InputTextIngredient = ()=> {
     return (
         <div>
-
-                <FormControl sx={{m: 1, width: '100ch'}} variant="outlined">
-                    <InputLabel htmlFor="outlined-ingredient">Ingredient</InputLabel>
-                    <OutlinedInput
-                        id="outlined-ingredient"
-                        startAdornment={<InputAdornment position="start">{measurement}</InputAdornment>}
-                        label="Ingredient"
-                    />
-                </FormControl>
-
+            <TextField
+                label="Ingredient"
+                id="outlined-start"
+                placeholder="Write the Name of the Ingredient in this Field"
+                sx={{ m: 1, width: '1500ch',  minWidth: 370 }}
+            />
         </div>
     );
 };

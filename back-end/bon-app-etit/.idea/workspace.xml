@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13cf975c-4cbf-460f-8647-0c04e0e8eafa" name="Changes" comment="merged gitignore">
-      <change afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Navbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/NavbarSearch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/NavbarUser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/BaseContainer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/RecepieForm/Ingredient/InputIngredient.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/RecepieForm/Ingredient/SelectUnitAndQuantity.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/RecepieForm/Instractions/InputInstructions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/RecepieForm/PostNewRecipe.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/InputIngredient.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/InputSelectMeasurement.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/InputTextAmount.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/InputTextIngredient.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/RecepieForm/Ingredient/InputTextIngredient.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Navbar/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/NavbarSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Navbar/NavbarSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/NavbarUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Navbar/NavbarUser.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
