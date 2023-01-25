@@ -11,7 +11,7 @@ function MainBar({ popularSearchTerms, filterOptions }) {
     <>
         <Box
           sx={{
-            bgcolor: '#9e9e9e',
+            bgcolor: '#f6f6f6',
             pt: 8,
             pb: 6,
           }}
@@ -39,7 +39,7 @@ function MainBar({ popularSearchTerms, filterOptions }) {
             </Stack>
             
             
-            {/* <Stack
+            <Stack
               sx={{ pt: 4 }}
               direction="row"
               spacing={1}
@@ -48,7 +48,7 @@ function MainBar({ popularSearchTerms, filterOptions }) {
               {filterOptions.map((option) => (
                 <CategoryFilter filterOption={option} key={option.filter} />
               ))}
-            </Stack> */}
+            </Stack>
 
           </Container>
         </Box>

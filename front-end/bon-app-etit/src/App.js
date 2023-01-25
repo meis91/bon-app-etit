@@ -20,19 +20,39 @@ function App() {
                       'Lunch',
                       'Dinner'
                     ]},
-      {  'filter' : 'Nutrition Type',
-        'options' : ['Vegetarian',
-                      'Vegan',
-                      'Gluten-free',
-                      'Dairy-free'
-                    ]},
       {  'filter' : 'Recipe Type',
           'options' : ['Quick',
                       'Easy',
                       'Healthy',
                       'Low Budget'
                     ],
-      }
+      },
+      {  'filter' : 'Nutrition Type',
+        'options' : ['Vegetarian',
+                      'Vegan',
+                      'Gluten-free',
+                      'Dairy-free'
+                    ]},
+      {  'filter' : 'Season/Special',
+        'options' : ['Spring',
+                      'Summer',
+                      'Autumn',
+                      'Winter',
+                      'Christmas',
+                      'Easter'
+                    ]},
+      {  'filter' : 'Bakery',
+          'options' : ['Cookies',
+                      'Cakes',
+                      'Bread',
+                      'Ice Cream'
+                    ]},
+      {  'filter' : 'Drinks',
+      'options' : ['Juice/Lemonade',
+                  'Smoothies',
+                  'Cocktails',
+                  'Winter Drinks'
+                ]},
     ];
 
     useEffect(() => {
