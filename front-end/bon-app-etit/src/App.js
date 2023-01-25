@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import InputSelectMeasurement from "./components/InputSelectMeasurement";
 import InputTextIngredient from "./components/InputTextIngredient";
 import InputIngredient from "./components/InputIngredient";
+import RecipeGrid from "./components/RecipeGrid";
+import Footer from "./components/Footer";
 
 const baseURL = "http://localhost:8000/api";
 
@@ -47,13 +49,62 @@ function App() {
                       'Bread',
                       'Ice Cream'
                     ]},
-      {  'filter' : 'Drinks',
+      {  'filter' : 'Country',
       'options' : ['Juice/Lemonade',
                   'Smoothies',
                   'Cocktails',
                   'Winter Drinks'
                 ]},
     ];
+
+    const recipes = [
+      {
+          title: 'Sushi Plate',
+          category: 'Asian',
+          image: 'https://drive.google.com/uc?export=view&id=1QK-nSwgdGG2REYxYtdnr_l-tbjotO9IQ',
+      },
+      {
+        title: 'Pizza Neapoletana',
+        category: 'Pizza',
+        image: 'https://drive.google.com/uc?export=view&id=11IrwX62XpGumI6TBBH1CTtTXybAjNrOb',
+      },
+      {
+        title: 'Mini Burger',
+        category: 'Partyfood',
+        image: 'https://drive.google.com/uc?export=view&id=1bhkz8EAq9_N40UdMp8OYMT6Z3gjvQeZW',
+      },
+      {
+        title: 'Raspberry Cake',
+        category: 'Cakes',
+        image: 'https://drive.google.com/uc?export=view&id=1VTejIfB9z2JzCzzH1C8CFmAP_ksVtTNU',
+      },
+      {
+        title: 'Kalbsrahmgulasch',
+        category: 'Austrian',
+        image: 'https://drive.google.com/uc?export=view&id=1ex4vk5o-j_mbyyU8F5lO3wsIAFqpSfLW',
+      },
+      {
+        title: 'Pimientos de Padrón',
+        category: 'Tapas',
+        image: 'https://drive.google.com/uc?export=view&id=1S0UdestdwXNX-uswVGwrIhNN_VmNpMTO',
+      },
+      {
+        title: 'Beef tartare',
+        category: 'Starter',
+        image: 'https://drive.google.com/uc?export=view&id=1kcnP7KXaCPfDTZjFDhZCiaFst5Nq_qDB',
+      },
+      {
+        title: 'Vanilla Cream',
+        category: 'Dessert',
+        image: 'https://drive.google.com/uc?export=view&id=1-vWk037Yc4j_4lOnde0pwKCXgIfvvlLN',
+      },
+      {
+        title: 'Bacon-wrapped dates',
+        category: 'Tapas',
+        image: 'https://drive.google.com/uc?export=view&id=1zPIe9-XZA28agETM6YJfcplhCFZAZEe-',
+      },
+  
+  ];
 
     useEffect(() => {
         axios.get(baseURL).then((response) => {
@@ -70,6 +121,8 @@ function App() {
                  filterOptions={filterOptions}
         />
         <InputIngredient/>
+        <RecipeGrid recipes={recipes} />
+        <Footer title={post} />
     </div>
   );
 }
