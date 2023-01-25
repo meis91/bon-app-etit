@@ -1,13 +1,10 @@
 import './App.css';
 import axios from "axios";
 import {useEffect, useState} from "react";
-import MainBar from './components/MainBar';
-import Navbar from "./components/Navbar";
-import InputSelectMeasurement from "./components/InputSelectMeasurement";
-import InputTextIngredient from "./components/InputTextIngredient";
-import InputIngredient from "./components/InputIngredient";
-import RecipeGrid from "./components/RecipeGrid";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar/Navbar"
+import BaseContainer from "./components/BaseContainer";
+
 
 const baseURL = "http://localhost:8000/api";
 
@@ -117,12 +114,9 @@ function App() {
   return (
     <div className="App">
         <Navbar title={post}/>
-        <MainBar popularSearchTerms={popularSearchTerms}
-                 filterOptions={filterOptions}
-        />
-        <InputIngredient/>
-        <RecipeGrid recipes={recipes} />
+        <BaseContainer popularSearchTerms={popularSearchTerms} filterOptions={filterOptions} recipes={recipes}/>
         <Footer title={post} />
+
     </div>
   );
 }
