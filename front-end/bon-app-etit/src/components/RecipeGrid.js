@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 export default function RecipeGrid({recipes}) {
   return (
