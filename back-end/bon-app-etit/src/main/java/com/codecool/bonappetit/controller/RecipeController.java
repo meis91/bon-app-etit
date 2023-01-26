@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/api")
 public class RecipeController {
 
-    private String name = "Bon-App-Etit";
+    private String name = "Bon APPètit";
 
     @GetMapping
     @ResponseBody

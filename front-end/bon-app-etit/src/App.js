@@ -4,6 +4,24 @@ import {useEffect, useState} from "react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar/Navbar"
 import BaseContainer from "./components/BaseContainer";
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            light: '#4d4d52',
+            main: '#2c2c2f',
+            dark: '#111111',
+            contrastText: '#fff',
+        },
+        secondary: {
+            light: '#be9655',
+            main: '#c78f46',
+            dark: '#de7e2d',
+            contrastText: '#000',
+        },
+    },
+});
 
 
 const baseURL = "http://localhost:8000/api";
@@ -113,10 +131,11 @@ function App() {
 
   return (
     <div className="App">
-        <Navbar title={post}/>
-        <BaseContainer popularSearchTerms={popularSearchTerms} filterOptions={filterOptions} recipes={recipes}/>
-        <Footer title={post} />
-
+        <ThemeProvider theme={theme}>
+            <Navbar title={post}/>
+            <BaseContainer popularSearchTerms={popularSearchTerms} filterOptions={filterOptions} recipes={recipes}/>
+            <Footer theme={theme} title={post} />
+        </ThemeProvider>
     </div>
   );
 }

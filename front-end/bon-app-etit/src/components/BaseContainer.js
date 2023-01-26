@@ -10,7 +10,13 @@ function BaseContainer({popularSearchTerms, filterOptions, recipes}) {
 
             <React.Fragment>
                 <CssBaseline />
-                <Container maxWidth="xl">
+                <Container maxWidth="xl"
+                           sx={{
+                               bgcolor: '#f6f6f6',
+                               pt: 8,
+                               pb: 6,
+                           }}
+                >
                     <MainBar popularSearchTerms={popularSearchTerms}
                              filterOptions={filterOptions}
                     />

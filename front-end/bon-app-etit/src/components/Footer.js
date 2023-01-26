@@ -1,13 +1,8 @@
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import SearchField from './SearchField.js';
-import CategoryFilter from './CategoryFilter.js';
 import Link from '@mui/material/Link';
 
-function Footer({ title }) {
+function Footer({ title, theme }) {
     function Copyright() {
         return (
           <Typography variant="body2" color="text.secondary" align="center">
@@ -16,15 +11,15 @@ function Footer({ title }) {
               bon-app-etit
             </Link>{' '}
             {new Date().getFullYear()}
-        
+
           </Typography>
         );
       }
 
   return (
-    <>
+    <div>
       {/* Footer */}
-      <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
+      <Box sx={{color: 'inherit', p: 6 }} component="footer">
         <Typography variant="h6" align="center" gutterBottom>
           {title}
         </Typography>
@@ -39,7 +34,7 @@ function Footer({ title }) {
         <Copyright />
       </Box>
       {/* End footer */}
-    </>
+    </div>
   )
 }
 
