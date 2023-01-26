@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import InputIngredient from "./Ingredient/InputIngredient";
 import InputInstructions from "./Instractions/InputInstructions";
 import {Box} from "@mui/material";
@@ -7,9 +7,7 @@ import InputTitle from "./InputTitle";
 import FormTitle from "../FormTitle";
 
 //Todo: Produce a Recipe form the Form and send Post to DB & Toggle Form
-function PostNewRecipe(props) {
-    const [ingredients, setIngredients] = useState([])
-
+function PostNewRecipe() {
     return (
         <div>
             <Box

@@ -34,8 +34,8 @@ function MainBar({ popularSearchTerms, filterOptions }) {
           <Container sx={{ py: 8 }} maxWidth="lg">    
             <Grid container spacing={{ xs: 2, md: 3, lg: 3 }} columns={{ xs: 12, sm: 12, md: 12, lg: 12}}>
             {filterOptions.map((option) => (
-                <Grid item xs={5} sm={4} md={3} lg={2}>
-                  <CategoryFilter filterOption={option} key={option.filter} />
+                <Grid key={option.filter} item xs={5} sm={4} md={3} lg={2}>
+                  <CategoryFilter filterOption={option}  />
                 </Grid>
               ))}
             </Grid>
