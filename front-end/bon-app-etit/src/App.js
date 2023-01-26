@@ -74,34 +74,24 @@ function App() {
 
     const recipes = [
       {
-          title: 'Sushi Plate',
-          category: 'Asian',
-          image: 'https://drive.google.com/uc?export=view&id=1QK-nSwgdGG2REYxYtdnr_l-tbjotO9IQ',
-      },
-      {
-        title: 'Pizza Neapoletana',
-        category: 'Pizza',
-        image: 'https://drive.google.com/uc?export=view&id=11IrwX62XpGumI6TBBH1CTtTXybAjNrOb',
-      },
-      {
-        title: 'Mini Burger',
-        category: 'Partyfood',
-        image: 'https://drive.google.com/uc?export=view&id=1bhkz8EAq9_N40UdMp8OYMT6Z3gjvQeZW',
-      },
-      {
-        title: 'Raspberry Cake',
-        category: 'Cakes',
-        image: 'https://drive.google.com/uc?export=view&id=1VTejIfB9z2JzCzzH1C8CFmAP_ksVtTNU',
-      },
-      {
-        title: 'Kalbsrahmgulasch',
-        category: 'Austrian',
-        image: 'https://drive.google.com/uc?export=view&id=1ex4vk5o-j_mbyyU8F5lO3wsIAFqpSfLW',
-      },
-      {
-        title: 'Pimientos de Padrón',
+        title: 'Bacon-wrapped Dates',
         category: 'Tapas',
-        image: 'https://drive.google.com/uc?export=view&id=1S0UdestdwXNX-uswVGwrIhNN_VmNpMTO',
+        image: 'https://drive.google.com/uc?export=view&id=1it1qSijnfuk4fs-Li5WB6O6Y9wixsQSw',
+      },
+      {
+        title: 'Raspberry Chocolate Cake',
+        category: 'Cakes',
+        image: 'https://drive.google.com/uc?export=view&id=13dRBk9Ql3xnbnYqsY6o_hn-Gsysw-w3G',
+      },
+      {
+        title: 'Beet Carpaccio',
+        category: 'Healthy',
+        image: 'https://drive.google.com/uc?export=view&id=1tW1PBg65Qrf9mLpWccPU-_LODFJ84h4d',
+      },
+      {
+        title: 'Saltimbocca',
+        category: 'Italian',
+        image: 'https://drive.google.com/uc?export=view&id=1QGwht-T6a8IdGLfZmJit8mQzd1kdi8gi',
       },
       {
         title: 'Beef tartare',
@@ -114,11 +104,35 @@ function App() {
         image: 'https://drive.google.com/uc?export=view&id=1-vWk037Yc4j_4lOnde0pwKCXgIfvvlLN',
       },
       {
-        title: 'Bacon-wrapped dates',
-        category: 'Tapas',
-        image: 'https://drive.google.com/uc?export=view&id=1zPIe9-XZA28agETM6YJfcplhCFZAZEe-',
+          title: 'Sushi Plate',
+          category: 'Asian',
+          image: 'https://drive.google.com/uc?export=view&id=1QK-nSwgdGG2REYxYtdnr_l-tbjotO9IQ',
       },
-  
+      {
+        title: 'Pizza Neapoletana',
+        category: 'Pizza',
+        image: 'https://drive.google.com/uc?export=view&id=11IrwX62XpGumI6TBBH1CTtTXybAjNrOb',
+      },
+      {
+        title: 'Kalbsrahmgulasch',
+        category: 'Austrian',
+        image: 'https://drive.google.com/uc?export=view&id=1ex4vk5o-j_mbyyU8F5lO3wsIAFqpSfLW',
+      },
+      {
+        title: 'Tafelspitz',
+        category: 'Austrian',
+        image: 'https://drive.google.com/uc?export=view&id=1knGmSWJQ7dA4qv3TkEBs7f4NcH6fA8YY',
+      },
+      {
+        title: 'Mini Burger',
+        category: 'Partyfood',
+        image: 'https://drive.google.com/uc?export=view&id=1bhkz8EAq9_N40UdMp8OYMT6Z3gjvQeZW',
+      },
+      {
+        title: 'Mac `n Cheese',
+        category: 'Vegetarian',
+        image: 'https://drive.google.com/uc?export=view&id=1GEo2tX-qdtodqdlBa0Qjt4UwQKLwc3Ma',
+      },
   ];
 
     useEffect(() => {
