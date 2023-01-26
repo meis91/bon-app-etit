@@ -1,26 +1,52 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Typography} from "@mui/material";
+import {Box, IconButton, Typography} from "@mui/material";
 import SelectUnitAndQuantity from "./SelectUnitAndQuantity";
-import InputTextIngredient from "./InputTextIngredient";
+import InputTextMiddle from "./InputTextMiddle";
+import FormSubtitle from "../../FormSubtitle";
+import Stack from "@mui/material/Stack";
+import ButtonAdd from "../../ButtonAdd";
+import ButtonRemove from "../../ButtonRemove";
 
 
-InputIngredient.propTypes = {
+function InputIngredient() {
+    const [amount, setAmount] = useState(3)
 
-};
+    const addBar = () =>{
+        setAmount(amount + 1);
+    }
 
-function InputIngredient(props) {
+    const removeBar = () =>{
+        setAmount(amount - 1);
+    }
+
+    const ingredientInputBar = () => {
+       let ingredientBars =[];
+        for(let i = 0; i < amount; i++){
+            let id = "ingredient-bar-" + i.toString();
+            ingredientBars.push(
+                <div className="input-ingredient" key={id}>
+                    <Stack
+                        direction={{xs: 'column', sm: 'row'}}
+                        spacing={{xs: 1, sm: 2, md: 4}}
+                    >
+                        <SelectUnitAndQuantity/>
+                        <InputTextMiddle label="Ingredient" placeholder="Name of the Ingredient"/>
+                    </Stack>
+                </div>
+            )
+        }
+        return ingredientBars;
+    }
 
     return (
         <div>
-            <Typography variant="h5" align="left" color="textSecondary" paragraph>
-                Ingredients
-            </Typography>
+            <FormSubtitle text="Ingredients"/>
             <Box
-                sx={{ display: 'flex', flexWrap: 'wrap'}}
+                sx={{display: 'flex', flexWrap: 'wrap'}}
             >
-
-                <SelectUnitAndQuantity />
-                <InputTextIngredient/>
+                {ingredientInputBar()}
+                <ButtonAdd action={addBar}/>
+                <ButtonRemove action={removeBar}/>
             </Box>
         </div>
     );

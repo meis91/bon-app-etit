@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import {Typography} from "@mui/material";
+import FormSubtitle from "../../FormSubtitle";
 
 InputInstructions.propTypes = {
     
@@ -10,9 +11,7 @@ function InputInstructions(props) {
 
     return (
                 <div align="left">
-                    <Typography variant="h5" align="left" color="textSecondary" paragraph>
-                        Instructions
-                    </Typography>
+                    <FormSubtitle text={"Instructions"}/>
                     <TextField
                         sx={{
                             width: { sm: 0, md: 0 },

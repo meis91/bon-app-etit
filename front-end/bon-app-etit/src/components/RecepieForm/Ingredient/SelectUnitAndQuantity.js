@@ -4,9 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import InputAdornment from "@mui/material/InputAdornment";
 
 
-
-
-const SelectUnitAndQuantity = ({}) => {
+const SelectUnitAndQuantity = () => {
     const [unit, setUnit] = useState("g");
 
     const units= [
@@ -27,7 +25,7 @@ const SelectUnitAndQuantity = ({}) => {
             label: 'Tablespoon',
         },
         {
-            value: 'pieceS',
+            value: 'piece',
             label: 'Piece',
         },
         {
@@ -65,6 +63,7 @@ const SelectUnitAndQuantity = ({}) => {
                 ))}
             </TextField>
             <TextField
+                type="number"
                 label="Amount"
                 id="outlined-start-adornment"
                 placeholder="Amount"
