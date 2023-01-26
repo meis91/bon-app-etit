@@ -10,13 +10,6 @@ import CategoryFilter from './CategoryFilter.js'
 function MainBar({ popularSearchTerms, filterOptions }) {
   return (
     <>
-        <Box
-          sx={{
-            bgcolor: '#f6f6f6',
-            pt: 8,
-            pb: 6,
-          }}
-        >
         <Container maxWidth="sm">
         <Typography
               component="h1"
@@ -48,7 +41,6 @@ function MainBar({ popularSearchTerms, filterOptions }) {
               ))}
             </Grid>
           </Container>
-        </Box>
     </>
   )
 }
