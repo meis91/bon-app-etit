@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class JDBCTemplate {
     public static void main(String args[]) {
-        final String url =  "postgresql://${APP_DB_HOST}:${APP_DB_POST}/${APP_DB_NAME}";
+        final String url =  "postgresql://${APP_DB_HOST}:${APP_DB_PORT}/${APP_DB_NAME}";
         final String user = "${PSQL_USERNAME}";
         final String password = "${PSQL_PASSWORD}";
 
