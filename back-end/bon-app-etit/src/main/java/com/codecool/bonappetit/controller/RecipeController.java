@@ -17,13 +17,18 @@ public class RecipeController {
     private final RecipeService recipeService;
     private String name = "bon-app-etit";
 
-//    @GetMapping
-//    public String name() {
-//        return name;
-//    }
-
     @GetMapping
+    public String name() {
+        return name;
+    }
+
+    @GetMapping("/recipes")
     public List<Recipe> getAll() {
         return recipeService.getAll();
+    }
+
+    @GetMapping("/recipes/{id}")
+    public Recipe getRecipeById(@PathVariable Long id) {
+        return recipeService.findById(id);
     }
 }
