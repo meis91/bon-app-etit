@@ -16,10 +16,14 @@ import java.util.List;
 public class Recipe {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long recipeId;
     private String name;
     private String description;
     private int portions;
     @Column(columnDefinition="TEXT")
     private String instructions;
+//    private String image;
+    @OneToMany(cascade = {CascadeType.ALL})
+    private List<IngredientQuantity> ingredientList;
+//    private List<Label> labels;
 }
