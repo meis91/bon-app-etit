@@ -14,7 +14,9 @@ import Stack from "@mui/material/Stack";
 
 
 function PostNewRecipe() {
-    const RECIPE_POST_URL = "";
+    const RECIPE_POST_URL = "http://localhost:8000/api";
+    axios.defaults.headers.get['header-name'] = 'value'
+    console.log(axios.defaults.headers)
 
     const [recipe, setRecipe] = useState({
         title:"",
@@ -37,15 +39,25 @@ function PostNewRecipe() {
         })
     }
 
-    function postRecipe(e){
+    async function postRecipe(e) {
         e.preventDefault()
         console.log("Sub")
-        /*axios.post(RECIPE_POST_URL, {
-            recipe
+        /*try {
+            const url = RECIPE_POST_URL;
+            const data = recipe
+            const response = await axios.post(url, data);
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }*/
+        let formdata = new FormData
+        formdata.append("recipe", recipe)
+        axios.post(RECIPE_POST_URL, {
+            body: formdata,
         })
             .then((response) => {
                 console.log(response);
-            });*/
+            });
     }
 
     return (
