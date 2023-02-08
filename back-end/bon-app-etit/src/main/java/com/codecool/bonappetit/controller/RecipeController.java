@@ -50,4 +50,10 @@ public class RecipeController {
         List<Recipe> recipes = recipeService.findByIngredient(ingredient);
         return recipes;
     }
+
+    @PostMapping()
+    public Recipe saveRecipe(@RequestParam Recipe recipe){
+        System.out.println("recipe = " + recipe);
+        return recipe;
+    }
 }

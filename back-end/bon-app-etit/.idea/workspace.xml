@@ -4,31 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13cf975c-4cbf-460f-8647-0c04e0e8eafa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../bae/HELP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Recipe.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/public/index.html" afterDir="false" />
+    <list default="true" id="13cf975c-4cbf-460f-8647-0c04e0e8eafa" name="Changes" comment="merged gitignore">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/controller/RecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/controller/RecipeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/BaseContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/BaseContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Footer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +72,21 @@
       <updated>1674561257635</updated>
       <workItem from="1674561258877" duration="700000" />
     </task>
+    <task id="LOCAL-00001" summary="merged gitignore">
+      <created>1674655619210</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1674655619210</updated>
+    </task>
+    <task id="LOCAL-00002" summary="NavBar &amp; MainBar merged">
+      <created>1674655974653</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1674655974653</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,5 +102,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="merged gitignore" />
+    <MESSAGE value="NavBar &amp; MainBar merged" />
+    <option name="LAST_COMMIT_MESSAGE" value="NavBar &amp; MainBar merged" />
   </component>
 </project>

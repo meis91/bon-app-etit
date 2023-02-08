@@ -1,0 +1,11 @@
+{
+  "groups": [
+    {
+      "name": "datasets",
+      "type": "com.codecool.bonappetit.runner.DatabasePopulator",
+      "sourceType": "com.codecool.bonappetit.runner.DatabasePopulator"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}
