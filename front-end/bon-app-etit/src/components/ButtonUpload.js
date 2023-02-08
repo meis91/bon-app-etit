@@ -1,18 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {Button} from "@mui/material";
+import {Button, IconButton} from "@mui/material";
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import FormSubtitle from "./FormSubtitle";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-ButtonUpload.propTypes = {
 
-};
 
-function ButtonUpload(props) {
+function ButtonUpload() {
     return (
-        <div className="btn-upload" align="center">
-            <Button variant="contained" component="label" size="large">
-                Upload
-                <input hidden accept="image/*" multiple type="file" />
-            </Button>
+        <div className="btn-upload" align="left">
+            <FormSubtitle text="Image"/>
+            <IconButton color="primary" aria-label="upload picture" component="label" >
+                <input  hidden accept="image/*" multiple type="file" />
+                <AddAPhotoIcon/>
+            </IconButton>
         </div>
     );
 }

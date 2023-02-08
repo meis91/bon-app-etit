@@ -7,7 +7,10 @@ import InputTitle from "./InputTitle";
 import FormTitle from "../FormTitle";
 import InputDescription from "./InputDescription";
 import ButtonUpload from "../ButtonUpload";
+import SendIcon from '@mui/icons-material/Send';
+import Button from '@mui/material/Button';
 import axios from "axios";
+import Stack from "@mui/material/Stack";
 
 
 function PostNewRecipe() {
@@ -34,13 +37,15 @@ function PostNewRecipe() {
         })
     }
 
-    function postRecipe(){
-        axios.post(RECIPE_POST_URL, {
+    function postRecipe(e){
+        e.preventDefault()
+        console.log("Sub")
+        /*axios.post(RECIPE_POST_URL, {
             recipe
         })
             .then((response) => {
                 console.log(response);
-            });
+            });*/
     }
 
     return (
@@ -48,20 +53,25 @@ function PostNewRecipe() {
             <Box
                 container="true"
                 maxWidth="lg"
-                component="form"
+                component="form"type="file"
                 sx={{
                     '& .MuiTextField-root': { m: 1, width: '25ch' },
                 }}
                 noValidate
                 autoComplete="off"
             >
-                <FormControl>
+                <FormControl onSubmit={(e) =>postRecipe(e)}>
                     <FormTitle text="Add a new Recipe"/>
                     <InputTitle title={recipe.title} handleInput={handleInput}/>
+                    <ButtonUpload/>
                     <InputDescription description={recipe.description} handleInput={handleInput} />
                     <InputIngredients recipe={recipe} setRecipe={setRecipe}/>
                     <InputInstructions instructions={recipe.instructions} handleInput={handleInput} />
-                    <ButtonUpload/>
+                    <Stack direction="row" spacing={2}>
+                        <Button onClick={(e) =>postRecipe(e)} type="submit" variant="contained" endIcon={<SendIcon />}>
+                            Send
+                        </Button>
+                    </Stack>
                 </FormControl>
             </Box>
         </div>
