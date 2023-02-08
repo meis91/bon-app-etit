@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity(name = "recipe")
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,14 +16,14 @@ import java.util.List;
 public class Recipe {
     @Id
     @GeneratedValue
-    private Long recipeId;
+    private long id;
     private String name;
     private String description;
     private int portions;
     @Column(columnDefinition="TEXT")
     private String instructions;
 //    private String image;
-    @OneToMany(cascade = {CascadeType.ALL})
-    private List<IngredientQuantity> ingredientList;
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private List<IngredientQuantity> quantities;
 //    private List<Label> labels;
 }

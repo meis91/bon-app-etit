@@ -4,7 +4,6 @@ import com.codecool.bonappetit.persistence.entity.Ingredient;
 import com.codecool.bonappetit.persistence.entity.IngredientQuantity;
 import com.codecool.bonappetit.persistence.entity.Recipe;
 import com.codecool.bonappetit.persistence.entity.UnitType;
-import com.codecool.bonappetit.persistence.repository.IngredientQuantityRepository;
 import com.codecool.bonappetit.persistence.repository.IngredientRepository;
 import com.codecool.bonappetit.persistence.repository.RecipeRepository;
 import org.springframework.boot.ApplicationRunner;
@@ -27,13 +26,10 @@ public class DatabasePopulator {
 
     @Bean
     ApplicationRunner fillDatabase(IngredientRepository ingredientRepository,
-                                   RecipeRepository recipeRepository,
-                                   IngredientQuantityRepository ingredientQuantityRepository) {
+                                   RecipeRepository recipeRepository) {
         return args -> {
             ingredientRepository.saveAll(ingredients);
             createIngredientQuantities();
-            ingredientQuantityRepository.saveAll(ingredientQuantities);
-            recipeRepository.saveAll(recipes);
             setRecipesIngredientsLists();
             recipeRepository.saveAll(recipes);
         };
@@ -192,21 +188,21 @@ public class DatabasePopulator {
     }
 
     private void setRecipesIngredientsLists() {
-        Recipe tafelspitz = recipes.get(0); // i1 - i8
-        tafelspitz.setIngredientList(List.of(ingredientQuantities.get(0), ingredientQuantities.get(1),
+        Recipe tafelspitz = recipes.get(0);
+        tafelspitz.setQuantities(List.of(ingredientQuantities.get(0), ingredientQuantities.get(1),
                 ingredientQuantities.get(2), ingredientQuantities.get(3), ingredientQuantities.get(4),
                 ingredientQuantities.get(5), ingredientQuantities.get(6), ingredientQuantities.get(7)));
-        Recipe saltinbocca = recipes.get(1); // i9 - i15
-        saltinbocca.setIngredientList(List.of(ingredientQuantities.get(8), ingredientQuantities.get(9),
+        Recipe saltinbocca = recipes.get(1);
+        saltinbocca.setQuantities(List.of(ingredientQuantities.get(8), ingredientQuantities.get(9),
                 ingredientQuantities.get(10), ingredientQuantities.get(11), ingredientQuantities.get(12),
                 ingredientQuantities.get(13), ingredientQuantities.get(14)));
-        Recipe macAndCheese = recipes.get(2); // i16-i24
-        macAndCheese.setIngredientList(List.of(ingredientQuantities.get(15), ingredientQuantities.get(16),
+        Recipe macAndCheese = recipes.get(2);
+        macAndCheese.setQuantities(List.of(ingredientQuantities.get(15), ingredientQuantities.get(16),
                 ingredientQuantities.get(17), ingredientQuantities.get(18), ingredientQuantities.get(19),
                 ingredientQuantities.get(20), ingredientQuantities.get(21), ingredientQuantities.get(22),
                 ingredientQuantities.get(23)));
-        Recipe pimientosDePadron = recipes.get(3); // i25 - 27
-        pimientosDePadron.setIngredientList(List.of(ingredientQuantities.get(24), ingredientQuantities.get(25),
+        Recipe pimientosDePadron = recipes.get(3);
+        pimientosDePadron.setQuantities(List.of(ingredientQuantities.get(24), ingredientQuantities.get(25),
                 ingredientQuantities.get(26)));
     }
 }

@@ -18,4 +18,8 @@ public class RecipeService {
     public Recipe findById(Long id) { return recipeRepository.findById(id)
             .orElseThrow(() -> new RecipeNotFoundException(id));
     }
+
+    public List<Recipe> findByIngredient(String ingredient) {
+        return recipeRepository.findByQuantitiesIngredientNameIgnoreCase(ingredient);
+    }
 }

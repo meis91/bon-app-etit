@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "ingredient")
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,6 +16,6 @@ import lombok.NoArgsConstructor;
 public class Ingredient {
     @Id
     @GeneratedValue
-    private Long ingredientId;
+    private long ingredientId;
     private String name;
 }

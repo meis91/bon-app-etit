@@ -1,9 +1,6 @@
 package com.codecool.bonappetit.persistence.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -14,9 +11,10 @@ import lombok.*;
 public class IngredientQuantity {
     @Id
     @GeneratedValue
-    private Long ingredientQuantityId;
+    private long id;
     @OneToOne
     private Ingredient ingredient;
+    @Enumerated(EnumType.STRING)
     private UnitType unit;
     private double quantity;
 }
