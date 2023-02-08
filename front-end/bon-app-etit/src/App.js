@@ -33,7 +33,7 @@ const theme = createTheme({
 const baseURL = "http://localhost:8000/api";
 
 function App() {
-    const [post, setPost] = useState(null);
+    const [title, setTitle] = useState(null);
 
     const popularSearchTerms = ['Pasta', 'Vegan', 'Quick Dinner', 'Cocktail'];
 
@@ -143,18 +143,17 @@ function App() {
 
     useEffect(() => {
         axios.get(baseURL).then((response) => {
-            setPost(response.data);
+            setTitle(response.data);
         });
     }, []);
 
-    if (!post) return null;
-
+    if (!title) return null;
   return (
     <div className="App">
         <ThemeProvider theme={theme}>
-            <Navbar title={post}/>
+            <Navbar title={title}/>
             <BaseContainer popularSearchTerms={popularSearchTerms} filterOptions={filterOptions} recipes={recipes}/>
-            <Footer theme={theme} title={post} />
+            <Footer theme={theme} title={title} />
         </ThemeProvider>
     </div>
   );

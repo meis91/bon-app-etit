@@ -4,7 +4,8 @@ import MenuItem from '@mui/material/MenuItem';
 import InputAdornment from "@mui/material/InputAdornment";
 
 
-const SelectUnitAndQuantity = () => {
+const SelectUnitAndQuantity = ({amount, addUnit, addAmount}) => {
+
     const [unit, setUnit] = useState("g");
 
     const units= [
@@ -54,7 +55,7 @@ const SelectUnitAndQuantity = () => {
                 select
                 label="Unit"
                 defaultValue="g"
-                onChange={(e) => setUnit(e.target.value)}
+                onChange={(e) => setUnit(e.target.value) }
             >
                 {units.map((unit) => (
                     <MenuItem  key={unit.value} value={unit.value}>
@@ -63,10 +64,12 @@ const SelectUnitAndQuantity = () => {
                 ))}
             </TextField>
             <TextField
+                onChange={(e) => addAmount(e.target.value)}
                 type="number"
                 label="Amount"
                 id="outlined-start-adornment"
                 placeholder="Amount"
+                value={amount.value}
                 sx={{ m: 1, maxWidth: 150, minWidth: 50, width: 50  }}
                 InputProps={{
                     endAdornment: <InputAdornment position="end">{unit}</InputAdornment>

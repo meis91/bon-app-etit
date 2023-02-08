@@ -10,7 +10,7 @@ function BaseContainer({popularSearchTerms, filterOptions, recipes}) {
 
             <React.Fragment>
                 <CssBaseline />
-                <Container maxWidth="xl"
+                <Container maxWidth={false}
                            sx={{
                                bgcolor: '#f6f6f6',
                                pt: 8,
@@ -20,7 +20,7 @@ function BaseContainer({popularSearchTerms, filterOptions, recipes}) {
                     <MainBar popularSearchTerms={popularSearchTerms}
                              filterOptions={filterOptions}
                     />
-                    <RecipeGrid recipes={recipes} />
+                    {/*<RecipeGrid recipes={recipes} />*/}
                     <PostNewRecipe/>
                 </Container>
             </React.Fragment>

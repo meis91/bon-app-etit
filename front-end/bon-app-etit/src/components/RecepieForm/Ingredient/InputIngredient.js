@@ -6,35 +6,50 @@ import FormSubtitle from "../../FormSubtitle";
 import Stack from "@mui/material/Stack";
 import ButtonAdd from "../../ButtonAdd";
 import ButtonRemove from "../../ButtonRemove";
+import Ingredient from "./ingredient";
 
 
-function InputIngredient() {
-    const [amount, setAmount] = useState(3)
+function InputIngredient({ingredients, handelIngredients}) {
+    /*const[ingredients, setIngredients] = useState([
+        {
+            id:1,
+            name:"",
+            amount:0,
+            unit:"g"
+        },
+        {
+            id:2,
+            name:"",
+            amount:0,
+            unit:"g"
+        },
+        {
+            id:3,
+            name:"",
+            amount:0,
+            unit:"g"
+        }
+    ]);*/
+    const [formBars, setFormBars] = useState(1)
+
 
     const addBar = () =>{
-        setAmount(amount + 1);
+        setFormBars(formBars + 1);
     }
 
     const removeBar = () =>{
-        setAmount(amount - 1);
+        setFormBars(formBars - 1);
     }
+
+
 
     const ingredientInputBar = () => {
        let ingredientBars =[];
-        for(let i = 0; i < amount; i++){
-            let id = "ingredient-bar-" + i.toString();
-            ingredientBars.push(
-                <div className="input-ingredient" key={id}>
-                    <Stack
-                        direction={{xs: 'column', sm: 'row'}}
-                        spacing={{xs: 1, sm: 2, md: 4}}
-                    >
-                        <SelectUnitAndQuantity/>
-                        <InputTextMiddle label="Ingredient" placeholder="Name of the Ingredient"/>
-                    </Stack>
-                </div>
-            )
-        }
+       ingredients.map((ingredient) => {
+           ingredientBars.push(
+               <Ingredient key={ingredient.id} id={ingredient.id} ingredients={ingredients} handleIngredients={handelIngredients}/>
+           )
+       })
         return ingredientBars;
     }
 

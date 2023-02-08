@@ -7,17 +7,20 @@ InputInstructions.propTypes = {
     
 };
 
-function InputInstructions(props) {
+function InputInstructions({instructions, handleInput}) {
 
     return (
                 <div align="left">
                     <FormSubtitle text={"Instructions"}/>
                     <TextField
+                        name="instructions"
+                        value={instructions}
+                        onChange={event => handleInput(event)}
                         sx={{
                             width: { sm: 0, md: 0 },
                             "& .MuiInputBase-root": {
                                 height: 300,
-                                width: 700
+                                width: 730
                             }
                         }}
                         label="Instructions"
