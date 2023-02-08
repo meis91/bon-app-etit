@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import InputIngredient from "./Ingredient/InputIngredient";
+import InputIngredients from "./Ingredient/InputIngredients";
 import InputInstructions from "./Instructions/InputInstructions";
 import {Box} from "@mui/material";
 import FormControl from "@mui/material/FormControl";
@@ -7,48 +7,40 @@ import InputTitle from "./InputTitle";
 import FormTitle from "../FormTitle";
 import InputDescription from "./InputDescription";
 import ButtonUpload from "../ButtonUpload";
+import axios from "axios";
 
 
-//Todo: Produce a Recipe form the Form and send Post to DB & Toggle Form
 function PostNewRecipe() {
-    const[ingredients, setIngredients] = useState([
-       /* {
-            id:1,
-            name:"",
-            amount:0,
-            unit:"g"
-        },
-        {
-            id:2,
-            name:"",
-            amount:0,
-            unit:"g"
-        },
-        {
-            id:3,
-            name:"",
-            amount:0,
-            unit:"g"
-        }*/
-    ]);
+    const RECIPE_POST_URL = "";
 
     const [recipe, setRecipe] = useState({
         title:"",
         description:"",
-        ingredients:ingredients,
+        ingredients:[],
         instructions:""
     });
+
     const handleInput = (e) => {
         setRecipe({
             ...recipe,
             [e.target.name]: e.target.value,
         })
     }
-    //console.log(recipe)
-    const handleIngredients = (e) =>{
-        console.log(e.target.value)
-        console.log(e.target.id)
-        //setIngredients(e.target.value)
+
+    const handleIngredients = (ingredient) =>{
+        setRecipe({
+            ...recipe,
+            [recipe.ingredients]: recipe.ingredients.push(ingredient)
+        })
+    }
+
+    function postRecipe(){
+        axios.post(RECIPE_POST_URL, {
+            recipe
+        })
+            .then((response) => {
+                console.log(response);
+            });
     }
 
     return (
@@ -67,7 +59,7 @@ function PostNewRecipe() {
                     <FormTitle text="Add a new Recipe"/>
                     <InputTitle title={recipe.title} handleInput={handleInput}/>
                     <InputDescription description={recipe.description} handleInput={handleInput} />
-                    <InputIngredient ingredients={ingredients} handelIngredients={handleIngredients}/>
+                    <InputIngredients recipe={recipe} setRecipe={setRecipe}/>
                     <InputInstructions instructions={recipe.instructions} handleInput={handleInput} />
                     <ButtonUpload/>
                 </FormControl>
