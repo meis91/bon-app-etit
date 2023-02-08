@@ -1,6 +1,9 @@
 package com.codecool.bonappetit.controller;
 
+import com.codecool.bonappetit.logic.IngredientService;
 import com.codecool.bonappetit.logic.RecipeService;
+import com.codecool.bonappetit.persistence.entity.Ingredient;
+import com.codecool.bonappetit.persistence.entity.IngredientQuantity;
 import com.codecool.bonappetit.persistence.entity.Recipe;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +17,7 @@ import java.util.List;
 public class RecipeController {
 
     private final RecipeService recipeService;
+    private final IngredientService ingredientService;
     private String name = "bon-app-etit";
 
     @GetMapping
@@ -24,6 +28,16 @@ public class RecipeController {
     @GetMapping("/recipes")
     public List<Recipe> getRecipes() {
         return recipeService.getAll();
+    }
+
+    @PostMapping("/recipes")
+    void addRecipe(@RequestBody Recipe recipe) {
+        List<IngredientQuantity> ingredientQuantities = recipe.getQuantities();
+        for (IngredientQuantity ingredientQuantity : ingredientQuantities) {
+            Ingredient ingredient = ingredientService.saveIngredientIfNew(ingredientQuantity.getIngredient().getName());
+            ingredientQuantity.setIngredient(ingredient);
+        }
+        recipeService.save(recipe);
     }
 
     @GetMapping("/recipes/{id}")

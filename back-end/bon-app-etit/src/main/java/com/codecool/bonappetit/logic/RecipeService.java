@@ -22,4 +22,8 @@ public class RecipeService {
     public List<Recipe> findByIngredient(String ingredient) {
         return recipeRepository.findByQuantitiesIngredientNameIgnoreCase(ingredient);
     }
+
+    public void save(Recipe recipe) {
+        recipeRepository.save(recipe);
+    }
 }
