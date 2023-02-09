@@ -21,6 +21,7 @@ function PostNewRecipe() {
     const [recipe, setRecipe] = useState({
         title:"",
         description:"",
+        portions: 4,
         quantities:[],
         instructions:""
     });
@@ -36,25 +37,6 @@ function PostNewRecipe() {
 
     async function postRecipe(e) {
         e.preventDefault()
-        console.log(recipe)
-
-        /*try {
-            const url = RECIPE_POST_URL;
-            const data = recipe
-            const response = await axios.post(url, data);
-            console.log(response.data);
-        } catch (error) {
-            console.error(error);
-        }*/
-
-        // let formdata = new FormData
-        // formdata.append("recipe", recipe)
-        // axios.post(RECIPE_POST_URL, {
-        //     body: formdata,
-        // })
-        //     .then((response) => {
-        //         console.log(response);
-        //     });
 
         try {
         let result = await axios.post(          // any call like get

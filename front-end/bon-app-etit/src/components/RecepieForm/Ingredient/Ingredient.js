@@ -65,7 +65,6 @@ const Ingredient = ({id, recipe, setRecipe}) => {
     }
 
     const  handleInput = (e) =>  {
-
         if(e.target.name === "unit"){
             setUnit(e.target.value)
         }
@@ -73,14 +72,11 @@ const Ingredient = ({id, recipe, setRecipe}) => {
             ...quantities,
             [e.target.name]: e.target.value
         } : quantities)
-        console.log(updatedQuantities)
         const updatedRecipe = {
             ...recipe,
             quantities: updatedQuantities
         }
         setRecipe(updatedRecipe)
-        console.log("this")
-        console.log(updatedRecipe)
     }
 
     return (
