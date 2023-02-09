@@ -39,7 +39,7 @@ function App() {
 
 
     const handleAddRecipe = (e) =>{
-        e.preventDefault()
+        //e.preventDefault()
         console.log(showAddRecipe)
         setShowAddRecipe(!showAddRecipe);
     }
@@ -55,7 +55,7 @@ function App() {
     <div className="App">
         <ThemeProvider theme={theme}>
             <Navbar title={title} handleAddRecipe={handleAddRecipe}/>
-            <BaseContainer addRecipe={showAddRecipe} baseUrl={baseURL}/>
+            <BaseContainer addRecipe={showAddRecipe} handleAddRecipe={handleAddRecipe} baseUrl={baseURL}/>
             <Footer theme={theme} title={showAddRecipe} />
         </ThemeProvider>
     </div>

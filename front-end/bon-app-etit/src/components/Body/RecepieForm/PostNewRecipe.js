@@ -14,7 +14,7 @@ import Stack from "@mui/material/Stack";
 import InputPortions from "./InputPortions";
 
 
-function PostNewRecipe() {
+function PostNewRecipe({handleAddRecipe}) {
     const RECIPE_POST_URL = "http://localhost:8000/api/recipes";
 
 
@@ -39,15 +39,12 @@ function PostNewRecipe() {
     async function postRecipe(e) {
         e.preventDefault()
 
-        try {
         let result = await axios.post(          // any call like get
             RECIPE_POST_URL,         // your URL
             recipe
         );
-        console.log(result.response.data);
-        } catch (error) {
-        console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
-        }
+        //console.log(result.response.data);
+        handleAddRecipe();
 
     }
 

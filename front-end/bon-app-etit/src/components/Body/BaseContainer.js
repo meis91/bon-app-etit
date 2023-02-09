@@ -6,16 +6,8 @@ import PostNewRecipe from "./RecepieForm/PostNewRecipe";
 import RecipeGrid from "./Recipes/RecipeGrid";
 import IndexPage from "./Recipes/IndexPage";
 
-function BaseContainer({addRecipe, baseUrl}) {
-    console.log(addRecipe)
+function BaseContainer({addRecipe, handleAddRecipe, baseUrl}) {
 
-    const handleBaseContainer = () =>{
-        if(!addRecipe){
-            return <IndexPage baseUrl={baseUrl}/>
-        } else {
-            return <PostNewRecipe/>
-        }
-    }
     return (
             <React.Fragment>
                 <CssBaseline />
@@ -26,7 +18,7 @@ function BaseContainer({addRecipe, baseUrl}) {
                                pb: 6,
                            }}
                 >
-                    {!addRecipe ? <IndexPage/> : <PostNewRecipe/>}
+                    {!addRecipe ? <IndexPage/> : <PostNewRecipe handleAddRecipe={handleAddRecipe}/>}
                 </Container>
             </React.Fragment>
 
