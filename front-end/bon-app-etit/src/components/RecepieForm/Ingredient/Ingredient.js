@@ -46,16 +46,37 @@ const Ingredient = ({id, recipe, setRecipe}) => {
 
     ];
 
-    const  handleInput = (e) =>  {
-        setUnit(e.target.value)
-        const updatedIngredients = recipe.ingredients.map((ingredient, index) => index === id ? {
-            ...ingredient,
-            [e.target.name]: e.target.value
-        } : ingredient)
-        console.log(updatedIngredients)
+    const  handleInputName = (e) =>  {
+        let newQuantity = {
+                name: ""
+        }
+        newQuantity.name = e.target.value
+
+        const updatedQuantities = recipe.quantities.map((quantitiesElement, index) => index === id ? {
+            ...quantitiesElement,
+            ingredient: newQuantity,
+        } : quantitiesElement)
+
         const updatedRecipe = {
             ...recipe,
-            ingredients: updatedIngredients
+            quantities: updatedQuantities
+        }
+        setRecipe(updatedRecipe)
+    }
+
+    const  handleInput = (e) =>  {
+
+        if(e.target.name === "unit"){
+            setUnit(e.target.value)
+        }
+        const updatedQuantities = recipe.quantities.map((quantities, index) => index === id ? {
+            ...quantities,
+            [e.target.name]: e.target.value
+        } : quantities)
+        console.log(updatedQuantities)
+        const updatedRecipe = {
+            ...recipe,
+            quantities: updatedQuantities
         }
         setRecipe(updatedRecipe)
         console.log("this")
@@ -75,7 +96,7 @@ const Ingredient = ({id, recipe, setRecipe}) => {
                            select
                            label="Unit"
                            defaultValue="g"
-                           onChange={(e) => handleInput(e) && setUnit(e)}
+                           onChange={(e) => handleInput(e)}
                 >
                     {units.map((unit) => (
                         <MenuItem key={unit.value} value={unit.value}>
@@ -86,7 +107,7 @@ const Ingredient = ({id, recipe, setRecipe}) => {
                 <TextField
                     onChange={(e) => handleInput(e)}
                     id="outlined-start-adornment"
-                    name="amount"
+                    name="quantity"
                     type="number"
                     label="Amount"
                     placeholder="Amount"
@@ -96,7 +117,7 @@ const Ingredient = ({id, recipe, setRecipe}) => {
                     }}
                 />
                 <TextField
-                    onChange={(e) => handleInput(e)}
+                    onChange={(e) => handleInputName(e)}
                     label="Ingredient"
                     name="name"
                     id="outlined-start"

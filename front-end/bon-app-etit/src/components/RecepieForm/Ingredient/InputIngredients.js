@@ -7,12 +7,19 @@ import Ingredient from "./Ingredient";
 
 
 function InputIngredients({recipe, setRecipe}) {
-    const[ingredient, setIngredient] = useState(
+    const[quantities, setQuantities] = useState(
         {
-            name:"",
+                        ingredient: {
+                                        name: ""
+                                    },
+                        quantity:0,
+                        unit:"g"
+                    }
+
+           /* name:"",
             amount:0,
-            unit:"g"
-        }
+            unit:"g"*/
+
     );
 
     const [formBars, setFormBars] = useState(1)
@@ -20,25 +27,25 @@ function InputIngredients({recipe, setRecipe}) {
     const addBar = () =>{
         setRecipe({
             ...recipe,
-            [recipe.ingredients]: recipe.ingredients.push(ingredient)
+            [recipe.quantities]: recipe.quantities.push(quantities)
         })
     }
 
     const removeBar = () =>{
         setRecipe({
             ...recipe,
-            [recipe.ingredients]: recipe.ingredients.pop()
+            [recipe.quantities]: recipe.quantities.pop()
         })
     }
 
     const ingredientInputBar = () => {
        let ingredientBars =[];
-        for(let i = 0; i < recipe.ingredients.length; i++){
+        for(let i = 0; i < recipe.quantities.length; i++){
             ingredientBars.push(
                 <Ingredient key={i} id={i} recipe={recipe} setRecipe={setRecipe} />
             )
         }
-        recipe.ingredients.map((ingredient) => {
+        recipe.quantities.map((ingredient) => {
        })
         return ingredientBars;
     }

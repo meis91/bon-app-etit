@@ -16,14 +16,15 @@ import Stack from "@mui/material/Stack";
 function PostNewRecipe() {
     const RECIPE_POST_URL = "http://localhost:8000/api/recipes";
     axios.defaults.headers.get['header-name'] = 'value'
-    console.log(axios.defaults.headers)
+
 
     const [recipe, setRecipe] = useState({
         title:"",
         description:"",
-        ingredients:[],
+        quantities:[],
         instructions:""
     });
+
 
     const handleInput = (e) => {
         setRecipe({
@@ -32,16 +33,10 @@ function PostNewRecipe() {
         })
     }
 
-    const handleIngredients = (ingredient) =>{
-        setRecipe({
-            ...recipe,
-            [recipe.ingredients]: recipe.ingredients.push(ingredient)
-        })
-    }
 
     async function postRecipe(e) {
         e.preventDefault()
-        console.log("Sub")
+        console.log(recipe)
 
         /*try {
             const url = RECIPE_POST_URL;
@@ -64,23 +59,7 @@ function PostNewRecipe() {
         try {
         let result = await axios.post(          // any call like get
             RECIPE_POST_URL,         // your URL
-            {                                     // data if post, put
-            
-                "name":"a",
-                    "description":"a",
-                    "quantities":[
-                    {
-                        "ingredient": {
-                                        "name": "Carrot"
-                                    },
-                        "quantity":1,
-                        "unit":"KILOGRAM"
-                    }
-                    ],
-                    "instructions":"a"
-            }
-            
-
+            recipe
         );
         console.log(result.response.data);
         } catch (error) {
