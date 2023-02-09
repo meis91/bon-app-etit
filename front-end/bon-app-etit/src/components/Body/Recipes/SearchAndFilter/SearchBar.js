@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import SearchField from './SearchField.js'
 import CategoryFilter from './CategoryFilter.js'
 
-function SearchBar({ popularSearchTerms, filterOptions }) {
+function SearchBar({ popularSearchTerms, filterOptions, handleSearch }) {
   return (
     <>
         <Container maxWidth="sm">
@@ -19,7 +19,7 @@ function SearchBar({ popularSearchTerms, filterOptions }) {
             >
               What would you like to eat today?
             </Typography>
-            <SearchField />
+            <SearchField handleSearch={handleSearch}/>
             <Stack
               sx={{ pt: 4 }}
               direction="row"

@@ -49,14 +49,13 @@ function App() {
             setTitle(response.data);
         });
     }, []);
-
     if (!title) return null;
 
   return (
     <div className="App">
         <ThemeProvider theme={theme}>
-            <Navbar title={showAddRecipe} handleAddRecipe={handleAddRecipe}/>
-            <BaseContainer addRecipe={showAddRecipe}/>
+            <Navbar title={title} handleAddRecipe={handleAddRecipe}/>
+            <BaseContainer addRecipe={showAddRecipe} baseUrl={baseURL}/>
             <Footer theme={theme} title={showAddRecipe} />
         </ThemeProvider>
     </div>

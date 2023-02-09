@@ -6,12 +6,12 @@ import PostNewRecipe from "./RecepieForm/PostNewRecipe";
 import RecipeGrid from "./Recipes/RecipeGrid";
 import IndexPage from "./Recipes/IndexPage";
 
-function BaseContainer({popularSearchTerms, filterOptions, recipes, addRecipe}) {
+function BaseContainer({addRecipe, baseUrl}) {
     console.log(addRecipe)
 
     const handleBaseContainer = () =>{
         if(!addRecipe){
-            return <IndexPage/>
+            return <IndexPage baseUrl={baseUrl}/>
         } else {
             return <PostNewRecipe/>
         }

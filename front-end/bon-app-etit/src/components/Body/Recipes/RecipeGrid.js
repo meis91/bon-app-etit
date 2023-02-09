@@ -14,7 +14,7 @@ export default function RecipeGrid({recipes}) {
         <Container sx={{ py: 8 }} maxWidth="lg">
           <Grid container spacing={4}>
             {recipes.map((recipe) => (
-              <Grid item key={recipe.title} xs={12} sm={6} md={4} lg={3}>
+              <Grid item key={recipe.id} xs={12} sm={6} md={4} lg={3}>
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
