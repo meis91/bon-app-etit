@@ -17,7 +17,7 @@ public class Recipe {
     @Id
     @GeneratedValue
     private long id;
-    private String name;
+    private String title;
     private String description;
     private int portions;
     @Column(columnDefinition="TEXT")
