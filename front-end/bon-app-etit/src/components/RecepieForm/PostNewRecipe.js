@@ -11,6 +11,7 @@ import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 import axios from "axios";
 import Stack from "@mui/material/Stack";
+import InputPortions from "./InputPortions";
 
 
 function PostNewRecipe() {
@@ -67,6 +68,7 @@ function PostNewRecipe() {
                     <InputTitle title={recipe.title} handleInput={handleInput}/>
                     <ButtonUpload/>
                     <InputDescription description={recipe.description} handleInput={handleInput} />
+                    <InputPortions portions={recipe.portions} handleInput={handleInput}/>
                     <InputIngredients recipe={recipe} setRecipe={setRecipe}/>
                     <InputInstructions instructions={recipe.instructions} handleInput={handleInput} />
                     <Stack direction="row" spacing={2}>

@@ -8,19 +8,9 @@ import Ingredient from "./Ingredient";
 
 function InputIngredients({recipe, setRecipe}) {
     const[quantities, setQuantities] = useState(
-        {
-                        ingredient: {
-                                        name: ""
-                                    },
-                        quantity:0,
-                        unit:"g"
-                    }
-
-           /* name:"",
-            amount:0,
-            unit:"g"*/
-
-    );
+        { ingredient: {name:""},
+                    quantity:0,
+                    unit:"g"});
 
     const [formBars, setFormBars] = useState(1)
 

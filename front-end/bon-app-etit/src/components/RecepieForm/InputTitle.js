@@ -7,7 +7,7 @@ function InputTitle({title, handleInput}) {
 
     return (
         <div align="left">
-            <FormSubtitle text={"Title"}/>
+            <FormSubtitle text="Title"/>
             <TextField
                 name="title"
                 value={title}
