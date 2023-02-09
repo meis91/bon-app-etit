@@ -14,7 +14,7 @@ import Stack from "@mui/material/Stack";
 
 
 function PostNewRecipe() {
-    const RECIPE_POST_URL = "http://localhost:8000/api";
+    const RECIPE_POST_URL = "http://localhost:8000/api/recipes";
     axios.defaults.headers.get['header-name'] = 'value'
     console.log(axios.defaults.headers)
 
@@ -42,6 +42,7 @@ function PostNewRecipe() {
     async function postRecipe(e) {
         e.preventDefault()
         console.log("Sub")
+
         /*try {
             const url = RECIPE_POST_URL;
             const data = recipe
@@ -50,14 +51,42 @@ function PostNewRecipe() {
         } catch (error) {
             console.error(error);
         }*/
-        let formdata = new FormData
-        formdata.append("recipe", recipe)
-        axios.post(RECIPE_POST_URL, {
-            body: formdata,
-        })
-            .then((response) => {
-                console.log(response);
-            });
+
+        // let formdata = new FormData
+        // formdata.append("recipe", recipe)
+        // axios.post(RECIPE_POST_URL, {
+        //     body: formdata,
+        // })
+        //     .then((response) => {
+        //         console.log(response);
+        //     });
+
+        try {
+        let result = await axios.post(          // any call like get
+            RECIPE_POST_URL,         // your URL
+            {                                     // data if post, put
+            
+                "name":"a",
+                    "description":"a",
+                    "quantities":[
+                    {
+                        "ingredient": {
+                                        "name": "Carrot"
+                                    },
+                        "quantity":1,
+                        "unit":"KILOGRAM"
+                    }
+                    ],
+                    "instructions":"a"
+            }
+            
+
+        );
+        console.log(result.response.data);
+        } catch (error) {
+        console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
+        }
+
     }
 
     return (

@@ -16,5 +16,5 @@ public class IngredientQuantity {
     private Ingredient ingredient;
     @Enumerated(EnumType.STRING)
     private UnitType unit;
-    private double quantity;
+    private int quantity;
 }

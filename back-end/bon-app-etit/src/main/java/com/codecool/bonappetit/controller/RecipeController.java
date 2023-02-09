@@ -31,13 +31,15 @@ public class RecipeController {
     }
 
     @PostMapping("/recipes")
-    void addRecipe(@RequestBody Recipe recipe) {
+    Recipe addRecipe(@RequestBody Recipe recipe) {
+        System.out.println("recipe = " + recipe);
         List<IngredientQuantity> ingredientQuantities = recipe.getQuantities();
         for (IngredientQuantity ingredientQuantity : ingredientQuantities) {
             Ingredient ingredient = ingredientService.saveIngredientIfNew(ingredientQuantity.getIngredient().getName());
             ingredientQuantity.setIngredient(ingredient);
         }
         recipeService.save(recipe);
+        return recipe;
     }
 
     @GetMapping("/recipes/{id}")
