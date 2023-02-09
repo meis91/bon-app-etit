@@ -1,6 +1,6 @@
 import React from 'react';
-import FormSubtitle from "../FormSubtitle";
-import InputTextMiddle from "./Ingredient/InputTextMiddle";
+import FormSubtitle from "../../ReusableComponents/FormSubtitle";
+import InputTextMiddle from "./Ingredients/InputTextMiddle";
 import TextField from "@mui/material/TextField";
 
 function InputTitle({title, handleInput}) {

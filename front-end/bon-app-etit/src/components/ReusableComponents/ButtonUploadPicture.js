@@ -6,7 +6,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 
 
-function ButtonUpload() {
+function ButtonUploadPicture() {
     return (
         <div className="btn-upload" align="left">
             <FormSubtitle text="Image"/>
@@ -18,4 +18,4 @@ function ButtonUpload() {
     );
 }
 
-export default ButtonUpload;
+export default ButtonUploadPicture;

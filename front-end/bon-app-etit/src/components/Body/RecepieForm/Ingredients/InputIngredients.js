@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Box} from "@mui/material";
-import FormSubtitle from "../../FormSubtitle";
-import ButtonAdd from "../../ButtonAdd";
-import ButtonRemove from "../../ButtonRemove";
+import FormSubtitle from "../../../ReusableComponents/FormSubtitle";
+import ButtonAdd from "../../../ReusableComponents/ButtonAdd";
+import ButtonRemove from "../../../ReusableComponents/ButtonRemove";
 import Ingredient from "./Ingredient";
 
 

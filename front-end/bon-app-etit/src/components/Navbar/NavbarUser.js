@@ -3,8 +3,9 @@ import {Badge, Box, IconButton, Menu, MenuItem} from "@mui/material";
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import {AccountCircle} from "@mui/icons-material";
+import ButtonAdd from "../ReusableComponents/ButtonAdd";
 
-const NavbarUser = () => {
+const NavbarUser = ({addRecipe, handleAddRecipe}) => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -77,7 +78,7 @@ const NavbarUser = () => {
                     aria-label="account of current user"
                     aria-controls={menuId}
                     aria-haspopup="true"
-                    onClick={handleProfileMenuOpen}
+                    onClick={(e) => handleAddRecipe(e)}
                     color="inherit"
                 >
                     <AccountCircle/>
@@ -89,7 +90,7 @@ const NavbarUser = () => {
                     aria-label="show more"
                     aria-controls={mobileMenuId}
                     aria-haspopup="true"
-                    onClick={handleMobileMenuOpen}
+
                     color="inherit"
                 >
 

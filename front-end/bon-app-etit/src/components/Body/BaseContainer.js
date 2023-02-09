@@ -1,13 +1,22 @@
 import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
-import MainBar from "./MainBar";
+import SearchBar from "./Recipes/SearchAndFilter/SearchBar";
 import PostNewRecipe from "./RecepieForm/PostNewRecipe";
-import RecipeGrid from "./RecipeGrid";
+import RecipeGrid from "./Recipes/RecipeGrid";
+import IndexPage from "./Recipes/IndexPage";
 
-function BaseContainer({popularSearchTerms, filterOptions, recipes}) {
+function BaseContainer({popularSearchTerms, filterOptions, recipes, addRecipe}) {
+    console.log(addRecipe)
+
+    const handleBaseContainer = () =>{
+        if(!addRecipe){
+            return <IndexPage/>
+        } else {
+            return <PostNewRecipe/>
+        }
+    }
     return (
-
             <React.Fragment>
                 <CssBaseline />
                 <Container maxWidth={false}
@@ -17,11 +26,7 @@ function BaseContainer({popularSearchTerms, filterOptions, recipes}) {
                                pb: 6,
                            }}
                 >
-                    <MainBar popularSearchTerms={popularSearchTerms}
-                             filterOptions={filterOptions}
-                    />
-                    {/*<RecipeGrid recipes={recipes} />*/}
-                    <PostNewRecipe/>
+                    {!addRecipe ? <IndexPage/> : <PostNewRecipe/>}
                 </Container>
             </React.Fragment>
 

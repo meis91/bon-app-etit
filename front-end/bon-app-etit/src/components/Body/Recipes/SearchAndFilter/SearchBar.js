@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import SearchField from './SearchField.js'
 import CategoryFilter from './CategoryFilter.js'
 
-function MainBar({ popularSearchTerms, filterOptions }) {
+function SearchBar({ popularSearchTerms, filterOptions }) {
   return (
     <>
         <Container maxWidth="sm">
@@ -44,4 +44,4 @@ function MainBar({ popularSearchTerms, filterOptions }) {
   )
 }
 
-export default MainBar
+export default SearchBar

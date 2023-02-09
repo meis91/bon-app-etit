@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import InputIngredients from "./Ingredient/InputIngredients";
-import InputInstructions from "./Instructions/InputInstructions";
+import InputIngredients from "./Ingredients/InputIngredients";
+import InputInstructions from "./InputInstructions";
 import {Box} from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputTitle from "./InputTitle";
-import FormTitle from "../FormTitle";
+import FormTitle from "../../ReusableComponents/FormTitle";
 import InputDescription from "./InputDescription";
-import ButtonUpload from "../ButtonUpload";
+import ButtonUploadPicture from "../../ReusableComponents/ButtonUploadPicture";
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 import axios from "axios";
@@ -16,11 +16,11 @@ import InputPortions from "./InputPortions";
 
 function PostNewRecipe() {
     const RECIPE_POST_URL = "http://localhost:8000/api/recipes";
-    axios.defaults.headers.get['header-name'] = 'value'
 
 
     const [recipe, setRecipe] = useState({
         title:"",
+        image:"",
         description:"",
         portions: 4,
         quantities:[],
@@ -66,7 +66,7 @@ function PostNewRecipe() {
                 <FormControl onSubmit={(e) =>postRecipe(e)}>
                     <FormTitle text="Add a new Recipe"/>
                     <InputTitle title={recipe.title} handleInput={handleInput}/>
-                    <ButtonUpload/>
+                    <ButtonUploadPicture/>
                     <InputDescription description={recipe.description} handleInput={handleInput} />
                     <InputPortions portions={recipe.portions} handleInput={handleInput}/>
                     <InputIngredients recipe={recipe} setRecipe={setRecipe}/>
