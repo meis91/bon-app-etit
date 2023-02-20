@@ -38,8 +38,7 @@ function App() {
 
 
 
-    const handleAddRecipe = (e) =>{
-        //e.preventDefault()
+    const handleAddRecipe = () =>{
         console.log(showAddRecipe)
         setShowAddRecipe(!showAddRecipe);
     }
