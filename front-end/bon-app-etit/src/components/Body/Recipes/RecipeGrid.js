@@ -28,8 +28,11 @@ export default function RecipeGrid({recipes}) {
                       {recipe.title}
                     </Typography>
                     <Typography>
-                      {recipe.category}
+                      {recipe.description}
                     </Typography>
+                     {/* <Typography>
+                          {"Portions: " + recipe.portions}
+                      </Typography>*/}
                   </CardContent>
                   <CardActions>
                     <FavoriteOutlinedIcon color="error" />
