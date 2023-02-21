@@ -1,4 +1,6 @@
 package com.codecool.bonappetit.security.user;
 
-public class Role {
+public enum Role {
+    ADMIN,
+    USER
 }
