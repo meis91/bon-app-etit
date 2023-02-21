@@ -25,7 +25,7 @@ public class SecurityConfiguration {
                 .csrf() //Cross-Site-Request-Forgery
                 .disable()
                 .authorizeHttpRequests()// basically Whitelisting
-                .requestMatchers("")
+                .requestMatchers("api/v1/auth/**")//whiteList all authentication Method (No business stuff here)
                 .permitAll()
                 .anyRequest()//until here
                 .authenticated()
