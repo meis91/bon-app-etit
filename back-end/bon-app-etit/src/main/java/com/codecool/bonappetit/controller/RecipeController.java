@@ -1,12 +1,15 @@
 package com.codecool.bonappetit.controller;
 
+import com.codecool.bonappetit.logic.ImageService;
 import com.codecool.bonappetit.logic.IngredientService;
 import com.codecool.bonappetit.logic.RecipeService;
+import com.codecool.bonappetit.persistence.entity.Image;
 import com.codecool.bonappetit.persistence.entity.Ingredient;
 import com.codecool.bonappetit.persistence.entity.IngredientQuantity;
 import com.codecool.bonappetit.persistence.entity.Recipe;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,6 +21,7 @@ public class RecipeController {
 
     private final RecipeService recipeService;
     private final IngredientService ingredientService;
+    private final ImageService imageService;
     private String name = "bon-app-etit";
 
     @GetMapping
@@ -34,12 +38,22 @@ public class RecipeController {
     Recipe addRecipe(@RequestBody Recipe recipe) {
         System.out.println("recipe = " + recipe);
         List<IngredientQuantity> ingredientQuantities = recipe.getQuantities();
+
+       // imageService.saveImage(recipe.getImage());
         for (IngredientQuantity ingredientQuantity : ingredientQuantities) {
             Ingredient ingredient = ingredientService.saveIngredientIfNew(ingredientQuantity.getIngredient().getName());
             ingredientQuantity.setIngredient(ingredient);
         }
         recipeService.save(recipe);
+
         return recipe;
+    }
+
+    @PostMapping("/recipes/image")
+    public void addRecipeImage(@RequestParam("file") MultipartFile file) {
+        imageService.saveImage(file);
+
+
     }
 
     @GetMapping("/recipes/{id}")

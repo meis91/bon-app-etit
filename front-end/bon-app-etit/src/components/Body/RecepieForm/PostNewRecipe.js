@@ -16,17 +16,17 @@ import InputPortions from "./InputPortions";
 
 function PostNewRecipe({handleAddRecipe}) {
     const RECIPE_POST_URL = "http://localhost:8000/api/recipes";
+    const RECIPE_IMAGE_POST_URL = "http://localhost:8000/api/recipes/image";
 
-
+    const [image, setImage] = useState("");
     const [recipe, setRecipe] = useState({
         title:"",
-        image:"",
+        imageName:"",
         description:"",
         portions: 4,
         quantities:[],
-        instructions:""
+        instructions:"",
     });
-
 
     const handleInput = (e) => {
         setRecipe({
@@ -35,17 +35,27 @@ function PostNewRecipe({handleAddRecipe}) {
         })
     }
 
+    const handleInputPicture = (e) => {
+        e.preventDefault();
+
+        setRecipe({
+            ...recipe,
+            imageName: e.target.files[0].name,
+        })
+        setImage(e.target.files[0]);
+
+    }
 
     async function postRecipe(e) {
         e.preventDefault()
-
-        let result = await axios.post(          // any call like get
-            RECIPE_POST_URL,         // your URL
-            recipe
-        );
-        //console.log(result.response.data);
+        let resultRecipe = await axios.post(          // any call like get
+            RECIPE_POST_URL,recipe);
+        let formData = new FormData();
+        formData.append("file", image);
+        let resultFile = await axios.post(          // any call like get
+            RECIPE_IMAGE_POST_URL,         // your URL
+            formData);
         handleAddRecipe();
-
     }
 
     return (
@@ -63,13 +73,13 @@ function PostNewRecipe({handleAddRecipe}) {
                 <FormControl onSubmit={(e) =>postRecipe(e)}>
                     <FormTitle text="Add a new Recipe"/>
                     <InputTitle title={recipe.title} handleInput={handleInput}/>
-                    <ButtonUploadPicture/>
+                    <ButtonUploadPicture handleInputPicture={handleInputPicture}/>
                     <InputDescription description={recipe.description} handleInput={handleInput} />
                     <InputPortions portions={recipe.portions} handleInput={handleInput}/>
                     <InputIngredients recipe={recipe} setRecipe={setRecipe}/>
                     <InputInstructions instructions={recipe.instructions} handleInput={handleInput} />
                     <Stack direction="row" spacing={2}>
-                        <Button onClick={(e) =>postRecipe(e)} type="submit" variant="contained" endIcon={<SendIcon />}>
+                        <Button onClick={postRecipe} type="submit" variant="contained" endIcon={<SendIcon />}>
                             Send
                         </Button>
                     </Stack>

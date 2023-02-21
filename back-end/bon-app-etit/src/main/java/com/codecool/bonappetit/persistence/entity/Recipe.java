@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,6 +20,11 @@ public class Recipe {
     private long id;
     private String title;
     private String description;
+    private String imageName;
+
+    @OneToOne
+    @JoinColumn (name = "fk_image_id")
+    private Image image;
     private int portions;
     @Column(columnDefinition="TEXT")
     private String instructions;
