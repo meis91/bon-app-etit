@@ -1,10 +1,14 @@
 import './App.css';
 import axios from "axios";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar/Navbar"
 import BaseContainer from "./components/Body/BaseContainer";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {Route, Routes} from "react-router-dom";
+import IndexPage from "./components/Body/Recipes/IndexPage";
+import Recipe from "./components/Body/Recipe/Recipe";
+
 
 const theme = createTheme({
     palette: {
@@ -54,7 +58,10 @@ function App() {
     <div className="App">
         <ThemeProvider theme={theme}>
             <Navbar title={title} handleAddRecipe={handleAddRecipe}/>
-            <BaseContainer addRecipe={showAddRecipe} handleAddRecipe={handleAddRecipe} baseUrl={baseURL}/>
+            <Routes>
+                <Route path="/" element={<BaseContainer addRecipe={showAddRecipe} handleAddRecipe={handleAddRecipe} baseUrl={baseURL} />} />
+                <Route path="/recipe" element={<Recipe />} />
+            </Routes>
             <Footer theme={theme} title={showAddRecipe} />
         </ThemeProvider>
     </div>
