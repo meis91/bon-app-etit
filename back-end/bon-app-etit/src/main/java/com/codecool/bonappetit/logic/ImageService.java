@@ -25,7 +25,6 @@ public class ImageService {
 
     public Recipe saveImage (MultipartFile file){
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
-        //System.out.println("filename = " + filename);
         try {
             if(filename.contains("..")){
                 throw new Exception("Filename contains invalid path sequence " + filename);
@@ -33,10 +32,8 @@ public class ImageService {
             Recipe recipe = recipeService.findByImageName(filename);
             Image image = new Image(filename, file.getContentType(), file.getBytes());
             recipe.setImage(image);
-           /* System.out.println("image = " + image);*/
             imageRepository.save(image);
             recipe.setImage(image);
-
             recipeService.save(recipe);
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -13,19 +13,6 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 export default function RecipeGrid({recipes, image}) {
-    const [state, setState] = useState(recipes);
-
-    const createImageUrl = (image) => {
-        let bytes = image.data;
-
-        const blob = new Blob([bytes], { type: 'image/jpeg' });
-        const url = URL.createObjectURL(blob);
-        console.log(url)
-        return url
-    };
-
-
-
     return (
       <div>
         <Container sx={{ py: 8 }} maxWidth="lg">
@@ -37,8 +24,8 @@ export default function RecipeGrid({recipes, image}) {
                 >
                   <CardMedia
                     component="img"
-                    src={recipe.image ? createImageUrl(recipe.image) : null }
-                    alt={recipe.title}
+                    src={recipe.image ? "data:image/jpg;base64, " + recipe.image.data : null }
+                    alt={recipe.image ? recipe.title : "No image"}
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -47,7 +34,7 @@ export default function RecipeGrid({recipes, image}) {
                     <Typography>
                       {recipe.description}
                     </Typography>
-                      {recipe.image ? <img src={createImageUrl(recipe.image)}/> : null }
+                     {/* {recipe.image ? <img src={createImageUrl(recipe.image)}/> : null }*/}
                   </CardContent>
                   <CardActions>
                     <FavoriteOutlinedIcon color="error" />
