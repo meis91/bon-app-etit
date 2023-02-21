@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.util.List;
 
 @Entity
@@ -22,7 +21,7 @@ public class Recipe {
     private String title;
     private String description;
 
-    private String image;
+    private String imageName;
     private int portions;
     @Column(columnDefinition="TEXT")
     private String instructions;

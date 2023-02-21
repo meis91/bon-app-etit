@@ -24,7 +24,7 @@ function PostNewRecipe({handleAddRecipe}) {
 
     const [recipe, setRecipe] = useState({
         title:"",
-        image:{},
+        imageName:"",
         description:"",
         portions: 4,
         quantities:[],
@@ -41,35 +41,40 @@ function PostNewRecipe({handleAddRecipe}) {
 
     const handleInputPicture = (e) => {
         e.preventDefault();
-
-        setImage(e.target.files[0]);
         setRecipe({
             ...recipe,
-            image: e.target.files[0].name,
+            imageName: e.target.files[0].name,
         })
+        setImage(e.target.files[0]);
 
     }
 
     async function postRecipe(e) {
         e.preventDefault()
+        const json = JSON.stringify(recipe);
+        const blob = new Blob([json], {
+            type: 'application/json'
+        });
         let formData = new FormData();
-        formData.append("image", image);
+        formData.append("file", image);
+        formData.append("recipeTitle", recipe.title)
+        /*formData.set("recipe", recipe)*/
+        /*formData.append("title", recipe.title);
+        formData.append("description", recipe.description);
+        formData.append("portions", recipe.portions);
+        formData.append("quantities", recipe.quantities);
+        formData.append("instructions", recipe.instructions);*/
 
-
+        //console.log(recipe)
 
         let resultRecipe = await axios.post(          // any call like get
-            RECIPE_POST_URL,         // your URL
-            recipe
-        );
-        //console.log(resultRecipe.response.data);
-        let resultImage = await axios.post(          // any call like get
-            RECIPE_IMAGE_POST_URL,         // your URL
-            formData,{headers:{
-            "Content-Type": "multipart/form-data",
-        },
+            RECIPE_POST_URL,recipe);
 
-    });
-       // console.log(resultImage.response.data)
+        let resultFile = await axios.post(          // any call like get
+            RECIPE_IMAGE_POST_URL,         // your URL
+            formData);
+
+
         handleAddRecipe();
 
 
