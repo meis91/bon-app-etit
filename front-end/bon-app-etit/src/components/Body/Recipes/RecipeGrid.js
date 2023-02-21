@@ -15,11 +15,14 @@ import axios from "axios";
 export default function RecipeGrid({recipes, image}) {
     const [state, setState] = useState(recipes);
 
-    function createImageUrl(){
-        recipes.map((oneRecipe) => {
+    const createImageUrl = (image) => {
+        let bytes = image.data;
 
-        })
-    }
+        const blob = new Blob([bytes], { type: 'image/jpeg' });
+        const url = URL.createObjectURL(blob);
+        console.log(url)
+        return url
+    };
 
 
 
@@ -34,7 +37,7 @@ export default function RecipeGrid({recipes, image}) {
                 >
                   <CardMedia
                     component="img"
-                    src={recipe.image}
+                    src={recipe.image ? createImageUrl(recipe.image) : null }
                     alt={recipe.title}
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
@@ -44,7 +47,7 @@ export default function RecipeGrid({recipes, image}) {
                     <Typography>
                       {recipe.description}
                     </Typography>
-                      {!recipe.image ? "No Image" : <img src={recipe.image.data}/>}
+                      {recipe.image ? <img src={createImageUrl(recipe.image)}/> : null }
                   </CardContent>
                   <CardActions>
                     <FavoriteOutlinedIcon color="error" />

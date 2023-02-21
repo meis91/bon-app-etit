@@ -60,7 +60,14 @@ function IndexPage({baseUrl}) {
             });
     }
 
-  /*  const imageConverter*/
+    const createImageUrl = (image) => {
+        let bytes = image.data;
+        const blob = new Blob([bytes], { type: 'image/jpeg' });
+        const url = URL.createObjectURL(blob);
+        return url
+    };
+
+
 
     useEffect(() => {
         axios.get(recipeUrl).then((response) => {
