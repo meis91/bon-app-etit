@@ -41,6 +41,7 @@ function PostNewRecipe({handleAddRecipe}) {
 
     const handleInputPicture = (e) => {
         e.preventDefault();
+
         setRecipe({
             ...recipe,
             imageName: e.target.files[0].name,
@@ -49,31 +50,48 @@ function PostNewRecipe({handleAddRecipe}) {
 
     }
 
+    function getFormData(object) {
+        const formData = new FormData();
+        Object.keys(object).forEach(key => formData.append(key, object[key]));
+        return formData;
+    }
+
+    function  jsonBlob(obj) {
+        return new Blob([JSON.stringify(obj)], {
+            type: "application/json",
+        });
+    }
+
     async function postRecipe(e) {
         e.preventDefault()
-        const json = JSON.stringify(recipe);
+        /*const json = JSON.stringify(recipe);
         const blob = new Blob([json], {
             type: 'application/json'
         });
         let formData = new FormData();
+        for ( let key in recipe ) {
+
+            formdata.append(key, recipe[key]);
+        }
         formData.append("file", image);
-        formData.append("recipeTitle", recipe.title)
-        /*formData.set("recipe", recipe)*/
-        /*formData.append("title", recipe.title);
+        formData.set("recipe", recipe)
+        formData.append("title", recipe.title);
         formData.append("description", recipe.description);
         formData.append("portions", recipe.portions);
         formData.append("quantities", recipe.quantities);
         formData.append("instructions", recipe.instructions);*/
 
-        //console.log(recipe)
 
         let resultRecipe = await axios.post(          // any call like get
             RECIPE_POST_URL,recipe);
 
+        let formData = new FormData();
+        formData.append("file", image);
+
+
         let resultFile = await axios.post(          // any call like get
             RECIPE_IMAGE_POST_URL,         // your URL
             formData);
-
 
         handleAddRecipe();
 

@@ -50,18 +50,12 @@ public class RecipeController {
     }
 
     @PostMapping("/recipes/image")
-    Image addRecipeImage(@RequestParam("file") MultipartFile file, @RequestParam("recipeTitle") String recipeTitle) {
-        System.out.println("file = " + file);
-        System.out.println("recipe = " + recipeTitle);
-        /*List<IngredientQuantity> ingredientQuantities = recipe.getQuantities();
+    public void addRecipeImage(@RequestParam("file") MultipartFile file) {
 
-        // imageService.saveImage(recipe.getImage());
-        for (IngredientQuantity ingredientQuantity : ingredientQuantities) {
-            Ingredient ingredient = ingredientService.saveIngredientIfNew(ingredientQuantity.getIngredient().getName());
-            ingredientQuantity.setIngredient(ingredient);
-        }
-        recipeService.save(recipe);*/
-        return imageService.saveImage(file);
+
+        imageService.saveImage(file);
+
+
     }
 
     @GetMapping("/recipes/{id}")

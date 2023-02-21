@@ -23,20 +23,24 @@ public class ImageService {
         this.recipeService = recipeService;
     }
 
-    public Image saveImage (MultipartFile file){
+    public Recipe saveImage (MultipartFile file){
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
-        System.out.println("filename = " + filename);
+        //System.out.println("filename = " + filename);
         try {
             if(filename.contains("..")){
                 throw new Exception("Filename contains invalid path sequence " + filename);
             }
             Recipe recipe = recipeService.findByImageName(filename);
-            Image image = new Image(filename, file.getContentType(), file.getBytes(), recipe);
-            /*recipe.setImage(image);*/
-            System.out.println("image = " + image);
-            return imageRepository.save(image);
+            Image image = new Image(filename, file.getContentType(), file.getBytes());
+            recipe.setImage(image);
+           /* System.out.println("image = " + image);*/
+            imageRepository.save(image);
+            recipe.setImage(image);
+
+            recipeService.save(recipe);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 }

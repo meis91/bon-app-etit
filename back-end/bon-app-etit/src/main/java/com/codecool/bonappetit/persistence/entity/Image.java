@@ -12,18 +12,16 @@ public class Image {
 
     @Id
     @GeneratedValue
+    @Column(name = "image_id")
     private Long id;
     private String fileName;
     private String fileType;
-    @OneToOne
-    private Recipe recipe;
     @Lob
     private byte[] data;
 
-    public Image(String fileName, String fileType, byte[] data, Recipe recipe) {
+    public Image(String fileName, String fileType, byte[] data) {
         this.fileName = fileName;
         this.fileType = fileType;
         this.data = data;
-        this.recipe = recipe;
     }
 }
