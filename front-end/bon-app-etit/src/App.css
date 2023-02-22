@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.recipe-detail-image {
+  max-width:80%;
+}

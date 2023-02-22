@@ -60,7 +60,7 @@ function App() {
             <Navbar title={title} handleAddRecipe={handleAddRecipe}/>
             <Routes>
                 <Route path="/" element={<BaseContainer addRecipe={showAddRecipe} handleAddRecipe={handleAddRecipe} baseUrl={baseURL} />} />
-                <Route path="/recipe" element={<Recipe />} />
+                <Route path="/recipe/:id" element={<Recipe />} />
             </Routes>
             <Footer theme={theme} title={showAddRecipe} />
         </ThemeProvider>

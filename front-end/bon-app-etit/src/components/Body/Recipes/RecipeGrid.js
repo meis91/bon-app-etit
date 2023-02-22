@@ -18,21 +18,20 @@ export default function RecipeGrid({recipes, image}) {
 
     const navigate = useNavigate();
     const showRecipe = (recipe) => {
-        console.log(recipe);
-        console.log(recipe.quantities);
-        navigate({
-            pathname: "/recipe",
-            search: createSearchParams({
+        const navigationUrl = "/recipe/" + recipe.id
+        console.log(recipe.id);
+        navigate(navigationUrl, {
+            state: {
                 id: recipe.id,
                 title: recipe.title,
                 description: recipe.description,
-                image: recipe.image,
-                ingredients: recipe.quantities,
                 portions: recipe.portions,
-                instructions: recipe.instructions
-            }).toString()
-        })
-
+                instructions: recipe.instructions,
+                quantities: recipe.quantities,
+                imageName: recipe.imageName,
+                image: recipe.image
+            }
+        });
     }
 
     return (
