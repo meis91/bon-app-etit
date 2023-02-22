@@ -53,6 +53,7 @@ function PostNewRecipe({handleAddRecipe}) {
         let resultFile = await axios.post(          // any call like get
             RECIPE_IMAGE_POST_URL,         // your URL
             formData);
+
         handleAddRecipe();
     }
 
@@ -76,9 +77,10 @@ function PostNewRecipe({handleAddRecipe}) {
                     <InputPortions portions={recipe.portions} handleInput={handleInput}/>
                     <InputIngredients recipe={recipe} setRecipe={setRecipe}/>
                     <InputInstructions instructions={recipe.instructions} handleInput={handleInput} />
-                    <Stack direction="row" spacing={6}>
+                    <Stack style={{justifyContent: 'center'}} direction="row" spacing={{xs: 1, sm: 2, md: 4}}>
+
                         <Button onClick={postRecipe}  type="submit" variant="contained" endIcon={<SendIcon />}>
-                            Send
+                            Submit
                         </Button>
                     </Stack>
                 </FormControl>
