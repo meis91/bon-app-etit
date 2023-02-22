@@ -1,8 +1,6 @@
 import React from 'react';
-import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import FormSubtitle from "../../ReusableComponents/FormSubtitle";
-import {FormGroup, FormHelperText, FormLabel, Typography} from "@mui/material";
 
 function InputPortions({portions, handleInput}) {
     return (

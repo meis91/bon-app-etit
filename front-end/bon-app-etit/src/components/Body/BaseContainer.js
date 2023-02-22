@@ -6,8 +6,7 @@ import PostNewRecipe from "./RecepieForm/PostNewRecipe";
 import RecipeGrid from "./Recipes/RecipeGrid";
 import IndexPage from "./Recipes/IndexPage";
 
-
-function BaseContainer({addRecipe, handleAddRecipe, baseUrl}) {
+function BaseContainer({addRecipe, handleAddRecipe}) {
 
     return (
             <React.Fragment>
