@@ -1,6 +1,6 @@
 package com.codecool.bonappetit.persistence.entity;
 
-import com.codecool.bonappetit.persistence.enums.Role;
+import com.codecool.bonappetit.persistence.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,7 +28,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private UserRole role;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

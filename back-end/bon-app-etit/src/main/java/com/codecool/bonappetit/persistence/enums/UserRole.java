@@ -1,6 +1,6 @@
 package com.codecool.bonappetit.persistence.enums;
 
-public enum Role {
+public enum UserRole {
     ADMIN,
     USER
 }

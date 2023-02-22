@@ -1,7 +1,7 @@
 package com.codecool.bonappetit.security.auth;
 
 import com.codecool.bonappetit.security.config.JwtService;
-import com.codecool.bonappetit.persistence.enums.Role;
+import com.codecool.bonappetit.persistence.enums.UserRole;
 import com.codecool.bonappetit.persistence.entity.User;
 import com.codecool.bonappetit.persistence.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ public class AuthenticationService {
                 .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
+                .role(UserRole.USER)
                 .build();
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
