@@ -16,12 +16,20 @@ export default function Recipe() {
     console.log(quantities)
     console.log(image)
     const ingredients = quantities.map((quantity) => (
-        <li key={quantity.ingredient.name}>
-                {quantity.quantity} &nbsp;
+
+        <tbody key={quantity.ingredient.name}>
+
+
+                        <td>{quantity.quantity}&nbsp;</td>
+                        <td>{quantity.unit}&emsp;</td>
+                        <td>{quantity.ingredient.name}</td>
+
+
+                {/*{quantity.quantity} &nbsp;
                 {quantity.unit} &emsp;
                 {quantity.ingredient.name}
-
-        </li>))
+*/}
+        </tbody>))
 
     return (
         <div>
@@ -49,8 +57,8 @@ export default function Recipe() {
                             <p>{location.state.description}</p>
                             <br />
                             <b>Ingredients:</b>
-                            <p>Portions: {location.state.portions}</p>
-                            <ul>{ingredients}</ul>
+                            <p>&nbsp; Portions: {location.state.portions}</p>
+                            <table>{ingredients}</table>
                             <br />
                             <b>Instructions:</b>
                             <p>{location.state.instructions}</p>
