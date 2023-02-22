@@ -37,13 +37,11 @@ function PostNewRecipe({handleAddRecipe}) {
 
     const handleInputPicture = (e) => {
         e.preventDefault();
-
         setRecipe({
             ...recipe,
             imageName: e.target.files[0].name,
         })
         setImage(e.target.files[0]);
-
     }
 
     async function postRecipe(e) {
@@ -65,7 +63,7 @@ function PostNewRecipe({handleAddRecipe}) {
                 maxWidth="lg"
                 component="form"type="file"
                 sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                    '& .MuiTextField-root': { m: 1, width: '25ch',  },
                 }}
                 noValidate
                 autoComplete="off"
@@ -78,8 +76,8 @@ function PostNewRecipe({handleAddRecipe}) {
                     <InputPortions portions={recipe.portions} handleInput={handleInput}/>
                     <InputIngredients recipe={recipe} setRecipe={setRecipe}/>
                     <InputInstructions instructions={recipe.instructions} handleInput={handleInput} />
-                    <Stack direction="row" spacing={2}>
-                        <Button onClick={postRecipe} type="submit" variant="contained" endIcon={<SendIcon />}>
+                    <Stack direction="row" spacing={6}>
+                        <Button onClick={postRecipe}  type="submit" variant="contained" endIcon={<SendIcon />}>
                             Send
                         </Button>
                     </Stack>

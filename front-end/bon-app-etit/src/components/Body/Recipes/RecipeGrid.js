@@ -7,10 +7,6 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-import SingleGrid from "./SearchAndFilter/SingleGrid";
-import Ingredient from "../RecepieForm/Ingredients/Ingredient";
-import {useEffect, useState} from "react";
-import axios from "axios";
 
 export default function RecipeGrid({recipes}) {
     return (

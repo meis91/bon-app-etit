@@ -118,7 +118,7 @@ const Ingredient = ({id, recipe, setRecipe}) => {
                     name="name"
                     id="outlined-start"
                     placeholder="Name of the Ingredient"
-                    sx={{m: 1, width: '1500ch', minWidth: "370px"}}
+                    sx={{m: 1, width: '1500ch', minWidth: "400px"}}
                 />
             </Stack>
         </div>
