@@ -7,20 +7,41 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import {createSearchParams, useNavigate} from "react-router-dom";
 import SingleGrid from "./SearchAndFilter/SingleGrid";
 import Ingredient from "../RecepieForm/Ingredients/Ingredient";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 export default function RecipeGrid({recipes, image}) {
+
+    const navigate = useNavigate();
+    const showRecipe = (recipe) => {
+        console.log(recipe);
+        console.log(recipe.quantities);
+        navigate({
+            pathname: "/recipe",
+            search: createSearchParams({
+                id: recipe.id,
+                title: recipe.title,
+                description: recipe.description,
+                image: recipe.image,
+                ingredients: recipe.quantities,
+                portions: recipe.portions,
+                instructions: recipe.instructions
+            }).toString()
+        })
+
+    }
+
     return (
       <div>
         <Container sx={{ py: 8 }} maxWidth="lg">
           <Grid container spacing={4}>
             {recipes.map((recipe) => (
               <Grid item key={recipe.id} xs={12} sm={6} md={4} lg={3}>
-                <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                <Card onClick={() => showRecipe(recipe)} sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
                   <CardMedia
                     component="img"
