@@ -12,12 +12,12 @@ import Ingredient from "../RecepieForm/Ingredients/Ingredient";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-export default function RecipeGrid({recipes, image}) {
+export default function RecipeGrid({recipes}) {
     return (
       <div>
         <Container sx={{ py: 8 }} maxWidth="lg">
           <Grid container spacing={4}>
-            {state.map((recipe) => (
+            {recipes.map((recipe) => (
               <Grid item key={recipe.id} xs={12} sm={6} md={4} lg={3}>
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
