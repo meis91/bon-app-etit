@@ -1,13 +1,11 @@
 import React from 'react';
-import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import FormSubtitle from "../../ReusableComponents/FormSubtitle";
-import {FormGroup, FormHelperText, FormLabel, Typography} from "@mui/material";
 
 function InputPortions({portions, handleInput}) {
     return (
         <div align="left">
-            <Typography variant="subtitle1" sx={{fontWeight: 'bold'}}>Portions:</Typography>
+            <FormSubtitle text="Portions"/>
             <TextField
                 onChange={(e) => handleInput(e)}
                 value={portions}

@@ -1,0 +1,43 @@
+package com.codecool.bonappetit.logic;
+
+import com.codecool.bonappetit.persistence.entity.Image;
+
+import com.codecool.bonappetit.persistence.entity.Recipe;
+import com.codecool.bonappetit.persistence.repository.ImageRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+@Service
+@RequiredArgsConstructor
+public class ImageService {
+    ImageRepository imageRepository;
+    RecipeService recipeService;
+
+
+    @Autowired
+    public ImageService(ImageRepository imageRepository, RecipeService recipeService) {
+        this.imageRepository = imageRepository;
+        this.recipeService = recipeService;
+    }
+
+    public Recipe saveImage (MultipartFile file){
+        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+        try {
+            if(filename.contains("..")){
+                throw new Exception("Filename contains invalid path sequence " + filename);
+            }
+            Recipe recipe = recipeService.findByImageName(filename);
+            Image image = new Image(filename, file.getContentType(), file.getBytes());
+            recipe.setImage(image);
+            imageRepository.save(image);
+            recipe.setImage(image);
+            recipeService.save(recipe);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+}

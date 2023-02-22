@@ -5,14 +5,11 @@ import ButtonAdd from "../../../ReusableComponents/ButtonAdd";
 import ButtonRemove from "../../../ReusableComponents/ButtonRemove";
 import Ingredient from "./Ingredient";
 
-
 function InputIngredients({recipe, setRecipe}) {
     const[quantities, setQuantities] = useState(
         { ingredient: {name:""},
                     quantity:0,
                     unit:"g"});
-
-    const [formBars, setFormBars] = useState(1)
 
     const addBar = () =>{
         setRecipe({
@@ -43,9 +40,7 @@ function InputIngredients({recipe, setRecipe}) {
     return (
         <div>
             <FormSubtitle text="Ingredients"/>
-            <Box
-                sx={{display: 'flex', flexWrap: 'wrap'}}
-            >
+            <Box>
                 {ingredientInputBar()}
                 <ButtonAdd action={addBar}/>
                 <ButtonRemove action={removeBar}/>

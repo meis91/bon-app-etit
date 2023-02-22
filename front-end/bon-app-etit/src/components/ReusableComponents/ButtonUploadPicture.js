@@ -1,19 +1,25 @@
-import React from 'react';
-import {Button, IconButton} from "@mui/material";
+import React, {useState} from 'react';
+import {IconButton} from "@mui/material";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import FormSubtitle from "./FormSubtitle";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+import {DropzoneArea} from "mui-file-dropzone";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
+function ButtonUploadPicture({handleInputPicture, image}) {
 
 
-
-function ButtonUploadPicture() {
     return (
-        <div className="btn-upload" align="left">
+        <div className="btn-upload" align="center">
             <FormSubtitle text="Image"/>
+            {!image
+                ?
             <IconButton color="primary" aria-label="upload picture" component="label" >
-                <input  hidden accept="image/*" multiple type="file" />
+                <input name="image"  hidden accept="image/*" multiple type="file" onChange={handleInputPicture} />
                 <AddAPhotoIcon/>
             </IconButton>
+                :
+            <CheckCircleIcon color="success"/>}
+            {/* <DropzoneArea showFileNames={true} showPreviewsInDropzone={true} filesLimit={1} dropzoneText="Drag & drop your image here or click" onChange={handleInputPicture}/>*/}
         </div>
     );
 }

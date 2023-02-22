@@ -4,6 +4,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import {AccountCircle} from "@mui/icons-material";
 import ButtonAdd from "../ReusableComponents/ButtonAdd";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const NavbarUser = ({addRecipe, handleAddRecipe}) => {
 
@@ -58,6 +59,11 @@ const NavbarUser = ({addRecipe, handleAddRecipe}) => {
         <div>
             <Box sx={{flexGrow: 1}}/>
             <Box sx={{display: {xs: 'none', md: 'flex'}}}>
+                <IconButton onClick={(e) => handleAddRecipe(e)} size="large" aria-label="show 4 new mails" color="inherit">
+                    <Badge badgeContent={0} color="error">
+                        <AddCircleIcon/>
+                    </Badge>
+                </IconButton>
                 <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                     <Badge badgeContent={0} color="error">
                         <MailIcon/>
@@ -78,7 +84,7 @@ const NavbarUser = ({addRecipe, handleAddRecipe}) => {
                     aria-label="account of current user"
                     aria-controls={menuId}
                     aria-haspopup="true"
-                    onClick={(e) => handleAddRecipe(e)}
+                    onClick={handleProfileMenuOpen}
                     color="inherit"
                 >
                     <AccountCircle/>

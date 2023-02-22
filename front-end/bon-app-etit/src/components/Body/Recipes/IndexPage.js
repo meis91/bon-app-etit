@@ -60,6 +60,7 @@ function IndexPage({baseUrl}) {
             });
     }
 
+
     useEffect(() => {
         axios.get(recipeUrl).then((response) => {
             setRecipes(response.data);

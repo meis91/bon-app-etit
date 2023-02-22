@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
 export default function RecipeGrid({recipes}) {
-  return (
+    return (
       <div>
         <Container sx={{ py: 8 }} maxWidth="lg">
           <Grid container spacing={4}>
@@ -20,8 +20,8 @@ export default function RecipeGrid({recipes}) {
                 >
                   <CardMedia
                     component="img"
-                    src={recipe.image}
-                    alt={recipe.title}
+                    src={recipe.image ? "data:image/jpg;base64, " + recipe.image.data : null }
+                    alt={recipe.image ? recipe.title : "No image"}
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -30,9 +30,7 @@ export default function RecipeGrid({recipes}) {
                     <Typography>
                       {recipe.description}
                     </Typography>
-                     {/* <Typography>
-                          {"Portions: " + recipe.portions}
-                      </Typography>*/}
+                     {/* {recipe.image ? <img src={createImageUrl(recipe.image)}/> : null }*/}
                   </CardContent>
                   <CardActions>
                     <FavoriteOutlinedIcon color="error" />

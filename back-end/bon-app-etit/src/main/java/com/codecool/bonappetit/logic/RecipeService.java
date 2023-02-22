@@ -11,6 +11,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RecipeService {
     private final RecipeRepository recipeRepository;
+
+
     public List<Recipe> getAll() {
         return recipeRepository.findAll();
     }
@@ -25,5 +27,11 @@ public class RecipeService {
 
     public void save(Recipe recipe) {
         recipeRepository.save(recipe);
+    }
+
+
+
+    public Recipe findByImageName(String imageName){
+        return recipeRepository.findByImageName(imageName);
     }
 }
