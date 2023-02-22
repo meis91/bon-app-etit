@@ -62,7 +62,7 @@ function App() {
                 <Route path="/" element={<BaseContainer addRecipe={showAddRecipe} handleAddRecipe={handleAddRecipe} baseUrl={baseURL} />} />
                 <Route path="/recipe/:id" element={<Recipe />} />
             </Routes>
-            <Footer theme={theme} title={showAddRecipe} />
+            <Footer theme={theme} title={title} />
         </ThemeProvider>
     </div>
   );

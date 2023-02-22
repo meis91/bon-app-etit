@@ -62,11 +62,24 @@ function PostNewRecipe({handleAddRecipe}) {
             RECIPE_POST_URL,recipe);
         let formData = new FormData();
         formData.append("file", image);
-        let resultFile = await axios.post(          // any call like get
-            RECIPE_IMAGE_POST_URL,         // your URL
-            formData);
+        if(image){
+            let resultFile = await axios.post(          // any call like get
+                RECIPE_IMAGE_POST_URL,         // your URL
+                formData);
+        }
 
-        handleAddRecipe();
+        alert("Upload complete");
+
+
+
+        setTimeout(alertFunc, 1000);
+
+
+        function alertFunc() {
+            handleAddRecipe();
+        }
+
+
     }
 
     return (
