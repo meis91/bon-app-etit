@@ -1,9 +1,9 @@
 package com.codecool.bonappetit.security.auth;
 
 import com.codecool.bonappetit.security.config.JwtService;
-import com.codecool.bonappetit.security.user.Role;
-import com.codecool.bonappetit.security.user.User;
-import com.codecool.bonappetit.security.user.UserRepository;
+import com.codecool.bonappetit.persistence.enums.Role;
+import com.codecool.bonappetit.persistence.entity.User;
+import com.codecool.bonappetit.persistence.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
