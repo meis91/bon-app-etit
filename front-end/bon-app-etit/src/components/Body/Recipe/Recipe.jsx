@@ -16,20 +16,12 @@ export default function Recipe() {
     console.log(quantities)
     console.log(image)
     const ingredients = quantities.map((quantity) => (
-
         <tbody key={quantity.ingredient.name}>
-
-
-                        <td>{quantity.quantity}&nbsp;</td>
+                        <td><li>{quantity.quantity}&nbsp;</li></td>
                         <td>{quantity.unit}&emsp;</td>
                         <td>{quantity.ingredient.name}</td>
-
-
-                {/*{quantity.quantity} &nbsp;
-                {quantity.unit} &emsp;
-                {quantity.ingredient.name}
-*/}
-        </tbody>))
+        </tbody>
+    ));
 
     return (
         <div>
