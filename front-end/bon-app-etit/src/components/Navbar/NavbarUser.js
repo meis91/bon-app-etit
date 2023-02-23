@@ -5,6 +5,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import {AccountCircle} from "@mui/icons-material";
 import ButtonAdd from "../ReusableComponents/ButtonAdd";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import {useNavigate} from "react-router-dom";
 
 const NavbarUser = ({addRecipe, handleAddRecipe}) => {
 
@@ -52,6 +53,12 @@ const NavbarUser = ({addRecipe, handleAddRecipe}) => {
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
         </Menu>
     );
+    const URL_LOGIN = "/login"
+    const navigate = useNavigate();
+    const navigationUrl = "/login"
+    const handleLoginNav = () => {
+        navigate(navigationUrl)
+    }
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
 
@@ -59,11 +66,14 @@ const NavbarUser = ({addRecipe, handleAddRecipe}) => {
         <div>
             <Box sx={{flexGrow: 1}}/>
             <Box sx={{display: {xs: 'none', md: 'flex'}}}>
-                <IconButton onClick={(e) => handleAddRecipe(e)} size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={0} color="error">
-                        <AddCircleIcon/>
-                    </Badge>
-                </IconButton>
+                {sessionStorage.getItem("loggedIn") === "true" ?
+                    <IconButton onClick={(e) => handleAddRecipe(e)} size="large" aria-label="show 4 new mails" color="inherit">
+                        <Badge badgeContent={0} color="error">
+                            <AddCircleIcon/>
+                        </Badge>
+                    </IconButton> :
+                    null }
+
                 <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                     <Badge badgeContent={0} color="error">
                         <MailIcon/>
@@ -84,7 +94,7 @@ const NavbarUser = ({addRecipe, handleAddRecipe}) => {
                     aria-label="account of current user"
                     aria-controls={menuId}
                     aria-haspopup="true"
-                    onClick={handleProfileMenuOpen}
+                    onClick={handleLoginNav}
                     color="inherit"
                 >
                     <AccountCircle/>

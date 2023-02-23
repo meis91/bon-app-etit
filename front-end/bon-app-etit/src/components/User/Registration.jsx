@@ -9,31 +9,28 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 function Registration(props) {
-    const [passwordValidation, setPasswordValidation] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [verificationPW, setVerificationPW] = useState("");
+    const navigate = useNavigate();
 
-    const handleInput = (event) => {
-        switch(event.target.name) {
-            case "email":
-                console.log(event.target.value)
-                break;
-            case "password":
-                // code block
-                break;
-            case "verificationPW":
-            // code block
-            default:
-
-        }
-    }
     const postRegistration = async (data) => {
-        const REGISTRATION_URL = "/api/v1/auth/register"
+        let user = {
+            "email":data.get("email"),
+            "password":data.get("password")
+        }
+        console.log("reg: " + user)
+        const REGISTRATION_URL = "http://localhost:8000/api/v1/auth/register"
         let resultRecipe = await axios.post(
-            REGISTRATION_URL, data);
+            REGISTRATION_URL,
+            user,
+            ).then((response) =>{
+            const navigationUrl = "/login"
+            navigate(navigationUrl)
+        }).catch((error) =>{
+            alert("Something went wrong, try again")
+            console.log(error);
+        });
         console.log("send")
     }
 
@@ -79,6 +76,7 @@ function Registration(props) {
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
+                            /*onChange={handleInput}*/
                             margin="normal"
                             required
                             fullWidth
@@ -89,6 +87,7 @@ function Registration(props) {
                             autoFocus
                         />
                         <TextField
+                            /*onChange={handleInput}*/
                             margin="normal"
                             required
                             fullWidth
@@ -98,6 +97,7 @@ function Registration(props) {
                             id="password"
                         />
                         <TextField
+                            /*onChange={handleInput}*/
                             margin="normal"
                             required
                             fullWidth

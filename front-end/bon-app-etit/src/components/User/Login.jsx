@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -8,15 +8,43 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 function Login(props) {
+    const navigate = useNavigate();
+    const postRegistration = async (data) => {
+        let user = {
+            "email":data.get("email"),
+            "password":data.get("password")
+        }
+        console.log("log " + user)
+        const AUTHENTICATION_URL = "http://localhost:8000/api/v1/auth/authenticate"
+        let resultRecipe = await axios.post(
+            AUTHENTICATION_URL,
+            user,
+        ).then((response) =>{
+            sessionStorage.setItem("token", response.data.token);
+            sessionStorage.setItem("loggedIn", JSON.stringify(true));
+            alert("Login successful")
+            const navigationUrl = "/"
+            navigate(navigationUrl)
+        }).catch((error) =>{
+            console.log(error);
+           alert("Login failed, please try again ");
+        });
+
+    }
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
+        /*console.log({
             email: data.get("email"),
             password: data.get("password"),
-        });
+        });*/
+
+        postRegistration(data);
+
     };
     return (
         <div>
@@ -76,7 +104,7 @@ function Login(props) {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="/registration" variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>
