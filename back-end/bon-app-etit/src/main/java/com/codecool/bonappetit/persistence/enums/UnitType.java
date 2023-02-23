@@ -1,4 +1,4 @@
-package com.codecool.bonappetit.persistence.entity;
+package com.codecool.bonappetit.persistence.enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 

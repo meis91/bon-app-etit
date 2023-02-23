@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Ingredient {
     @Id
     @GeneratedValue
-    private long ingredientId;
+    private long id;
     @Column(unique = true)
     private String name;
 }

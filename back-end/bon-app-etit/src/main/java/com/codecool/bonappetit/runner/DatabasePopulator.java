@@ -3,7 +3,7 @@ package com.codecool.bonappetit.runner;
 import com.codecool.bonappetit.persistence.entity.Ingredient;
 import com.codecool.bonappetit.persistence.entity.IngredientQuantity;
 import com.codecool.bonappetit.persistence.entity.Recipe;
-import com.codecool.bonappetit.persistence.entity.UnitType;
+import com.codecool.bonappetit.persistence.enums.UnitType;
 import com.codecool.bonappetit.persistence.repository.IngredientRepository;
 import com.codecool.bonappetit.persistence.repository.RecipeRepository;
 import org.springframework.boot.ApplicationRunner;

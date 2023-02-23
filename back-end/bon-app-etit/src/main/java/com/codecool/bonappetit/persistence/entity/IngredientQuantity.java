@@ -1,5 +1,6 @@
 package com.codecool.bonappetit.persistence.entity;
 
+import com.codecool.bonappetit.persistence.enums.UnitType;
 import jakarta.persistence.*;
 import lombok.*;
 
