@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -39,3 +40,18 @@ public class SecurityConfiguration {
         return httpSecurity.build();
     }
 }
+
+/*    From Live Coding Session:
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http.csrf().and().cors().disable()
+                .authorizeHttpRequests(auth -> {
+                    auth.requestMatchers("/messages").permitAll();
+                    auth.requestMatchers("/messages/user").hasRole("USER");
+                    auth.requestMatchers("/messages/admin").hasRole("ADMIN");
+                })
+                .httpBasic(Customizer.withDefaults())
+                .build();
+        }
+    }
+*/
