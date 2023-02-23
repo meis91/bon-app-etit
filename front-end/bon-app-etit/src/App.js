@@ -8,6 +8,8 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {Route, Routes} from "react-router-dom";
 import IndexPage from "./components/Body/Recipes/IndexPage";
 import Recipe from "./components/Body/Recipe/Recipe";
+import Login from "./components/User/Login";
+import Registration from "./components/User/Registration";
 
 
 const theme = createTheme({
@@ -61,6 +63,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<BaseContainer addRecipe={showAddRecipe} handleAddRecipe={handleAddRecipe} baseUrl={baseURL} />} />
                 <Route path="/recipe/:id" element={<Recipe />} />
+                <Route path="/login" element={<Login/>} />
+                <Route path="/registration" element={<Registration/>} />
             </Routes>
             <Footer theme={theme} title={title} />
         </ThemeProvider>
