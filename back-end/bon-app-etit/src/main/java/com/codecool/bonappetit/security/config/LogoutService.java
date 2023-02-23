@@ -39,3 +39,5 @@ public class LogoutService implements LogoutHandler {
     }
 
 }
+
+// delete this line
