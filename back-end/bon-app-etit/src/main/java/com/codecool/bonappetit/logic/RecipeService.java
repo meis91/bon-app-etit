@@ -16,7 +16,6 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final IngredientService ingredientService;
 
-    private final ImageService imageService;
 
 
     public List<Recipe> getAll() {
@@ -31,21 +30,13 @@ public class RecipeService {
         return recipeRepository.findByQuantitiesIngredientNameIgnoreCase(ingredient);
     }
 
-    public void save(Recipe recipe) {
+    public Recipe save(Recipe recipe) {
         List<IngredientQuantity> ingredientQuantities = recipe.getQuantities();
-        MultipartFile file = recipe.getFile();
-        System.out.println("file = " + file);
-        // imageService.saveImage(recipe.getImage());
         for (IngredientQuantity ingredientQuantity : ingredientQuantities) {
             Ingredient ingredient = ingredientService.saveIngredientIfNew(ingredientQuantity.getIngredient().getName());
             ingredientQuantity.setIngredient(ingredient);
         }
-        recipeRepository.save(recipe);
+        return recipeRepository.saveAndFlush(recipe);
     }
 
-
-
-    public Recipe findByImageName(String imageName){
-        return recipeRepository.findByImageName(imageName);
-    }
 }

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import InputIngredients from "./Ingredients/InputIngredients";
 import InputInstructions from "./InputInstructions";
-import {Box} from "@mui/material";
+import {Alert, Box} from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputTitle from "./InputTitle";
 import FormTitle from "../../ReusableComponents/FormTitle";
@@ -21,16 +21,14 @@ function PostNewRecipe({handleAddRecipe}) {
     const RECIPE_POST_URL = "http://localhost:8000/api/recipes";
     const RECIPE_IMAGE_POST_URL = "http://localhost:8000/api/recipes/image";
 
+    const [success, setSuccess] = useState(false);
     const [image, setImage] = useState("");
-
     const [recipe, setRecipe] = useState({
         title:"",
-        imageName:"",
         description:"",
         portions: 4,
         quantities:[],
         instructions:"",
-        file:"",
     });
 
     const handleInput = (e) => {
@@ -50,31 +48,33 @@ function PostNewRecipe({handleAddRecipe}) {
             console.log(file.result)
         }*/
         console.log(e.target.files[0].name)
-        setRecipe({
+       /* setRecipe({
             ...recipe,
             file: e.target.files[0],
-        })
-        //setImage(e.target.files[0]);
+        })*/
+        setImage(e.target.files[0]);
     }
 
     async function postRecipe(e) {
         e.preventDefault()
-        let resultRecipe = await axios.post(          // any call like get
-            RECIPE_POST_URL,recipe);
-        /*let formData = new FormData();
-        formData.append("file", image);
-        if(image){
-            let resultFile = await axios.post(          // any call like get
-                RECIPE_IMAGE_POST_URL,         // your URL
-                formData);
-        }*/
-
-        alert("Upload complete");
+        try{
+            let resultRecipe = await axios.post(          // any call like get
+                RECIPE_POST_URL, recipe);
+            let formData = new FormData();
+            formData.append("file", image);
+            formData.append("recipe_id", resultRecipe.data.id)
+            if(image){
+                let resultFile = await axios.post(          // any call like get
+                    RECIPE_IMAGE_POST_URL,         // your URL
+                    formData);
+            }
+        } catch (err){
+            console.log(err);
+        }
 
 
 
         setTimeout(alertFunc, 1000);
-
 
         function alertFunc() {
             handleAddRecipe();
@@ -112,6 +112,7 @@ function PostNewRecipe({handleAddRecipe}) {
                             Submit
                         </Button>
                     </Stack>
+                    { success ? <Alert severity="success">Upload Successfull</Alert> : null }
                 </FormControl>
             </Box>
         </div>

@@ -20,13 +20,9 @@ public class Recipe {
     private long id;
     private String title;
     private String description;
-    private String imageName;
-
     @OneToOne
     @JoinColumn (name = "fk_image_id")
     private Image image;
-    @Transient
-    private MultipartFile file;
     private int portions;
     @Column(columnDefinition="TEXT")
     private String instructions;
