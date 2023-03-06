@@ -30,6 +30,7 @@ function PostNewRecipe({handleAddRecipe}) {
         portions: 4,
         quantities:[],
         instructions:"",
+        file:"",
     });
 
     const handleInput = (e) => {
@@ -51,22 +52,22 @@ function PostNewRecipe({handleAddRecipe}) {
         console.log(e.target.files[0].name)
         setRecipe({
             ...recipe,
-            imageName: e.target.files[0].name,
+            file: e.target.files[0],
         })
-        setImage(e.target.files[0]);
+        //setImage(e.target.files[0]);
     }
 
     async function postRecipe(e) {
         e.preventDefault()
         let resultRecipe = await axios.post(          // any call like get
             RECIPE_POST_URL,recipe);
-        let formData = new FormData();
+        /*let formData = new FormData();
         formData.append("file", image);
         if(image){
             let resultFile = await axios.post(          // any call like get
                 RECIPE_IMAGE_POST_URL,         // your URL
                 formData);
-        }
+        }*/
 
         alert("Upload complete");
 

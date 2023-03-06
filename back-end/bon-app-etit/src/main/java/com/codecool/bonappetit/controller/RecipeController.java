@@ -37,13 +37,7 @@ public class RecipeController {
     @PostMapping("/recipes")
     Recipe addRecipe(@RequestBody Recipe recipe) {
         System.out.println("recipe = " + recipe);
-        List<IngredientQuantity> ingredientQuantities = recipe.getQuantities();
 
-       // imageService.saveImage(recipe.getImage());
-        for (IngredientQuantity ingredientQuantity : ingredientQuantities) {
-            Ingredient ingredient = ingredientService.saveIngredientIfNew(ingredientQuantity.getIngredient().getName());
-            ingredientQuantity.setIngredient(ingredient);
-        }
         recipeService.save(recipe);
 
         return recipe;

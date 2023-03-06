@@ -1,16 +1,22 @@
 package com.codecool.bonappetit.logic;
 
 import com.codecool.bonappetit.logic.exception.RecipeNotFoundException;
+import com.codecool.bonappetit.persistence.entity.Ingredient;
+import com.codecool.bonappetit.persistence.entity.IngredientQuantity;
 import com.codecool.bonappetit.persistence.entity.Recipe;
 import com.codecool.bonappetit.persistence.repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class RecipeService {
     private final RecipeRepository recipeRepository;
+    private final IngredientService ingredientService;
+
+    private final ImageService imageService;
 
 
     public List<Recipe> getAll() {
@@ -26,6 +32,14 @@ public class RecipeService {
     }
 
     public void save(Recipe recipe) {
+        List<IngredientQuantity> ingredientQuantities = recipe.getQuantities();
+        MultipartFile file = recipe.getFile();
+        System.out.println("file = " + file);
+        // imageService.saveImage(recipe.getImage());
+        for (IngredientQuantity ingredientQuantity : ingredientQuantities) {
+            Ingredient ingredient = ingredientService.saveIngredientIfNew(ingredientQuantity.getIngredient().getName());
+            ingredientQuantity.setIngredient(ingredient);
+        }
         recipeRepository.save(recipe);
     }
 

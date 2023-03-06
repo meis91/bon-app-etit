@@ -25,10 +25,11 @@ public class Recipe {
     @OneToOne
     @JoinColumn (name = "fk_image_id")
     private Image image;
+    @Transient
+    private MultipartFile file;
     private int portions;
     @Column(columnDefinition="TEXT")
     private String instructions;
-//    private String image;
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<IngredientQuantity> quantities;
 //    private List<Label> labels;
