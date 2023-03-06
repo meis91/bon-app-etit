@@ -3,6 +3,7 @@ package com.codecool.bonappetit.logic;
 import com.codecool.bonappetit.logic.exception.RecipeNotFoundException;
 import com.codecool.bonappetit.persistence.entity.Recipe;
 import com.codecool.bonappetit.persistence.repository.RecipeRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class RecipeService {
     public Recipe findById(Long id) { return recipeRepository.findById(id)
             .orElseThrow(() -> new RecipeNotFoundException(id));
     }
-
+    @Transactional
     public List<Recipe> findByIngredient(String ingredient) {
         return recipeRepository.findByQuantitiesIngredientNameIgnoreCase(ingredient);
     }
