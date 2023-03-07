@@ -1,13 +1,16 @@
-import {useState} from 'react';
-import {Badge, Box, IconButton, Menu, MenuItem} from "@mui/material";
+import {useEffect, useState} from 'react';
+import {Badge, Box, IconButton, Menu, MenuItem, Typography} from "@mui/material";
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import {AccountCircle} from "@mui/icons-material";
 import ButtonAdd from "../ReusableComponents/ButtonAdd";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {useNavigate} from "react-router-dom";
+import axios from "../../api/axios";
 
 const NavbarUser = ({addRecipe, handleAddRecipe}) => {
+
+    const [user, setUser] = useState("");
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -31,6 +34,14 @@ const NavbarUser = ({addRecipe, handleAddRecipe}) => {
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
+
+    useEffect(() => {
+        let  username = sessionStorage.getItem("username")
+        if(username){
+            setUser(username)
+        }
+    }, []);
+
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -88,7 +99,11 @@ const NavbarUser = ({addRecipe, handleAddRecipe}) => {
                         <NotificationsIcon/>
                     </Badge>
                 </IconButton>
-                <IconButton
+                {user
+                    ?   <MenuItem >
+                            <Typography textAlign="center"> {user} </Typography>
+                        </MenuItem>
+                    : <IconButton
                     size="large"
                     edge="end"
                     aria-label="account of current user"
@@ -98,7 +113,7 @@ const NavbarUser = ({addRecipe, handleAddRecipe}) => {
                     color="inherit"
                 >
                     <AccountCircle/>
-                </IconButton>
+                </IconButton>}
             </Box>
             <Box sx={{display: {xs: 'flex', md: 'none'}}}>
                 <IconButton

@@ -15,8 +15,8 @@ function Registration() {
 
     const validationSchema = yup.object({
         username: yup
-        .string('Enter your username')
-        .required('Username is required'),
+            .string('Enter your username')
+            .required('Username is required'),
         email: yup
             .string('Enter your email')
             .email('Enter a valid email')
@@ -68,7 +68,6 @@ function Registration() {
             alert("Something went wrong, please try again")
             console.log(error);
         });
-        console.log("send")
     }
 
 

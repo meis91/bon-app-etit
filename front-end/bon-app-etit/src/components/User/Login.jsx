@@ -11,50 +11,58 @@ import Container from "@mui/material/Container";
 import axios from "../../api/axios"
 import {useNavigate} from "react-router-dom";
 import {useFormik} from "formik";
+import * as yup from "yup";
 
 function Login(props) {
     const AUTHENTICATION_URL = "/v1/auth/authenticate"
     const navigate = useNavigate();
+
+    const validationSchema = yup.object({
+        email: yup
+            .string('Enter your email')
+            .email('Enter a valid email')
+            .required('Email is required'),
+        password: yup
+            .string()
+            .required('Please Enter your password')
+    });
+
     const formik = useFormik({
         initialValues: {
             email: "",
             password: "",
         },
-        /*validationSchema: validationSchema,*/
+        validationSchema: validationSchema,
     });
-    const loginRequest = async (data) => {
-        let user = {
-            "email":data.get("email"),
-            "password":data.get("password")
-        }
-        console.log("log " + user)
 
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        loginRequest(formik.values);
+    };
+
+
+    const loginRequest = async (data) => {
         let resultRecipe = await axios.post(
             AUTHENTICATION_URL,
-            user,
-        ).then((response) =>{
+            data,
+        ).then((response) => {
+            console.log(response.data)
             sessionStorage.setItem("token", response.data.token);
+            sessionStorage.setItem("username", response.data.username);
+            sessionStorage.setItem("email", response.data.email);
+            sessionStorage.setItem("role", response.data.role);
             sessionStorage.setItem("loggedIn", JSON.stringify(true));
+
             alert("Login successful")
             const navigationUrl = "/"
             navigate(navigationUrl)
-        }).catch((error) =>{
+        }).catch((error) => {
             console.log(error);
-           alert("Login failed, please try again ");
+            alert("Login failed, please try again ");
         });
-
     }
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        /*console.log({
-            email: data.get("email"),
-            password: data.get("password"),
-        });*/
 
-        loginRequest(data);
-
-    };
     return (
         <div>
             <Container component="main" maxWidth="sm">
@@ -73,7 +81,7 @@ function Login(props) {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
                         <TextField
                             margin="normal"
                             required
@@ -83,6 +91,10 @@ function Login(props) {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
+                            error={formik.touched.email && Boolean(formik.errors.email)}
+                            helperText={formik.errors.email}
                         />
                         <TextField
                             margin="normal"
@@ -93,16 +105,20 @@ function Login(props) {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            value={formik.values.password}
+                            onChange={formik.handleChange}
+                            error={formik.touched.password && Boolean(formik.errors.password)}
+                            helperText={formik.errors.password}
                         />
                         <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
+                            control={<Checkbox value="remember" color="primary"/>}
                             label="Remember me"
                         />
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{mt: 3, mb: 2}}
                         >
                             Sign In
                         </Button>
@@ -121,11 +137,10 @@ function Login(props) {
                     </Box>
                 </Box>
             </Container>
-        <br/>
-        <br/>
+            <br/>
+            <br/>
         </div>
-
-);
+    );
 }
 
 export default Login;
