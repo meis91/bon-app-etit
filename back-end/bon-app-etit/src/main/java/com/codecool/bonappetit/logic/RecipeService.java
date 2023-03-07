@@ -42,4 +42,9 @@ public class RecipeService {
     public Recipe findByImageName(String imageName){
         return recipeRepository.findByImageName(imageName);
     }
+
+    @Transactional
+    public List<Recipe> findBySearchTerm(String searchTerm) {
+        return recipeRepository.findByTitleContainsIgnoreCaseOrQuantitiesIngredientNameContainsIgnoreCase(searchTerm, searchTerm);
+    }
 }

@@ -12,6 +12,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     List<Recipe> findByQuantitiesIngredientNameIgnoreCase(String name);
 
+    List<Recipe> findByTitleContainsIgnoreCaseOrQuantitiesIngredientNameContainsIgnoreCase(String title, String name);
+
     Recipe findByImageName(String name);
 }
 
