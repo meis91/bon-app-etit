@@ -5,6 +5,7 @@ import com.codecool.bonappetit.persistence.entity.Ingredient;
 import com.codecool.bonappetit.persistence.entity.IngredientQuantity;
 import com.codecool.bonappetit.persistence.entity.Recipe;
 import com.codecool.bonappetit.persistence.repository.RecipeRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,7 +17,6 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final IngredientService ingredientService;
 
-
     public List<Recipe> getAll() {
         return recipeRepository.findAll();
     }
@@ -25,9 +25,8 @@ public class RecipeService {
             .orElseThrow(() -> new RecipeNotFoundException(id));
     }
 
+    @Transactional
     public List<Recipe> findByIngredient(String ingredient) {
-        Ingredient searchIngredient = ingredientService.findByName(ingredient);
-        System.out.println("searchIngredient = " + searchIngredient);
         return recipeRepository.findByQuantitiesIngredientNameIgnoreCase(ingredient);
     }
 
@@ -37,7 +36,6 @@ public class RecipeService {
             Ingredient ingredient = ingredientService.saveIngredientIfNew(ingredientQuantity.getIngredient().getName());
             ingredientQuantity.setIngredient(ingredient);
         }
-        return recipeRepository.saveAndFlush(recipe);
+        return recipeRepository.save(recipe);
     }
-
 }

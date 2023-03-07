@@ -80,8 +80,8 @@ const NavbarUser = ({ handleAddRecipe}) => {
                     </Badge>
                 </IconButton>
                 {user
-                    ? <MenuItem>
-                        <Typography textAlign="center"> {user} </Typography>
+                    ? <MenuItem color="secondary" >
+                        <Typography style={{color: "#c78f46"}} textAlign="center"> {user} </Typography>
                     </MenuItem>
                     : <IconButton
                         size="large"
