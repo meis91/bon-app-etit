@@ -17,7 +17,6 @@ public class RecipeService {
     private final IngredientService ingredientService;
 
 
-
     public List<Recipe> getAll() {
         return recipeRepository.findAll();
     }
@@ -27,6 +26,8 @@ public class RecipeService {
     }
 
     public List<Recipe> findByIngredient(String ingredient) {
+        Ingredient searchIngredient = ingredientService.findByName(ingredient);
+        System.out.println("searchIngredient = " + searchIngredient);
         return recipeRepository.findByQuantitiesIngredientNameIgnoreCase(ingredient);
     }
 

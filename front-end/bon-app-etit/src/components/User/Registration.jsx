@@ -3,27 +3,68 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
-import axios from "axios";
+import axios from "../../api/axios"
 import {useNavigate} from "react-router-dom";
+import {Formik, useFormik} from "formik";
+import * as yup from 'yup';
 
 function Registration(props) {
+    /*const [email, setEmail] = useState("");
+    const [validEmail, setValidEmail] = useState(false);
+
+    const [password, setPassword] = useState("");
+    const [validPwd, setValidPwd] = useState(false);
+
+    const [verifyPassword, setVerifyPassword] = useState("");
+    const [validVerifyPwd, setValidVerifyPwd] = useState(false);*/
+
+    const REGISTRATION_URL = "/v1/auth/register"
+
+    const validationSchema = yup.object({
+        email: yup
+            .string('Enter your email')
+            .email('Enter a valid email')
+            .required('Email is required'),
+        password: yup
+            .string()
+            .required('Please Enter your password')
+            .matches(
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+                "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+            ),
+        validationPwd: yup
+            .string('Enter your password')
+            .min(8, 'Password should be of minimum 8 characters length')
+            .required('Password-confirmation is required')
+            .oneOf([yup.ref("password"), null], "Password must match")
+    });
+
+
+    const formik = useFormik({
+        initialValues: {
+            email: "",
+            password: "",
+            validationPwd: ""
+        },
+        validationSchema: validationSchema,
+    });
+
     const navigate = useNavigate();
 
-    const postRegistration = async (data) => {
-        let user = {
-            "email":data.get("email"),
+   /* const handleInput = (event) => {
+        event.target.name;
+    }*/
+    const registrationRequest = async (data) => {
+        /*let user = {
+            "email":data.("email"),
             "password":data.get("password")
-        }
-        console.log("reg: " + user)
-        const REGISTRATION_URL = "http://localhost:8000/api/v1/auth/register"
+        }*/
+        console.log("reg: " + data)
+
         let resultRecipe = await axios.post(
             REGISTRATION_URL,
-            user,
+            data,
             ).then((response) =>{
             const navigationUrl = "/login"
             navigate(navigationUrl)
@@ -36,19 +77,18 @@ function Registration(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        const data = new FormData(event.currentTarget);
+        /*console.log(formik.values);*/
+     /*   const data = new FormData(event.currentTarget);
         console.log({
             email: data.get("email"),
             password: data.get("password"),
             verificationPW: data.get("verificationPW")
-        });
-         if (data.get("password") === data.get("verificationPW")){
+        });*/
+         if (formik.values.password === formik.values.validationPwd){
              console.log("Password correct")
 
-             data.delete("verificationPW")
 
-             postRegistration(data);
+             registrationRequest(formik.values);
          } else {
              alert("Password don't match, please try again")
          }
@@ -75,50 +115,62 @@ function Registration(props) {
                         Registration
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                        <TextField
-                            /*onChange={handleInput}*/
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                        />
-                        <TextField
-                            /*onChange={handleInput}*/
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                        />
-                        <TextField
-                            /*onChange={handleInput}*/
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="verificationPW"
-                            label="Confirm Password"
-                            type="password"
-                            id="verificationPW"
-                        />
-                        {/*<FormControlLabel
+
+                            <TextField
+                                onChange={formik.handleChange}
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email Address"
+                                name="email"
+                                autoComplete="email"
+                                autoFocus
+                                value={formik.values.email}
+                                onChange={formik.handleChange}
+                                error={ formik.touched.email && Boolean(formik.errors.email)}
+                                helperText={ formik.errors.email}
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Password"
+                                type="password"
+                                id="password"
+                                value={formik.values.password}
+                                onChange={formik.handleChange}
+                                error={formik.touched.password && Boolean(formik.errors.password)}
+                                helperText={formik.errors.password}
+                            />
+                            <TextField
+                                onChange={formik.handleChange}
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="validationPwd"
+                                label="Confirm Password"
+                                type="password"
+                                id="validationPwd:"
+                                value={formik.values.validationPwd}
+                                onChange={formik.handleChange}
+                                error={formik.touched.validationPwd && Boolean(formik.errors.validationPwd)}
+                                helperText={formik.errors.validationPwd}
+                            />
+                            {/*<FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
                         />*/}
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Register
-                        </Button>
-                        {/*<Grid container>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                Register
+                            </Button>
+                            {/*<Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">
                                     Forgot password?

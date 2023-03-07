@@ -1,5 +1,5 @@
 import './App.css';
-import axios from "axios";
+import axios from "./api/axios";
 import React, {useEffect, useState} from "react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar/Navbar"
@@ -50,7 +50,7 @@ function App() {
     }
 
     useEffect(() => {
-        axios.get(baseURL).then((response) => {
+        axios.get().then((response) => {
             setTitle(response.data);
         });
     }, []);

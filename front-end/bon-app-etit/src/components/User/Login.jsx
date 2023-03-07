@@ -8,18 +8,27 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import axios from "axios";
+import axios from "../../api/axios"
 import {useNavigate} from "react-router-dom";
+import {useFormik} from "formik";
 
 function Login(props) {
+    const AUTHENTICATION_URL = "/v1/auth/authenticate"
     const navigate = useNavigate();
-    const postRegistration = async (data) => {
+    const formik = useFormik({
+        initialValues: {
+            email: "",
+            password: "",
+        },
+        /*validationSchema: validationSchema,*/
+    });
+    const loginRequest = async (data) => {
         let user = {
             "email":data.get("email"),
             "password":data.get("password")
         }
         console.log("log " + user)
-        const AUTHENTICATION_URL = "http://localhost:8000/api/v1/auth/authenticate"
+
         let resultRecipe = await axios.post(
             AUTHENTICATION_URL,
             user,
@@ -43,7 +52,7 @@ function Login(props) {
             password: data.get("password"),
         });*/
 
-        postRegistration(data);
+        loginRequest(data);
 
     };
     return (

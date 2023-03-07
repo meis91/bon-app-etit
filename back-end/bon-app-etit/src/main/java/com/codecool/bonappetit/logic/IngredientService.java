@@ -18,4 +18,8 @@ public class IngredientService {
         }
         return ingredient;
     }
+
+    public Ingredient findByName(String name){
+        return ingredientRepository.findByNameIsContainingIgnoreCase(name);
+    }
 }
