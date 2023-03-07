@@ -1,12 +1,11 @@
 import './App.css';
 import axios from "./api/axios";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar/Navbar"
 import BaseContainer from "./components/Body/BaseContainer";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {Route, Routes} from "react-router-dom";
-import IndexPage from "./components/Body/Recipes/IndexPage";
 import Recipe from "./components/Body/Recipe/Recipe";
 import Login from "./components/User/Login";
 import Registration from "./components/User/Registration";
@@ -42,10 +41,7 @@ function App() {
     const [title, setTitle] = useState(null);
     const [showAddRecipe, setShowAddRecipe] = useState(false);
 
-
-
     const handleAddRecipe = () =>{
-        console.log(showAddRecipe)
         setShowAddRecipe(!showAddRecipe);
     }
 
