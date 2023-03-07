@@ -29,7 +29,8 @@ export default function RecipeGrid({recipes, image}) {
                 instructions: recipe.instructions,
                 quantities: recipe.quantities,
                 imageName: recipe.imageName,
-                image: recipe.image
+                image: recipe.image,
+                tags: recipe.tags
             }
         });
     }
