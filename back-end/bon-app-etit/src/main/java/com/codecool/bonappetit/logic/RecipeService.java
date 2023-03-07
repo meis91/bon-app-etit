@@ -45,6 +45,6 @@ public class RecipeService {
 
     @Transactional
     public List<Recipe> findBySearchTerm(String searchTerm) {
-        return recipeRepository.findByTitleContainsIgnoreCaseOrQuantitiesIngredientNameContainsIgnoreCase(searchTerm, searchTerm);
+        return recipeRepository.findByTitleContainsIgnoreCaseOrQuantitiesIngredientNameContainsIgnoreCaseOrTagsNameContainsIgnoreCase(searchTerm, searchTerm, searchTerm);
     }
 }
