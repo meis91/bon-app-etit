@@ -223,7 +223,5 @@ public class DatabasePopulator {
         saltinbocca.setTags(List.of(tags.get(2), tags.get(11)));
         Recipe macAndCheese = recipes.get(2);
         macAndCheese.setTags(List.of(tags.get(3), tags.get(4)));
-        Recipe pimientosDePadron = recipes.get(3);
-        pimientosDePadron.setTags(List.of(tags.get(5), tags.get(7), tags.get(8)));
     }
 }
