@@ -3,9 +3,11 @@ package com.codecool.bonappetit.runner;
 import com.codecool.bonappetit.persistence.entity.Ingredient;
 import com.codecool.bonappetit.persistence.entity.IngredientQuantity;
 import com.codecool.bonappetit.persistence.entity.Recipe;
+import com.codecool.bonappetit.persistence.entity.Tag;
 import com.codecool.bonappetit.persistence.enums.UnitType;
 import com.codecool.bonappetit.persistence.repository.IngredientRepository;
 import com.codecool.bonappetit.persistence.repository.RecipeRepository;
+import com.codecool.bonappetit.persistence.repository.TagRepository;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -22,15 +24,19 @@ public class DatabasePopulator {
     List<Ingredient> ingredients;
     List<IngredientQuantity> ingredientQuantities;
     List<Recipe> recipes;
+    List<Tag> tags;
 
 
     @Bean
     ApplicationRunner fillDatabase(IngredientRepository ingredientRepository,
-                                   RecipeRepository recipeRepository) {
+                                   RecipeRepository recipeRepository,
+                                   TagRepository tagRepository) {
         return args -> {
             ingredientRepository.saveAll(ingredients);
+            tagRepository.saveAll(tags);
             createIngredientQuantities();
             setRecipesIngredientsLists();
+            setRecipesTags();
             recipeRepository.saveAll(recipes);
         };
     }
@@ -41,6 +47,10 @@ public class DatabasePopulator {
 
     public void setIngredientQuantities(List<IngredientQuantity> ingredientQuantities) {
         this.ingredientQuantities = ingredientQuantities;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 
     public void setRecipes(List<Recipe> recipes) {
@@ -204,5 +214,16 @@ public class DatabasePopulator {
         Recipe pimientosDePadron = recipes.get(3);
         pimientosDePadron.setQuantities(List.of(ingredientQuantities.get(24), ingredientQuantities.get(25),
                 ingredientQuantities.get(26)));
+    }
+
+    private void setRecipesTags() {
+        Recipe tafelspitz = recipes.get(0);
+        tafelspitz.setTags(List.of(tags.get(2), tags.get(14), tags.get(20)));
+        Recipe saltinbocca = recipes.get(1);
+        saltinbocca.setTags(List.of(tags.get(2), tags.get(11)));
+        Recipe macAndCheese = recipes.get(2);
+        macAndCheese.setTags(List.of(tags.get(3), tags.get(4)));
+        Recipe pimientosDePadron = recipes.get(3);
+        pimientosDePadron.setTags(List.of(tags.get(5), tags.get(7), tags.get(8)));
     }
 }
