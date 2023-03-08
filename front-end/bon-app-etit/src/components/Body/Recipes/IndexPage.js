@@ -55,7 +55,6 @@ function IndexPage({baseUrl}) {
         axios
             .get(`/recipes-by-ingredient?${params}`)
             .then(function (response) {
-                /*console.log(response.data);*/
                 setRecipes(response.data);
             });
     }
@@ -66,7 +65,6 @@ function IndexPage({baseUrl}) {
             setRecipes(response.data);
         });
     }, []);
-    /*console.log(recipes)*/
 
     if (!recipes) return null;
 
