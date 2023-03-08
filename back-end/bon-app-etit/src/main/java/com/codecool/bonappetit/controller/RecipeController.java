@@ -56,9 +56,15 @@ public class RecipeController {
         return recipes;
     }
 
-    @PostMapping()
-    public Recipe saveRecipe(@RequestParam Recipe recipe){
-        System.out.println("recipe = " + recipe);
-        return recipe;
+    @GetMapping("/recipes-by-searchterm")
+    public List<Recipe> getRecipesBySearchTerm(@RequestParam String searchTerm) {
+        List<Recipe> recipes = recipeService.findBySearchTerm(searchTerm);
+        return recipes;
     }
+
+//    @PostMapping()
+//    public Recipe saveRecipe(@RequestParam Recipe recipe){
+//        System.out.println("recipe = " + recipe);
+//        return recipe;
+//    }
 }

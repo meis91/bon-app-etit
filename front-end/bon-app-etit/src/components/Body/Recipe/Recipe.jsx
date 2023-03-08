@@ -8,13 +8,17 @@ import CardActions from "@mui/material/CardActions";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import * as React from "react";
 import {Container} from "@mui/material";
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 export default function Recipe() {
     const location = useLocation();
     const quantities = location.state.quantities
     const image = location.state.image
+    const tags = location.state.tags
     console.log(location.state.id)
     console.log(quantities)
     console.log(image)
+    console.log(tags)
     const ingredients = quantities.map((quantity) => (
         <tbody key={quantity.ingredient.name}>
                         <td><li>{quantity.quantity}&nbsp;</li></td>
@@ -55,6 +59,11 @@ export default function Recipe() {
                             <b>Instructions:</b>
                             <p>{location.state.instructions}</p>
                         </Typography>
+                        <Stack direction="row" spacing={1}>
+                            {tags.map((tag) => (
+                                <Chip key={tag.name} label={tag.name} variant="outlined" />
+                            ))}
+                        </Stack>
                     </CardContent>
                 </Card>
             </Container>

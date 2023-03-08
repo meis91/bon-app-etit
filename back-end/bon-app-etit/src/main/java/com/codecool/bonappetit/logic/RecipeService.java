@@ -38,4 +38,9 @@ public class RecipeService {
         }
         return recipeRepository.save(recipe);
     }
+
+    @Transactional
+    public List<Recipe> findBySearchTerm(String searchTerm) {
+        return recipeRepository.findByTitleContainsIgnoreCaseOrQuantitiesIngredientNameContainsIgnoreCaseOrTagsNameContainsIgnoreCase(searchTerm, searchTerm, searchTerm);
+    }
 }
