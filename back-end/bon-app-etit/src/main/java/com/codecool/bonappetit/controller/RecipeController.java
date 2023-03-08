@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/recipes")
 @RequiredArgsConstructor
 @CrossOrigin("http://localhost:3000")
 public class RecipeController {
@@ -24,23 +24,17 @@ public class RecipeController {
 
 
 
-    @GetMapping("/recipes")
+    @GetMapping()
     public List<Recipe> getRecipes() {
         return recipeService.getAll();
     }
 
-    @PostMapping("/recipes")
+    @PostMapping("/save")
     Recipe addRecipe(@RequestBody Recipe recipe) {
         return recipeService.save(recipe);
     }
 
-    @PostMapping("/recipes/image")
-    Recipe addRecipeImage(@RequestParam("file") MultipartFile file, @RequestParam("recipe_id") long recipeId) {
-        System.out.println("recipeId = " + recipeId);
-        return imageService.saveImage(file, recipeId);
-    }
-
-    @GetMapping("/recipes/{id}")
+    @GetMapping("/search/{id}")
     public Recipe getRecipeById(@PathVariable Long id) {
         return recipeService.findById(id);
     }
@@ -57,10 +51,10 @@ public class RecipeController {
         return recipes;
     }
 
-    @PostMapping()
-    public Recipe saveRecipe(@RequestParam Recipe recipe){
-        System.out.println("recipe = " + recipe);
-        return recipe;
+    @PostMapping("/save/image")
+    Recipe addRecipeImage(@RequestParam("file") MultipartFile file, @RequestParam("recipe_id") long recipeId) {
+        System.out.println("recipeId = " + recipeId);
+        return imageService.saveImage(file, recipeId);
     }
 
 

@@ -14,13 +14,11 @@ import Stack from "@mui/material/Stack";
 import InputPortions from "./InputPortions";
 import {DropzoneArea} from "mui-file-dropzone";
 import DropZone from "./DropZone";
+import {SAVE_RECIPE_URL, SAVE_RECIPE_IMG_URL} from "../../../constants"
 
 
 
-function PostNewRecipe({handleAddRecipe}) {
-    const RECIPE_POST_URL = "/recipes";
-    const RECIPE_IMAGE_POST_URL = "/recipes/image";
-
+function PostNewRecipe() {
     const [success, setSuccess] = useState(false);
     const [image, setImage] = useState("");
     const [imgPreview, setImagePreview] = useState("");
@@ -48,23 +46,22 @@ function PostNewRecipe({handleAddRecipe}) {
         e.preventDefault()
         try{
             let resultRecipe = await axios.post(
-                RECIPE_POST_URL, recipe);
+                SAVE_RECIPE_URL, recipe);
             let formData = new FormData();
             formData.append("file", image);
             formData.append("recipe_id", resultRecipe.data.id)
             if(image){
                 let resultFile = await axios.post(
-                    RECIPE_IMAGE_POST_URL,
+                    SAVE_RECIPE_IMG_URL,
                     formData);
             }
-            setTimeout(alertFunc, 1000);
+            setSuccess(true);
+           alert("Upload complete");
         } catch (err){
             console.log(err);
         }
 
-        function alertFunc() {
-            handleAddRecipe();
-        }
+
     }
 
 
@@ -82,6 +79,7 @@ function PostNewRecipe({handleAddRecipe}) {
             >
                 <FormControl onSubmit={(e) =>postRecipe(e)}>
                     <FormTitle text="Add a new Recipe"/>
+                    { success ? <Alert severity="success">Upload Successfull</Alert> : null }
                     <InputTitle title={recipe.title} handleInput={handleInput}/>
                    {/* <DropZone image={image} handleInputPicture={handleInputPicture}/>*/}
 
@@ -97,7 +95,7 @@ function PostNewRecipe({handleAddRecipe}) {
                             Submit
                         </Button>
                     </Stack>
-                    { success ? <Alert severity="success">Upload Successfull</Alert> : null }
+
                 </FormControl>
             </Box>
         </div>
