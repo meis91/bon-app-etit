@@ -20,8 +20,7 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
-                /*.firstname(request.getFirstname())
-                .lastname(request.getLastname())*/
+                .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(UserRole.USER)
@@ -39,10 +38,14 @@ public class AuthenticationService {
                         request.getEmail(), request.getPassword()
                 )
         );
-        var user = userRepository.findByEmail(request.getEmail())
+        User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow();
+        System.out.println("user = " + user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .role(user.getRole())
                 .token(jwtToken)
                 .build();
     }

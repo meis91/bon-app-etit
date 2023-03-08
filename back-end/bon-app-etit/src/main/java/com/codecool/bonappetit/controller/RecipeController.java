@@ -40,10 +40,9 @@ public class RecipeController {
     }
 
     @PostMapping("/recipes/image")
-    public void addRecipeImage(@RequestParam("file") MultipartFile file) {
-        imageService.saveImage(file);
-
-
+    Recipe addRecipeImage(@RequestParam("file") MultipartFile file, @RequestParam("recipe_id") long recipeId) {
+        System.out.println("recipeId = " + recipeId);
+        return imageService.saveImage(file, recipeId);
     }
 
     @GetMapping("/recipes/{id}")

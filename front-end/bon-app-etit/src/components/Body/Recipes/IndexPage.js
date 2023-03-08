@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import SearchBar from "./SearchAndFilter/SearchBar";
 import RecipeGrid from "./RecipeGrid";
-import axios from "axios";
+import axios from "../../../api/axios"
 
 function IndexPage({baseUrl}) {
     const[recipes, setRecipes] = useState(null)
@@ -48,12 +48,12 @@ function IndexPage({baseUrl}) {
             ]},
     ];
 
-    const recipeUrl = "http://localhost:8000/api/recipes";
+    const recipeUrl = "/recipes";
 
     const handleSearch = (e) => {
         const params = new URLSearchParams([['ingredient', e.target.value]]);
         axios
-            .get(`http://localhost:8000/api/recipes-by-ingredient?${params}`)
+            .get(`/recipes-by-ingredient?${params}`)
             .then(function (response) {
                 /*console.log(response.data);*/
                 setRecipes(response.data);

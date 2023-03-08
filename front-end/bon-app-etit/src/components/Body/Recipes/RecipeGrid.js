@@ -35,6 +35,7 @@ export default function RecipeGrid({recipes, image}) {
         });
     }
 
+
     return (
       <div>
         <Container sx={{ py: 8 }} maxWidth="lg">

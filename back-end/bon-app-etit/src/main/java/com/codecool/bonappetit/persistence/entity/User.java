@@ -23,8 +23,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue
     private Integer id;
-    private String firstname;
-    private String lastname;
+    private String username;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
@@ -36,8 +35,10 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
+
+    public String getEmail() { return email; }
 
     @Override
     public boolean isAccountNonExpired() {

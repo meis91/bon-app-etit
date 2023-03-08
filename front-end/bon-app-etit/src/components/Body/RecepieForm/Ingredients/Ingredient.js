@@ -46,7 +46,8 @@ const Ingredient = ({id, recipe, setRecipe}) => {
 
     ];
 
-    const  handleInputName = (e) =>  {
+    const  handleInputName = (e) => {
+
         let newQuantity = {
                 name: ""
         }
@@ -108,6 +109,7 @@ const Ingredient = ({id, recipe, setRecipe}) => {
                     label="Amount"
                     placeholder="Amount"
                     sx={{m: 1, maxWidth: 150, minWidth: 50, width: 50}}
+                    inputProps={{min:0}}
                     InputProps={{
                         endAdornment: <InputAdornment position="end">{unit}</InputAdornment>
                     }}

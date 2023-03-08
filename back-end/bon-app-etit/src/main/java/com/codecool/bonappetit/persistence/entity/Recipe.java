@@ -22,8 +22,6 @@ public class Recipe {
     private long id;
     private String title;
     private String description;
-    private String imageName;
-
     @OneToOne
     private Image image;
     private int portions;

@@ -3,59 +3,74 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
-import axios from "axios";
+import axios from "../../api/axios"
 import {useNavigate} from "react-router-dom";
+import {useFormik} from "formik";
+import * as yup from 'yup';
 
-function Registration(props) {
+function Registration() {
+    const REGISTRATION_URL = "/v1/auth/register"
     const navigate = useNavigate();
 
-    const postRegistration = async (data) => {
-        let user = {
-            "email":data.get("email"),
-            "password":data.get("password")
-        }
-        console.log("reg: " + user)
-        const REGISTRATION_URL = "http://localhost:8000/api/v1/auth/register"
-        let resultRecipe = await axios.post(
-            REGISTRATION_URL,
-            user,
-            ).then((response) =>{
-            const navigationUrl = "/login"
-            navigate(navigationUrl)
-        }).catch((error) =>{
-            alert("Something went wrong, try again")
-            console.log(error);
-        });
-        console.log("send")
-    }
+    const validationSchema = yup.object({
+        username: yup
+            .string('Enter your username')
+            .required('Username is required'),
+        email: yup
+            .string('Enter your email')
+            .email('Enter a valid email')
+            .required('Email is required'),
+        password: yup
+            .string()
+            .required('Please Enter your password')
+            .matches(
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+                "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+            ),
+        validationPwd: yup
+            .string('Enter your password')
+            .min(8, 'Password should be of minimum 8 characters length')
+            .required('Password-confirmation is required')
+            .oneOf([yup.ref("password"), null], "Password must match")
+    });
+
+
+    const formik = useFormik({
+        initialValues: {
+            username: "",
+            email: "",
+            password: "",
+            validationPwd: ""
+        },
+        validationSchema: validationSchema,
+    });
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get("email"),
-            password: data.get("password"),
-            verificationPW: data.get("verificationPW")
-        });
-         if (data.get("password") === data.get("verificationPW")){
-             console.log("Password correct")
-
-             data.delete("verificationPW")
-
-             postRegistration(data);
-         } else {
-             alert("Password don't match, please try again")
-         }
-
-
-
+        if (formik.values.password === formik.values.validationPwd) {
+            registrationRequest(formik.values);
+        } else {
+            alert("Password don't match, please try again")
+        }
     };
+
+
+    const registrationRequest = async (data) => {
+        let resultRecipe = await axios.post(
+            REGISTRATION_URL,
+            data,
+        ).then((response) => {
+            const navigationUrl = "/login"
+            navigate(navigationUrl)
+        }).catch((error) => {
+            alert("Something went wrong, please try again")
+            console.log(error);
+        });
+    }
+
+
     return (
         <div>
             <Container component="main" maxWidth="sm">
@@ -74,9 +89,24 @@ function Registration(props) {
                     <Typography component="h1" variant="h5">
                         Registration
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
                         <TextField
-                            /*onChange={handleInput}*/
+                            onChange={formik.handleChange}
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="username"
+                            label="Username"
+                            name="username"
+                            autoComplete="username"
+                            autoFocus
+                            value={formik.values.username}
+                            onChange={formik.handleChange}
+                            error={formik.touched.username && Boolean(formik.errors.username)}
+                            helperText={formik.errors.username}
+                        />
+                        <TextField
+                            onChange={formik.handleChange}
                             margin="normal"
                             required
                             fullWidth
@@ -85,9 +115,12 @@ function Registration(props) {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
+                            error={formik.touched.email && Boolean(formik.errors.email)}
+                            helperText={formik.errors.email}
                         />
                         <TextField
-                            /*onChange={handleInput}*/
                             margin="normal"
                             required
                             fullWidth
@@ -95,41 +128,33 @@ function Registration(props) {
                             label="Password"
                             type="password"
                             id="password"
+                            value={formik.values.password}
+                            onChange={formik.handleChange}
+                            error={formik.touched.password && Boolean(formik.errors.password)}
+                            helperText={formik.errors.password}
                         />
                         <TextField
-                            /*onChange={handleInput}*/
+                            onChange={formik.handleChange}
                             margin="normal"
                             required
                             fullWidth
-                            name="verificationPW"
+                            name="validationPwd"
                             label="Confirm Password"
                             type="password"
-                            id="verificationPW"
+                            id="validationPwd:"
+                            value={formik.values.validationPwd}
+                            onChange={formik.handleChange}
+                            error={formik.touched.validationPwd && Boolean(formik.errors.validationPwd)}
+                            helperText={formik.errors.validationPwd}
                         />
-                        {/*<FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />*/}
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{mt: 3, mb: 2}}
                         >
                             Register
                         </Button>
-                        {/*<Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
-                            <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
-                        </Grid>*/}
                     </Box>
                 </Box>
             </Container>

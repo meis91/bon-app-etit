@@ -1,4 +1,3 @@
-
 import {
     AppBar,
     Box,
@@ -18,7 +17,7 @@ import NavbarUser from "./NavbarUser";
 
 const pages = ['Cousin', 'Course', 'Inspiration'];
 
-const Navbar = ({title, addRecipe, handleAddRecipe}) => {
+const Navbar = ({ addRecipe, handleAddRecipe}) => {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -55,7 +54,7 @@ const Navbar = ({title, addRecipe, handleAddRecipe}) => {
                             textDecoration: 'none',
                         }}
                     >
-                        {title}
+                       Bon APPetit
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -110,7 +109,7 @@ const Navbar = ({title, addRecipe, handleAddRecipe}) => {
                             textDecoration: 'none',
                         }}
                     >
-                        {title}
+
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (

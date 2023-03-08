@@ -32,8 +32,6 @@ function InputIngredients({recipe, setRecipe}) {
                 <Ingredient key={i} id={i} recipe={recipe} setRecipe={setRecipe} />
             )
         }
-        recipe.quantities.map((ingredient) => {
-       })
         return ingredientBars;
     }
 
