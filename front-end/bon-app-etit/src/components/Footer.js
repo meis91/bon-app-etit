@@ -1,10 +1,10 @@
 import Typography from '@mui/material/Typography';
 
-function Footer({ title }) {
+function Footer() {
   return (
     <div>
         <Typography variant="h5" align="center" gutterBottom>
-          {title}
+          Bon APPetit
         </Typography>
         <Typography
           variant="subtitle1"

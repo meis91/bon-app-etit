@@ -1,9 +1,7 @@
 import React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Container from '@mui/material/Container';
-import SearchBar from "./Recipes/SearchAndFilter/SearchBar";
+import CssBaseline from "@mui/material/CssBaseline";
+import Container from "@mui/material/Container";
 import PostNewRecipe from "./RecepieForm/PostNewRecipe";
-import RecipeGrid from "./Recipes/RecipeGrid";
 import IndexPage from "./Recipes/IndexPage";
 
 function BaseContainer({addRecipe, handleAddRecipe}) {

@@ -46,7 +46,8 @@ const Ingredient = ({id, recipe, setRecipe}) => {
 
     ];
 
-    const  handleInputName = (e) =>  {
+    const  handleInputName = (e) => {
+
         let newQuantity = {
                 name: ""
         }

@@ -57,10 +57,11 @@ function PostNewRecipe({handleAddRecipe}) {
                     RECIPE_IMAGE_POST_URL,
                     formData);
             }
+            setTimeout(alertFunc, 1000);
         } catch (err){
             console.log(err);
         }
-        setTimeout(alertFunc, 1000);
+
         function alertFunc() {
             handleAddRecipe();
         }
