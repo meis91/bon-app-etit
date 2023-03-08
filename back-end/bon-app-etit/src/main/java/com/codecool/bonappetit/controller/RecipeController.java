@@ -20,14 +20,9 @@ import java.util.List;
 public class RecipeController {
 
     private final RecipeService recipeService;
-    private final IngredientService ingredientService;
     private final ImageService imageService;
-    private String name = "bon-app-etit";
 
-    @GetMapping
-    public String name() {
-        return name;
-    }
+
 
     @GetMapping("/recipes")
     public List<Recipe> getRecipes() {
@@ -61,6 +56,14 @@ public class RecipeController {
         List<Recipe> recipes = recipeService.findBySearchTerm(searchTerm);
         return recipes;
     }
+
+    @PostMapping()
+    public Recipe saveRecipe(@RequestParam Recipe recipe){
+        System.out.println("recipe = " + recipe);
+        return recipe;
+    }
+
+
 
 //    @PostMapping()
 //    public Recipe saveRecipe(@RequestParam Recipe recipe){

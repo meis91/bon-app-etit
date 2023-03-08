@@ -56,9 +56,9 @@ function Login(props) {
             sessionStorage.setItem("role", response.data.role);
             sessionStorage.setItem("loggedIn", JSON.stringify(true));
             alert("Login successful")
-            const navigationUrl = "/"
-            navigate(navigationUrl)
-        } catch {
+            navigate(HOME_URL)
+        } catch (error){
+            console.log(error);
             alert("Login failed, please try again ");
         }
     }

@@ -6,7 +6,7 @@ import axios from "../../../api/axios"
 function IndexPage({baseUrl}) {
     const[recipes, setRecipes] = useState(null)
     const popularSearchTerms = ['Pasta', 'Vegan', 'Quick Dinner', 'Cocktail'];
-
+    const RECIPES_URL = "/recipes";
     const filterOptions = [
         { 'filter' : 'Dish Type',
             'options' : ['Breakfast',
@@ -48,24 +48,34 @@ function IndexPage({baseUrl}) {
             ]},
     ];
 
-    const recipeUrl = "/recipes";
 
-    const handleSearch = (e) => {
-        const params = new URLSearchParams([['ingredient', e.target.value]]);
-        axios
-            .get(`/recipes-by-ingredient?${params}`)
-            .then(function (response) {
-                setRecipes(response.data);
-            });
+    const handleSearch = async (event) => {
+        const params = new URLSearchParams([['searchTerm', event.target.value]]);
+        let searchUrl = `/recipes-by-searchterm?${params}`
+        try {
+            let response = await axios.get(
+                searchUrl,
+            )
+            setRecipes(response.data)
+        } catch (error){
+            console.log(error)
+        }
     }
 
 
     useEffect(() => {
-        axios.get(recipeUrl).then((response) => {
-            setRecipes(response.data);
-        });
+        getAllRecipes()
     }, []);
-
+    const getAllRecipes = async () => {
+        try {
+            let response = await axios.get(
+                RECIPES_URL,
+            )
+            setRecipes(response.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
     if (!recipes) return null;
 
     return (
