@@ -1,9 +1,7 @@
 package com.codecool.bonappetit.persistence.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.codecool.bonappetit.persistence.enums.TagCategory;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,4 +19,7 @@ public class Tag {
 
     @Column(unique = true)
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private TagCategory tagCategory;
 }

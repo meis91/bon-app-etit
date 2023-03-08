@@ -4,6 +4,7 @@ import com.codecool.bonappetit.persistence.entity.Ingredient;
 import com.codecool.bonappetit.persistence.entity.IngredientQuantity;
 import com.codecool.bonappetit.persistence.entity.Recipe;
 import com.codecool.bonappetit.persistence.entity.Tag;
+import com.codecool.bonappetit.persistence.enums.TagCategory;
 import com.codecool.bonappetit.persistence.enums.UnitType;
 import com.codecool.bonappetit.persistence.repository.IngredientRepository;
 import com.codecool.bonappetit.persistence.repository.RecipeRepository;
@@ -33,12 +34,40 @@ public class DatabasePopulator {
                                    TagRepository tagRepository) {
         return args -> {
             ingredientRepository.saveAll(ingredients);
+            setTagCategories();
             tagRepository.saveAll(tags);
             createIngredientQuantities();
             setRecipesIngredientsLists();
             setRecipesTags();
             recipeRepository.saveAll(recipes);
         };
+    }
+
+    private void setTagCategories() {
+        tags.get(0).setTagCategory(TagCategory.DISHTYPE);
+        tags.get(1).setTagCategory(TagCategory.DISHTYPE);
+        tags.get(2).setTagCategory(TagCategory.DISHTYPE);
+        tags.get(3).setTagCategory(TagCategory.RECIPETYPE);
+        tags.get(4).setTagCategory(TagCategory.RECIPETYPE);
+        tags.get(5).setTagCategory(TagCategory.RECIPETYPE);
+        tags.get(6).setTagCategory(TagCategory.RECIPETYPE);
+        tags.get(7).setTagCategory(TagCategory.NUTRITIONTYPE);
+        tags.get(8).setTagCategory(TagCategory.NUTRITIONTYPE);
+        tags.get(9).setTagCategory(TagCategory.NUTRITIONTYPE);
+        tags.get(10).setTagCategory(TagCategory.NUTRITIONTYPE);
+        tags.get(11).setTagCategory(TagCategory.SEASON);
+        tags.get(12).setTagCategory(TagCategory.SEASON);
+        tags.get(13).setTagCategory(TagCategory.SEASON);
+        tags.get(14).setTagCategory(TagCategory.SEASON);
+        tags.get(15).setTagCategory(TagCategory.SEASON);
+        tags.get(16).setTagCategory(TagCategory.SEASON);
+        tags.get(17).setTagCategory(TagCategory.CUISINE);
+        tags.get(18).setTagCategory(TagCategory.CUISINE);
+        tags.get(19).setTagCategory(TagCategory.CUISINE);
+        tags.get(20).setTagCategory(TagCategory.CUISINE);
+        tags.get(21).setTagCategory(TagCategory.OTHER);
+        tags.get(23).setTagCategory(TagCategory.OTHER);
+        tags.get(22).setTagCategory(TagCategory.OTHER);
     }
 
     public void setIngredients(List<Ingredient> ingredients) {
@@ -218,10 +247,10 @@ public class DatabasePopulator {
 
     private void setRecipesTags() {
         Recipe tafelspitz = recipes.get(0);
-        tafelspitz.setTags(List.of(tags.get(2), tags.get(14), tags.get(20)));
+        tafelspitz.setTags(List.of(tags.get(2), tags.get(14), tags.get(17)));
         Recipe saltinbocca = recipes.get(1);
-        saltinbocca.setTags(List.of(tags.get(2), tags.get(11)));
+        saltinbocca.setTags(List.of(tags.get(2), tags.get(11), tags.get(18)));
         Recipe macAndCheese = recipes.get(2);
-        macAndCheese.setTags(List.of(tags.get(3), tags.get(4)));
+        macAndCheese.setTags(List.of(tags.get(3), tags.get(4), tags.get(7)));
     }
 }
