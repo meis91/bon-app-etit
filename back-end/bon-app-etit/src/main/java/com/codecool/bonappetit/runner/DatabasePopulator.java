@@ -1,13 +1,11 @@
 package com.codecool.bonappetit.runner;
 
-import com.codecool.bonappetit.persistence.entity.Ingredient;
-import com.codecool.bonappetit.persistence.entity.IngredientQuantity;
-import com.codecool.bonappetit.persistence.entity.Recipe;
-import com.codecool.bonappetit.persistence.entity.Tag;
-import com.codecool.bonappetit.persistence.enums.TagCategory;
+import com.codecool.bonappetit.persistence.entity.*;
+import com.codecool.bonappetit.persistence.enums.TagCategoryName;
 import com.codecool.bonappetit.persistence.enums.UnitType;
 import com.codecool.bonappetit.persistence.repository.IngredientRepository;
 import com.codecool.bonappetit.persistence.repository.RecipeRepository;
+import com.codecool.bonappetit.persistence.repository.TagCategoryRepository;
 import com.codecool.bonappetit.persistence.repository.TagRepository;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -26,16 +24,19 @@ public class DatabasePopulator {
     List<IngredientQuantity> ingredientQuantities;
     List<Recipe> recipes;
     List<Tag> tags;
+    List<TagCategory> tagCategories;
 
 
     @Bean
     ApplicationRunner fillDatabase(IngredientRepository ingredientRepository,
                                    RecipeRepository recipeRepository,
-                                   TagRepository tagRepository) {
+                                   TagRepository tagRepository,
+                                   TagCategoryRepository tagCategoryRepository) {
         return args -> {
             ingredientRepository.saveAll(ingredients);
-            setTagCategories();
             tagRepository.saveAll(tags);
+            createTagCategories();
+            tagCategoryRepository.saveAll(tagCategories);
             createIngredientQuantities();
             setRecipesIngredientsLists();
             setRecipesTags();
@@ -43,31 +44,32 @@ public class DatabasePopulator {
         };
     }
 
-    private void setTagCategories() {
-        tags.get(0).setTagCategory(TagCategory.DISHTYPE);
-        tags.get(1).setTagCategory(TagCategory.DISHTYPE);
-        tags.get(2).setTagCategory(TagCategory.DISHTYPE);
-        tags.get(3).setTagCategory(TagCategory.RECIPETYPE);
-        tags.get(4).setTagCategory(TagCategory.RECIPETYPE);
-        tags.get(5).setTagCategory(TagCategory.RECIPETYPE);
-        tags.get(6).setTagCategory(TagCategory.RECIPETYPE);
-        tags.get(7).setTagCategory(TagCategory.NUTRITIONTYPE);
-        tags.get(8).setTagCategory(TagCategory.NUTRITIONTYPE);
-        tags.get(9).setTagCategory(TagCategory.NUTRITIONTYPE);
-        tags.get(10).setTagCategory(TagCategory.NUTRITIONTYPE);
-        tags.get(11).setTagCategory(TagCategory.SEASON);
-        tags.get(12).setTagCategory(TagCategory.SEASON);
-        tags.get(13).setTagCategory(TagCategory.SEASON);
-        tags.get(14).setTagCategory(TagCategory.SEASON);
-        tags.get(15).setTagCategory(TagCategory.SEASON);
-        tags.get(16).setTagCategory(TagCategory.SEASON);
-        tags.get(17).setTagCategory(TagCategory.CUISINE);
-        tags.get(18).setTagCategory(TagCategory.CUISINE);
-        tags.get(19).setTagCategory(TagCategory.CUISINE);
-        tags.get(20).setTagCategory(TagCategory.CUISINE);
-        tags.get(21).setTagCategory(TagCategory.OTHER);
-        tags.get(23).setTagCategory(TagCategory.OTHER);
-        tags.get(22).setTagCategory(TagCategory.OTHER);
+    private void createTagCategories() {
+        TagCategory dishType = TagCategory.builder()
+                .tagCategoryName(TagCategoryName.DISHTYPE)
+                .tags(List.of(tags.get(0), tags.get(1), tags.get(2)))
+                .build();
+        TagCategory recipeType = TagCategory.builder()
+                .tagCategoryName(TagCategoryName.RECIPETYPE)
+                .tags(List.of(tags.get(3), tags.get(4), tags.get(5), tags.get(6)))
+                .build();
+        TagCategory nutritionType = TagCategory.builder()
+                .tagCategoryName(TagCategoryName.NUTRITIONTYPE)
+                .tags(List.of(tags.get(7), tags.get(8), tags.get(9), tags.get(10)))
+                .build();
+        TagCategory cuisine = TagCategory.builder()
+                .tagCategoryName(TagCategoryName.SEASON)
+                .tags(List.of(tags.get(11), tags.get(12), tags.get(13), tags.get(14), tags.get(15), tags.get(16)))
+                .build();
+        TagCategory season = TagCategory.builder()
+                .tagCategoryName(TagCategoryName.CUISINE)
+                .tags(List.of(tags.get(17), tags.get(18), tags.get(19), tags.get(20)))
+                .build();
+        TagCategory other = TagCategory.builder()
+                .tagCategoryName(TagCategoryName.OTHER)
+                .tags(List.of(tags.get(21), tags.get(22), tags.get(23)))
+                .build();
+        setTagCategories(List.of(dishType, recipeType, nutritionType, cuisine, season, other));
     }
 
     public void setIngredients(List<Ingredient> ingredients) {
@@ -84,6 +86,10 @@ public class DatabasePopulator {
 
     public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
+    }
+
+    public void setTagCategories(List<TagCategory> tagCategories) {
+        this.tagCategories = tagCategories;
     }
 
     private void createIngredientQuantities() {
