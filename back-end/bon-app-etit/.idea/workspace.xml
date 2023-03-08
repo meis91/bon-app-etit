@@ -5,11 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13cf975c-4cbf-460f-8647-0c04e0e8eafa" name="Changes" comment="merged gitignore">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/api/axios.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/ReusableComponents/AllertSuccsess.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/theme/Theme.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/controller/RecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/controller/RecipeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/logic/ImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/logic/ImageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/logic/IngredientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/logic/IngredientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/logic/RecipeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/logic/RecipeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/persistence/entity/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/persistence/entity/Image.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/persistence/entity/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/persistence/entity/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/persistence/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/persistence/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/persistence/repository/IngredientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/persistence/repository/IngredientRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/persistence/repository/RecipeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/persistence/repository/RecipeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/persistence/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/persistence/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/security/auth/AuthenticationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/security/auth/AuthenticationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/security/auth/AuthenticationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/security/auth/AuthenticationResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/security/auth/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/security/auth/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/security/auth/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codecool/bonappetit/security/auth/RegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/schema.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/schema.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/BaseContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/BaseContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Body/BaseContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Body/BaseContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Body/RecepieForm/Ingredients/Ingredient.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Body/RecepieForm/Ingredients/Ingredient.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Body/RecepieForm/Ingredients/InputIngredients.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Body/RecepieForm/Ingredients/InputIngredients.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Body/RecepieForm/PostNewRecipe.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Body/RecepieForm/PostNewRecipe.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Body/Recipes/IndexPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Body/Recipes/IndexPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Body/Recipes/RecipeGrid.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Body/Recipes/RecipeGrid.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Navbar/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Navbar/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Navbar/NavbarSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Navbar/NavbarSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Navbar/NavbarUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/Navbar/NavbarUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/ReusableComponents/ButtonUploadPicture.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/ReusableComponents/ButtonUploadPicture.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/User/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/User/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/User/Registration.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/User/Registration.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/login/Login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/login/Login.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/bon-app-etit/src/components/login/LoginForm.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/package-lock.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,17 +80,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/kathi/projects/0_bon-app-etit"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="BonAppEtitApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="bae" />

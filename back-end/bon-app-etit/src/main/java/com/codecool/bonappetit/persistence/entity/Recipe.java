@@ -30,5 +30,7 @@ public class Recipe {
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<IngredientQuantity> quantities;
-//    private List<Label> labels;
+
+    @ManyToMany
+    private List<Tag> tags;
 }
