@@ -3,10 +3,10 @@ import SearchBar from "./SearchAndFilter/SearchBar";
 import RecipeGrid from "./RecipeGrid";
 import axios from "../../../api/axios";
 
-function IndexPage({baseUrl}) {
+function IndexPage({baseUrl, tags}) {
     const[recipes, setRecipes] = useState(null)
-    const[tags, setTags] = useState(null)
-    const TAGS_URL = "/tags"
+
+
     const popularSearchTerms = ['Pasta', 'Vegetarian', 'Cheese', 'Beef'];
 
     const recipeUrl = "/recipes";
@@ -29,13 +29,10 @@ function IndexPage({baseUrl}) {
         axios.get(recipeUrl).then((response) => {
             setRecipes(response.data);
         });
-        axios.get(TAGS_URL).then((response) => {
-            setTags(response.data);
-        })
     }, []);
 
     if (!recipes) return null;
-    if (!tags) return null;
+
 
     return (
         <>

@@ -1,10 +1,21 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import PostNewRecipe from "./RecepieForm/PostNewRecipe";
 import IndexPage from "./Recipes/IndexPage";
+import axios from "../../api/axios";
 
 function BaseContainer({addRecipe, handleAddRecipe}) {
+    const[tags, setTags] = useState(null)
+    const TAGS_URL = "/tags"
+
+    useEffect(() => {
+        axios.get(TAGS_URL).then((response) => {
+            setTags(response.data);
+        })
+    }, []);
+
+    if (!tags) return null;
 
     return (
             <React.Fragment>
@@ -16,7 +27,7 @@ function BaseContainer({addRecipe, handleAddRecipe}) {
                                pb: 6,
                            }}
                 >
-                    {!addRecipe ? <IndexPage/> : <PostNewRecipe handleAddRecipe={handleAddRecipe}/>}
+                    {!addRecipe ? <IndexPage tags={tags}/> : <PostNewRecipe handleAddRecipe={handleAddRecipe}/>}
                 </Container>
             </React.Fragment>
 
