@@ -57,11 +57,4 @@ public class RecipeController {
         return recipes;
     }
 
-
-
-//    @PostMapping()
-//    public Recipe saveRecipe(@RequestParam Recipe recipe){
-//        System.out.println("recipe = " + recipe);
-//        return recipe;
-//    }
 }

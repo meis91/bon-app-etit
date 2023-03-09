@@ -12,13 +12,14 @@ import Button from '@mui/material/Button';
 import axios from "../../api/axios"
 import Stack from "@mui/material/Stack";
 import InputPortions from "./InputPortions";
-import {DropzoneArea} from "mui-file-dropzone";
-import DropZone from "./DropZone";
 import {SAVE_RECIPE_URL, SAVE_RECIPE_IMG_URL} from "../../constants"
+import {useNavigate} from "react-router-dom";
 
 
 
 function PostNewRecipe() {
+    const HOME_URL = "/"
+    const navigate = useNavigate();
     const [success, setSuccess] = useState(false);
     const [image, setImage] = useState("");
     const [imgPreview, setImagePreview] = useState("");
@@ -56,7 +57,8 @@ function PostNewRecipe() {
                     formData);
             }
             setSuccess(true);
-           alert("Upload complete");
+            alert("Upload complete");
+            navigate(HOME_URL);
         } catch (err){
             console.log(err);
         }
@@ -81,9 +83,9 @@ function PostNewRecipe() {
                     <FormTitle text="Add a new Recipe"/>
                     { success ? <Alert severity="success">Upload Successfull</Alert> : null }
                     <InputTitle title={recipe.title} handleInput={handleInput}/>
-                   {/* <DropZone image={image} handleInputPicture={handleInputPicture}/>*/}
+                    {/*<DropZone image={image} handleInputPicture={handleInputPicture}/>*/}
 
-                    {/*<DropzoneArea dropzoneText="Drag & drop your image here or click" onChange={handleInputPicture}/>*/}
+                    {/*<DropzoneArea dropzoneText="Drag & drop your image here or click" />*/}
                     <ButtonUploadPicture image={imgPreview} handleInputPicture={handleInputPicture}/>
                     <InputDescription description={recipe.description} handleInput={handleInput} />
                     <InputPortions portions={recipe.portions} handleInput={handleInput}/>
