@@ -12,7 +12,11 @@ function IndexPage({baseUrl}) {
     const recipeUrl = "/recipes";
 
     const handleSearch = (e) => {
-        const params = new URLSearchParams([['searchTerm', e.target.value]]);
+        let searchTerm = e.target.getAttribute("data-value")
+        if (searchTerm === null) {
+            searchTerm = e.target.value
+        }
+        const params = new URLSearchParams([['searchTerm', searchTerm]]);
         axios
             .get(`/recipes-by-searchterm?${params}`)
             .then(function (response) {

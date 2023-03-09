@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 
 
-function CategoryFilter({ filterOption }) {
+function CategoryFilter({ filterOption, handleSearch }) {
   const options = filterOption.tags;
 
     return (
@@ -18,7 +18,7 @@ function CategoryFilter({ filterOption }) {
                 defaultValue=''
             >
                 {options.map((option) => (
-                    <MenuItem key={option.id} value={option.name}>
+                    <MenuItem key={option.name} value={option.name} onClick={(e)=>handleSearch(e)}>
                         {option.name}
                     </MenuItem>
                 ))}

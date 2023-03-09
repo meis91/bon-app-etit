@@ -38,7 +38,7 @@ function SearchBar({ popularSearchTerms, filterOptions, handleSearch }) {
               <Grid container spacing={{ xs: 2, md: 3, lg: 3 }} columns={{ xs: 12, sm: 12, md: 12, lg: 12}}>
                   {filterOptions.map((category) => (
                       <Grid key={category.tagCategoryName} item xs={5} sm={4} md={3} lg={2}>
-                          <CategoryFilter filterOption={category} />
+                          <CategoryFilter filterOption={category} handleSearch={handleSearch} />
                       </Grid>
                   ))}
               </Grid>
