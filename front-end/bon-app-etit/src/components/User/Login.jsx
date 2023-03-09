@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
@@ -10,11 +10,13 @@ import axios from "../../api/axios"
 import {useNavigate} from "react-router-dom";
 import { useFormik} from "formik";
 import * as yup from "yup";
+import {UserContext} from "../../context/UserContext";
 
 function Login(props) {
     const AUTHENTICATION_URL = "/v1/auth/authenticate";
     const HOME_URL = "/";
     const navigate = useNavigate();
+    const {user, setUser} = useContext(UserContext);
 
     const validationSchema = yup.object({
         email: yup
@@ -50,6 +52,7 @@ function Login(props) {
                 AUTHENTICATION_URL,
                 data,
             )
+            setUser(response.data.username);
             sessionStorage.setItem("token", response.data.token);
             sessionStorage.setItem("username", response.data.username);
             sessionStorage.setItem("email", response.data.email);

@@ -1,13 +1,13 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar/Navbar"
-import {createTheme, ThemeProvider} from "@mui/material/styles";
+import {ThemeProvider} from "@mui/material/styles";
 import {Route, Routes} from "react-router-dom";
-import Recipe from "./components/Body/Recipe/Recipe";
+import Recipe from "./components/RecipeDetails/Recipe";
 import Login from "./components/User/Login";
 import Registration from "./components/User/Registration";
-import theme from "./theme/Theme";
-import PostNewRecipe from "./components/Body/RecepieForm/PostNewRecipe";
+import theme from "./context/theme/Theme";
+import PostNewRecipe from "./components/RecepieForm/PostNewRecipe";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import IndexPage from "./components/Body/Recipes/IndexPage";
@@ -16,11 +16,20 @@ import {UserContext} from "./context/UserContext";
 
 
 function App() {
-    const [user, setUser] = useState("");
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        if(sessionStorage.getItem("loggedIn")){
+            setUser(sessionStorage.getItem("username"))
+        } else {
+            setUser(null);
+        }
+    }, );
 
     return (
         <div className="App">
             <ThemeProvider theme={theme}>
+                <UserContext.Provider value={{user, setUser}}>
                 <Navbar/>
                 <React.Fragment>
                     <CssBaseline/>
@@ -41,6 +50,7 @@ function App() {
                     </Container>
                 </React.Fragment>
                 <Footer/>
+                </UserContext.Provider>
             </ThemeProvider>
         </div>
     );

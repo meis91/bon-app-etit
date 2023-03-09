@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import {Menu} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import {UserContext} from "../../context/UserContext";
 
 
 
@@ -10,6 +11,10 @@ function UserMenu({anchorEl, menuId, isMenuOpen, handleMenuClose}) {
     const REGISTRATION_FORM_URL = "/registration";
     const ADD_RECIPE_FORM = "/add-recipe";
     const navigate = useNavigate();
+
+    const {user, setUser} = useContext(UserContext);
+
+    /*const user = useContext(UserContext);*/
     const navigateToLogin = () => {
         handleMenuClose();
         navigate(LOGIN_FORM_URL)
@@ -22,6 +27,13 @@ function UserMenu({anchorEl, menuId, isMenuOpen, handleMenuClose}) {
         handleMenuClose();
         navigate(ADD_RECIPE_FORM)
     }
+
+    function handleLogout() {
+        console.log(user)
+        setUser(null)
+        sessionStorage.clear()
+    }
+
     return (
         <Menu
             anchorEl={anchorEl}
@@ -38,10 +50,20 @@ function UserMenu({anchorEl, menuId, isMenuOpen, handleMenuClose}) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={navigateToLogin}>Login</MenuItem>
-            <MenuItem onClick={navigateToRegistration}>Registration</MenuItem>
-            <MenuItem onClick={navigateToAddRecipe}>Add Recipe</MenuItem>
-            <MenuItem onClick={navigateToRegistration}>Logout</MenuItem>
+            {!user
+                ? <div>
+                    <MenuItem onClick={navigateToLogin}>Login</MenuItem>
+                    <MenuItem onClick={navigateToRegistration}>Registration</MenuItem>
+                </div>
+                : <div>
+                    <MenuItem onClick={navigateToRegistration}>Profile</MenuItem>
+                    <MenuItem onClick={navigateToAddRecipe}>Add Recipe</MenuItem>
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+
+                </div>
+            }
+
+
         </Menu>
     );
 }

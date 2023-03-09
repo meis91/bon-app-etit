@@ -34,7 +34,13 @@ public class RecipeController {
         return recipeService.save(recipe);
     }
 
-    @GetMapping("/search/{id}")
+    @PostMapping("/save/image")
+    Recipe addRecipeImage(@RequestParam("file") MultipartFile file, @RequestParam("recipe_id") long recipeId) {
+        System.out.println("recipeId = " + recipeId);
+        return imageService.saveImage(file, recipeId);
+    }
+
+  /*  @GetMapping("/search/{id}")
     public Recipe getRecipeById(@PathVariable Long id) {
         return recipeService.findById(id);
     }
@@ -43,18 +49,12 @@ public class RecipeController {
     public List<Recipe> getRecipesByIngredient(@RequestParam String ingredient) {
         List<Recipe> recipes = recipeService.findByIngredient(ingredient);
         return recipes;
-    }
+   */
 
-    @GetMapping("/recipes-by-searchterm")
+    @GetMapping("/search")
     public List<Recipe> getRecipesBySearchTerm(@RequestParam String searchTerm) {
         List<Recipe> recipes = recipeService.findBySearchTerm(searchTerm);
         return recipes;
-    }
-
-    @PostMapping("/save/image")
-    Recipe addRecipeImage(@RequestParam("file") MultipartFile file, @RequestParam("recipe_id") long recipeId) {
-        System.out.println("recipeId = " + recipeId);
-        return imageService.saveImage(file, recipeId);
     }
 
 

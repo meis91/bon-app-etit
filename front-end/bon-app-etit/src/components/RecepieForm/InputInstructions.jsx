@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import {Typography} from "@mui/material";
-import FormSubtitle from "../../ReusableComponents/FormSubtitle";
+import FormSubtitle from "../ReusableComponents/FormSubtitle";
 
 InputInstructions.propTypes = {
     

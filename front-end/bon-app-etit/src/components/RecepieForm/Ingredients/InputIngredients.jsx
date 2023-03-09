@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Box} from "@mui/material";
-import FormSubtitle from "../../../ReusableComponents/FormSubtitle";
-import ButtonAdd from "../../../ReusableComponents/ButtonAdd";
-import ButtonRemove from "../../../ReusableComponents/ButtonRemove";
+import FormSubtitle from "../../ReusableComponents/FormSubtitle";
+import ButtonAdd from "../../ReusableComponents/ButtonAdd";
+import ButtonRemove from "../../ReusableComponents/ButtonRemove";
 import Ingredient from "./Ingredient";
 
 function InputIngredients({recipe, setRecipe}) {

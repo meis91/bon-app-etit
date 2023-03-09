@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import {createSearchParams, useNavigate} from "react-router-dom";
 import SingleGrid from "./SearchAndFilter/SingleGrid";
-import Ingredient from "../RecepieForm/Ingredients/Ingredient";
+import Ingredient from "../../RecepieForm/Ingredients/Ingredient";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";

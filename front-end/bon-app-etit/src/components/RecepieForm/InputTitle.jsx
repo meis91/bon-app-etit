@@ -1,5 +1,5 @@
 import React from 'react';
-import FormSubtitle from "../../ReusableComponents/FormSubtitle";
+import FormSubtitle from "../ReusableComponents/FormSubtitle";
 import InputTextMiddle from "./Ingredients/InputTextMiddle";
 import TextField from "@mui/material/TextField";
 

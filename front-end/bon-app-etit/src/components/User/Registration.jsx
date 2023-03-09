@@ -52,11 +52,10 @@ function Registration() {
 
     const registrationRequest = async (data) => {
         try {
-            const resultRecipe = await axios.post(
+            const response = await axios.post(
                 REGISTRATION_URL,
                 data,
             )
-            console.log(resultRecipe)
             alert("Registration successfull");
             navigate(LOGIN_URL)
         } catch (error) {

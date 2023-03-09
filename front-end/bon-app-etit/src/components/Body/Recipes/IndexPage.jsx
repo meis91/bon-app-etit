@@ -2,12 +2,11 @@ import React, {useEffect, useState} from 'react';
 import SearchBar from "./SearchAndFilter/SearchBar";
 import RecipeGrid from "./RecipeGrid";
 import axios from "../../../api/axios"
-import {ALL_RECIPE_URL} from "../../../constants"
+import {ALL_RECIPE_URL, SEARCH_RECIPE_URL} from "../../../constants"
 
 function IndexPage() {
     const[recipes, setRecipes] = useState(null)
     const popularSearchTerms = ['Pasta', 'Vegan', 'Quick Dinner', 'Cocktail'];
-    const RECIPES_URL = process.env.REACT_APP_ALL_RECIPES_URL;
     const filterOptions = [
         { 'filter' : 'Dish Type',
             'options' : ['Breakfast',
@@ -49,10 +48,9 @@ function IndexPage() {
             ]},
     ];
 
-
     const handleSearch = async (event) => {
         const params = new URLSearchParams([['searchTerm', event.target.value]]);
-        let searchUrl = `/recipes-by-searchterm?${params}`
+        let searchUrl = `${SEARCH_RECIPE_URL}?${params}`
         try {
             let response = await axios.get(
                 searchUrl,
@@ -63,10 +61,6 @@ function IndexPage() {
         }
     }
 
-
-    useEffect(() => {
-        getAllRecipes()
-    }, []);
     const getAllRecipes = async () => {
         try {
             let response = await axios.get(
@@ -77,6 +71,10 @@ function IndexPage() {
             console.log(error)
         }
     }
+
+    useEffect(() => {
+        getAllRecipes()
+    }, []);
     if (!recipes) return null;
 
     return (

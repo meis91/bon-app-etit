@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FormSubtitle from "../../ReusableComponents/FormSubtitle";
+import FormSubtitle from "../ReusableComponents/FormSubtitle";
 import TextField from "@mui/material/TextField";
 
 InputDescription.propTypes = {

@@ -4,17 +4,17 @@ import InputInstructions from "./InputInstructions";
 import {Alert, Box} from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputTitle from "./InputTitle";
-import FormTitle from "../../ReusableComponents/FormTitle";
+import FormTitle from "../ReusableComponents/FormTitle";
 import InputDescription from "./InputDescription";
-import ButtonUploadPicture from "../../ReusableComponents/ButtonUploadPicture";
+import ButtonUploadPicture from "../ReusableComponents/ButtonUploadPicture";
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
-import axios from "../../../api/axios"
+import axios from "../../api/axios"
 import Stack from "@mui/material/Stack";
 import InputPortions from "./InputPortions";
 import {DropzoneArea} from "mui-file-dropzone";
 import DropZone from "./DropZone";
-import {SAVE_RECIPE_URL, SAVE_RECIPE_IMG_URL} from "../../../constants"
+import {SAVE_RECIPE_URL, SAVE_RECIPE_IMG_URL} from "../../constants"
 
 
 

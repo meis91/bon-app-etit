@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from "@mui/material/TextField";
-import FormSubtitle from "../../ReusableComponents/FormSubtitle";
+import FormSubtitle from "../ReusableComponents/FormSubtitle";
 
 function InputPortions({portions, handleInput}) {
     return (

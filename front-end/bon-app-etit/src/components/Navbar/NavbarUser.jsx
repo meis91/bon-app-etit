@@ -1,27 +1,28 @@
-import {useEffect, useState} from 'react';
-import {Badge, Box, IconButton, Menu, MenuItem, Typography} from "@mui/material";
+import {useContext, useState} from 'react';
+import {Badge, Box, IconButton} from "@mui/material";
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import {AccountCircle} from "@mui/icons-material";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {useNavigate} from "react-router-dom";
 import UserMenu from "./UserMenu";
+import {UserContext} from "../../context/UserContext";
 
 const NavbarUser = () => {
     const LOGIN_FORM_URL = "/login";
 
     const navigate = useNavigate();
 
-    const [user, setUser] = useState("");
+
+    const user = useContext(UserContext);
 
 
-
-    useEffect(() => {
+    /*useEffect(() => {
         let username = sessionStorage.getItem("username")
         if (username) {
             setUser(username)
         }
-    }, [user]);
+    }, [user]);*/
 
     const handleLoginNav = () => {
         console.log();
@@ -57,7 +58,7 @@ const NavbarUser = () => {
                             aria-label="show 4 new mails"
                             color="inherit">
                             <Badge badgeContent={0} color="error">
-                                <AddCircleIcon/>
+                                {!user === null ? <AddCircleIcon/> : null}
                             </Badge>
                         </IconButton>
                     :   null}
@@ -76,23 +77,17 @@ const NavbarUser = () => {
                         <NotificationsIcon/>
                     </Badge>
                 </IconButton>
-                {user
-                    ? <MenuItem color="secondary" >
-                        <Typography style={{color: "#c78f46"}} textAlign="center"> {user} </Typography>
-                    </MenuItem>
-                    : <IconButton
+                     <IconButton
                         size="large"
                         edge="end"
                         aria-label="account of current user"
-
                         aria-controls={menuId}
                         aria-haspopup="true"
                         onClick={handleProfileMenuOpen}
-                        /*onClick={handleLoginNav}*/
                         color="inherit"
                     >
                         <AccountCircle/>
-                    </IconButton>}
+                    </IconButton>
                 <UserMenu menuId={menuId} isMenuOpen={isMenuOpen} anchorEl={anchorEl} handleMenuClose={handleMenuClose}/>
             </Box>
         </div>
