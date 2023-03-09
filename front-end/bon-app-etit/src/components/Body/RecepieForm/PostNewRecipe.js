@@ -18,7 +18,7 @@ import DropZone from "./DropZone";
 
 
 
-function PostNewRecipe({handleAddRecipe}) {
+function PostNewRecipe({handleAddRecipe, tags}) {
     const RECIPE_POST_URL = "/recipes";
     const RECIPE_IMAGE_POST_URL = "/recipes/image";
 
@@ -31,6 +31,7 @@ function PostNewRecipe({handleAddRecipe}) {
         portions: 4,
         quantities:[],
         instructions:"",
+        tags:[],
     });
 
     const handleInput = (e) => {
@@ -46,6 +47,7 @@ function PostNewRecipe({handleAddRecipe}) {
     }
 
     async function postRecipe(e) {
+        console.log(recipe)
         e.preventDefault()
         try{
             let resultRecipe = await axios.post(
@@ -92,7 +94,7 @@ function PostNewRecipe({handleAddRecipe}) {
                     <InputPortions portions={recipe.portions} handleInput={handleInput}/>
                     <InputIngredients recipe={recipe} setRecipe={setRecipe}/>
                     <InputInstructions instructions={recipe.instructions} handleInput={handleInput} />
-                    <InputTags />
+                    <InputTags tags={tags} recipe={recipe} setRecipe={setRecipe} />
                     <Stack style={{justifyContent: 'center'}} direction="row" spacing={{xs: 1, sm: 2, md: 4}}>
                         <Button onClick={postRecipe}  type="submit" variant="contained" endIcon={<SendIcon />}>
                             Submit

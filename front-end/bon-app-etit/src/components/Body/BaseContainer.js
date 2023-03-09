@@ -27,7 +27,7 @@ function BaseContainer({addRecipe, handleAddRecipe}) {
                                pb: 6,
                            }}
                 >
-                    {!addRecipe ? <IndexPage tags={tags}/> : <PostNewRecipe handleAddRecipe={handleAddRecipe}/>}
+                    {!addRecipe ? <IndexPage tags={tags}/> : <PostNewRecipe handleAddRecipe={handleAddRecipe} tags={tags}/>}
                 </Container>
             </React.Fragment>
 
