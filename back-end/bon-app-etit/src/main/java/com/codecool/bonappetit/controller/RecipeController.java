@@ -45,7 +45,7 @@ public class RecipeController {
         return recipes;
     }
 
-    @GetMapping("/recipes-by-searchterm")
+    @GetMapping("/search")
     public List<Recipe> getRecipesBySearchTerm(@RequestParam String searchTerm) {
         List<Recipe> recipes = recipeService.findBySearchTerm(searchTerm);
         return recipes;
@@ -53,7 +53,6 @@ public class RecipeController {
 
     @PostMapping("/save/image")
     Recipe addRecipeImage(@RequestParam("file") MultipartFile file, @RequestParam("recipe_id") long recipeId) {
-        System.out.println("recipeId = " + recipeId);
         return imageService.saveImage(file, recipeId);
     }
 

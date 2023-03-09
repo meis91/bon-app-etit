@@ -11,12 +11,21 @@ import PostNewRecipe from "./components/Body/RecepieForm/PostNewRecipe";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import IndexPage from "./components/Body/Recipes/IndexPage";
-import {UserContext} from "./context/UserContext";
-
+import axios from "./api/axios";
+import {TAGS_URL} from "./constants";
 
 
 function App() {
     const [user, setUser] = useState("");
+    const[tags, setTags] = useState(null)
+
+    useEffect(() => {
+        axios.get(TAGS_URL).then((response) => {
+            setTags(response.data);
+        })
+    }, []);
+
+    if (!tags) return null;
 
     return (
         <div className="App">
@@ -32,11 +41,11 @@ function App() {
                                }}
                     >
                         <Routes>
-                            <Route path="/" element={<IndexPage/>}/>
+                            <Route path="/" element={<IndexPage tags={tags}/>}/>
                             <Route path="/recipe/:id" element={<Recipe/>}/>
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/registration" element={<Registration/>}/>
-                            <Route path="/add-recipe" element={<PostNewRecipe/>}/>
+                            <Route path="/add-recipe" element={<PostNewRecipe tags={tags}/>}/>
                         </Routes>
                     </Container>
                 </React.Fragment>

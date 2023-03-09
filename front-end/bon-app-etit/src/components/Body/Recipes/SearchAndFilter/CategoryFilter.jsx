@@ -5,8 +5,8 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 
 
-function CategoryFilter({ filterOption }) {
-  const options = filterOption.options;
+function CategoryFilter({ filterOption, handleSearch }) {
+  const options = filterOption.tags;
 
     return (
 
@@ -14,12 +14,12 @@ function CategoryFilter({ filterOption }) {
             <TextField sx={{ m: 1, width: '20ch' }}
                 id="outlined-select-measurement"
                 select
-                label={filterOption.filter}
+                label={filterOption.tagCategoryName}
                 defaultValue=''
             >
                 {options.map((option) => (
-                    <MenuItem key={option} value={option}>
-                        {option}
+                    <MenuItem key={option.name} value={option.name} onClick={(e)=>handleSearch(e)}>
+                        {option.name}
                     </MenuItem>
                 ))}
             </TextField>

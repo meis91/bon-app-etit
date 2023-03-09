@@ -1,6 +1,6 @@
 package com.codecool.bonappetit.persistence.enums;
 
-public enum TagCategory {
+public enum TagCategoryName {
     DISHTYPE("Dish Type"),
     RECIPETYPE("Recipe Type"),
     NUTRITIONTYPE("Nutrition Type"),
@@ -8,13 +8,13 @@ public enum TagCategory {
     SEASON("Season/Special"),
     OTHER("Other");
 
-    private final String tagCategoryName;
+    private String nameString;
 
-    TagCategory(String tagCategoryName) {
-        this.tagCategoryName = tagCategoryName;
+    TagCategoryName(String nameString) {
+        this.nameString = nameString;
     }
 
-    public String getTagCategoryName() {
-        return tagCategoryName;
+    public String getNameString() {
+        return nameString;
     }
 }
