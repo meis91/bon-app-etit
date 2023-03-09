@@ -9,50 +9,7 @@ function IndexPage({baseUrl}) {
     const TAGS_URL = "/tags"
     const popularSearchTerms = ['Pasta', 'Vegetarian', 'Cheese', 'Beef'];
 
-    const filterOptions = [
-        { 'filter' : 'Dish Type',
-            'options' : ['Breakfast',
-                'Lunch',
-                'Dinner'
-            ]},
-        {  'filter' : 'Recipe Type',
-            'options' : ['Quick',
-                'Easy',
-                'Healthy',
-                'Low Budget'
-            ],
-        },
-        {  'filter' : 'Nutrition Type',
-            'options' : ['Vegetarian',
-                'Vegan',
-                'Gluten-free',
-                'Dairy-free'
-            ]},
-        {  'filter' : 'Season/Special',
-            'options' : ['Spring',
-                'Summer',
-                'Autumn',
-                'Winter',
-                'Christmas',
-                'Easter'
-            ]},
-        {  'filter' : 'Bakery',
-            'options' : ['Cookies',
-                'Cakes',
-                'Bread',
-                'Ice Cream'
-            ]},
-        {  'filter' : 'Country',
-            'options' : ['Juice/Lemonade',
-                'Smoothies',
-                'Cocktails',
-                'Winter Drinks'
-            ]},
-    ];
-
     const recipeUrl = "/recipes";
-    console.log(tags);
-    console.log(filterOptions);
 
     const handleSearch = (e) => {
         const params = new URLSearchParams([['searchTerm', e.target.value]]);
@@ -74,6 +31,7 @@ function IndexPage({baseUrl}) {
     }, []);
 
     if (!recipes) return null;
+    if (!tags) return null;
 
     return (
         <>
