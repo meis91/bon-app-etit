@@ -4,6 +4,7 @@ import com.codecool.bonappetit.logic.exception.RecipeNotFoundException;
 import com.codecool.bonappetit.persistence.entity.Ingredient;
 import com.codecool.bonappetit.persistence.entity.IngredientQuantity;
 import com.codecool.bonappetit.persistence.entity.Recipe;
+import com.codecool.bonappetit.persistence.entity.User;
 import com.codecool.bonappetit.persistence.repository.RecipeRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.List;
 public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final IngredientService ingredientService;
+    private final UserService userService;
 
     public List<Recipe> getAll() {
         return recipeRepository.findAll();
@@ -31,6 +33,9 @@ public class RecipeService {
     }
 
     public Recipe save(Recipe recipe) {
+        System.out.println("recipe.getUserId() = " + recipe.getUserId());
+        User user = userService.findById(recipe.getUserId());
+        recipe.setUser(user);
         List<IngredientQuantity> ingredientQuantities = recipe.getQuantities();
         for (IngredientQuantity ingredientQuantity : ingredientQuantities) {
             Ingredient ingredient = ingredientService.saveIngredientIfNew(ingredientQuantity.getIngredient().getName());
@@ -42,5 +47,9 @@ public class RecipeService {
     @Transactional
     public List<Recipe> findBySearchTerm(String searchTerm) {
         return recipeRepository.findByTitleContainsIgnoreCaseOrQuantitiesIngredientNameContainsIgnoreCaseOrTagsNameContainsIgnoreCase(searchTerm, searchTerm, searchTerm);
+    }
+
+    public Recipe update(Recipe recipe) {
+        return recipeRepository.save(recipe);
     }
 }

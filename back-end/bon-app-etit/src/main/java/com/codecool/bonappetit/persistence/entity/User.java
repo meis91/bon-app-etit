@@ -22,16 +22,19 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     @GeneratedValue
-    private Integer id;
+    private long id;
     private String username;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
     private UserRole role;
+    @OneToMany
+    private List<Recipe> recipes;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
+
 
     @Override
     public String getUsername() {

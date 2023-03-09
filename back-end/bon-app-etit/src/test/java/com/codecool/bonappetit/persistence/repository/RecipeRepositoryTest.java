@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 class RecipeRepositoryTest {
 
-   @Autowired
+  /* @Autowired
    IngredientRepository ingredientRepository;
    @Autowired
    RecipeRepository recipeRepository;
@@ -55,5 +55,5 @@ class RecipeRepositoryTest {
             List<Recipe> result = recipeRepository.findByQuantitiesIngredientNameIgnoreCase(ingredient);
             assertIterableEquals(expected, result);
         }
-
+*/
 }

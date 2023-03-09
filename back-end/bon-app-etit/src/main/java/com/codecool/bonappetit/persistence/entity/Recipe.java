@@ -30,7 +30,10 @@ public class Recipe {
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<IngredientQuantity> quantities;
-
+    @Transient
+    private long userId;
+    @ManyToOne
+    private User user;
     @ManyToMany
     private List<Tag> tags;
 }

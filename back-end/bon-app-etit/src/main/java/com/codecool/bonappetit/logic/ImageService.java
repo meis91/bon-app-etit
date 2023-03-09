@@ -4,6 +4,7 @@ import com.codecool.bonappetit.persistence.entity.Image;
 
 import com.codecool.bonappetit.persistence.entity.Recipe;
 import com.codecool.bonappetit.persistence.repository.ImageRepository;
+import com.codecool.bonappetit.persistence.repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,15 +14,16 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 @RequiredArgsConstructor
 public class ImageService {
-    ImageRepository imageRepository;
-    RecipeService recipeService;
+    private final ImageRepository imageRepository;
+    private final RecipeService recipeService;
+    private final RecipeRepository recipeRepository;
 
 
-    @Autowired
+   /* @Autowired
     public ImageService(ImageRepository imageRepository, RecipeService recipeService) {
         this.imageRepository = imageRepository;
         this.recipeService = recipeService;
-    }
+    }*/
 
     public Recipe saveImage (MultipartFile file, long recipeId){
         Recipe recipe = recipeService.findById(recipeId);
@@ -34,7 +36,7 @@ public class ImageService {
             recipe.setImage(image);
             imageRepository.save(image);
             recipe.setImage(image);
-            recipeService.save(recipe);
+            recipeService.update(recipe);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -11,6 +11,7 @@ import {useNavigate} from "react-router-dom";
 import { useFormik} from "formik";
 import * as yup from "yup";
 import {UserContext} from "../../context/UserContext";
+import {loginValidationSchema} from "../../schemas";
 
 function Login(props) {
     const AUTHENTICATION_URL = "/v1/auth/authenticate";
@@ -18,33 +19,18 @@ function Login(props) {
     const navigate = useNavigate();
     const {user, setUser} = useContext(UserContext);
 
-    const validationSchema = yup.object({
-        email: yup
-            .string('Enter your email')
-            .email('Enter a valid email')
-            .required('Email is required'),
-        password: yup
-            .string()
-            .required('Please Enter your password')
-    });
+
 
     const formik = useFormik({
         initialValues: {
             email: "",
             password: "",
         },
-        validationSchema: validationSchema,
+        validationSchema: loginValidationSchema,
         onSubmit: values => {
             loginRequest(values);
         },
     });
-
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        loginRequest(formik.values);
-    };
-
 
     const loginRequest = async (data) => {
         try {
@@ -52,8 +38,11 @@ function Login(props) {
                 AUTHENTICATION_URL,
                 data,
             )
-            setUser(response.data.username);
+            if(!user){
+                setUser(response.data.username);
+            }
             sessionStorage.setItem("token", response.data.token);
+            sessionStorage.setItem("userId", response.data.id);
             sessionStorage.setItem("username", response.data.username);
             sessionStorage.setItem("email", response.data.email);
             sessionStorage.setItem("role", response.data.role);

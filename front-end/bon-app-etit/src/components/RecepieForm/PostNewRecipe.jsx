@@ -29,6 +29,7 @@ function PostNewRecipe() {
         portions: 4,
         quantities:[],
         instructions:"",
+        userId: sessionStorage.getItem("userId")
     });
 
     const handleInput = (e) => {
@@ -45,14 +46,21 @@ function PostNewRecipe() {
 
     async function postRecipe(e) {
         e.preventDefault()
+        console.log(sessionStorage.getItem("userId"))
+        setRecipe({
+            ...recipe,
+            userId: sessionStorage.getItem("userId"),
+        })
+        console.log(recipe)
         try{
-            let resultRecipe = await axios.post(
+            let responseRecipe = await axios.post(
                 SAVE_RECIPE_URL, recipe);
+            console.log(responseRecipe.data)
             let formData = new FormData();
             formData.append("file", image);
-            formData.append("recipe_id", resultRecipe.data.id)
+            formData.append("recipe_id", responseRecipe.data.id)
             if(image){
-                let resultFile = await axios.post(
+                let responseFile = await axios.post(
                     SAVE_RECIPE_IMG_URL,
                     formData);
             }

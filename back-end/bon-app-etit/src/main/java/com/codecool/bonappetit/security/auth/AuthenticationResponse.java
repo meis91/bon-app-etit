@@ -14,6 +14,7 @@ import javax.validation.constraints.Email;
 @NoArgsConstructor
 @Builder
 public class AuthenticationResponse {
+    private long id;
     private String token;
     private String username;
     private String email;

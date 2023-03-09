@@ -43,6 +43,7 @@ public class AuthenticationService {
         System.out.println("user = " + user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
+                .id(user.getId())
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .role(user.getRole())
