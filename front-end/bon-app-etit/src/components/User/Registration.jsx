@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -10,7 +10,8 @@ import {useFormik} from "formik";
 import * as yup from 'yup';
 
 function Registration() {
-    const REGISTRATION_URL = "/v1/auth/register"
+    const REGISTRATION_URL = "/v1/auth/register";
+    const LOGIN_URL = "/login";
     const navigate = useNavigate();
 
     const validationSchema = yup.object({
@@ -44,30 +45,24 @@ function Registration() {
             validationPwd: ""
         },
         validationSchema: validationSchema,
+        onSubmit: values => {
+            registrationRequest(values);
+        },
     });
 
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (formik.values.password === formik.values.validationPwd) {
-            registrationRequest(formik.values);
-        } else {
-            alert("Password don't match, please try again")
-        }
-    };
-
-
     const registrationRequest = async (data) => {
-        let resultRecipe = await axios.post(
-            REGISTRATION_URL,
-            data,
-        ).then((response) => {
-            const navigationUrl = "/login"
-            navigate(navigationUrl)
-        }).catch((error) => {
-            alert("Something went wrong, please try again")
+        try {
+            const resultRecipe = await axios.post(
+                REGISTRATION_URL,
+                data,
+            )
+            console.log(resultRecipe)
+            alert("Registration successfull");
+            navigate(LOGIN_URL)
+        } catch (error) {
+            alert("Something went wrong, please try again");
             console.log(error);
-        });
+        }
     }
 
 
@@ -89,73 +84,75 @@ function Registration() {
                     <Typography component="h1" variant="h5">
                         Registration
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
-                        <TextField
-                            onChange={formik.handleChange}
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="username"
-                            label="Username"
-                            name="username"
-                            autoComplete="username"
-                            autoFocus
-                            value={formik.values.username}
-                            onChange={formik.handleChange}
-                            error={formik.touched.username && Boolean(formik.errors.username)}
-                            helperText={formik.errors.username}
-                        />
-                        <TextField
-                            onChange={formik.handleChange}
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                            value={formik.values.email}
-                            onChange={formik.handleChange}
-                            error={formik.touched.email && Boolean(formik.errors.email)}
-                            helperText={formik.errors.email}
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            value={formik.values.password}
-                            onChange={formik.handleChange}
-                            error={formik.touched.password && Boolean(formik.errors.password)}
-                            helperText={formik.errors.password}
-                        />
-                        <TextField
-                            onChange={formik.handleChange}
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="validationPwd"
-                            label="Confirm Password"
-                            type="password"
-                            id="validationPwd:"
-                            value={formik.values.validationPwd}
-                            onChange={formik.handleChange}
-                            error={formik.touched.validationPwd && Boolean(formik.errors.validationPwd)}
-                            helperText={formik.errors.validationPwd}
-                        />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{mt: 3, mb: 2}}
-                        >
-                            Register
-                        </Button>
-                    </Box>
+                    <form onSubmit={formik.handleSubmit}>
+                        <Box  noValidate sx={{mt: 1}}>
+                            <TextField
+                                onChange={formik.handleChange}
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="username"
+                                label="Username"
+                                name="username"
+                                autoComplete="username"
+                                autoFocus
+                                value={formik.values.username}
+                                onChange={formik.handleChange}
+                                error={formik.touched.username && Boolean(formik.errors.username)}
+                                helperText={formik.errors.username}
+                            />
+                            <TextField
+                                onChange={formik.handleChange}
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email Address"
+                                name="email"
+                                autoComplete="email"
+                                autoFocus
+                                value={formik.values.email}
+                                onChange={formik.handleChange}
+                                error={formik.touched.email && Boolean(formik.errors.email)}
+                                helperText={formik.errors.email}
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Password"
+                                type="password"
+                                id="password"
+                                value={formik.values.password}
+                                onChange={formik.handleChange}
+                                error={formik.touched.password && Boolean(formik.errors.password)}
+                                helperText={formik.errors.password}
+                            />
+                            <TextField
+                                onChange={formik.handleChange}
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="validationPwd"
+                                label="Confirm Password"
+                                type="password"
+                                id="validationPwd:"
+                                value={formik.values.validationPwd}
+                                onChange={formik.handleChange}
+                                error={formik.touched.validationPwd && Boolean(formik.errors.validationPwd)}
+                                helperText={formik.errors.validationPwd}
+                            />
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{mt: 3, mb: 2}}
+                            >
+                                Register
+                            </Button>
+                        </Box>
+                    </form>
                 </Box>
             </Container>
             <br/>

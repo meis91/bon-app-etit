@@ -3,13 +3,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import SearchField from './SearchField.js'
-import CategoryFilter from './CategoryFilter.js'
-import axios from "../../../../api/axios";
+import SearchField from './SearchField.jsx'
+import CategoryFilter from './CategoryFilter.jsx'
 
 function SearchBar({ popularSearchTerms, filterOptions, handleSearch }) {
-
-
   return (
     <>
         <Container maxWidth="sm">

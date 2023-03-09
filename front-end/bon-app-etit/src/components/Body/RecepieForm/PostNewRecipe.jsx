@@ -13,15 +13,11 @@ import Button from '@mui/material/Button';
 import axios from "../../../api/axios"
 import Stack from "@mui/material/Stack";
 import InputPortions from "./InputPortions";
-import {DropzoneArea} from "mui-file-dropzone";
-import DropZone from "./DropZone";
+import {SAVE_RECIPE_URL, SAVE_RECIPE_IMG_URL} from "../../../constants"
 
 
 
-function PostNewRecipe({handleAddRecipe, tags}) {
-    const RECIPE_POST_URL = "/recipes";
-    const RECIPE_IMAGE_POST_URL = "/recipes/image";
-
+function PostNewRecipe({tags}) {
     const [success, setSuccess] = useState(false);
     const [image, setImage] = useState("");
     const [imgPreview, setImagePreview] = useState("");
@@ -47,27 +43,25 @@ function PostNewRecipe({handleAddRecipe, tags}) {
     }
 
     async function postRecipe(e) {
-        console.log(recipe)
         e.preventDefault()
         try{
             let resultRecipe = await axios.post(
-                RECIPE_POST_URL, recipe);
+                SAVE_RECIPE_URL, recipe);
             let formData = new FormData();
             formData.append("file", image);
             formData.append("recipe_id", resultRecipe.data.id)
             if(image){
                 let resultFile = await axios.post(
-                    RECIPE_IMAGE_POST_URL,
+                    SAVE_RECIPE_IMG_URL,
                     formData);
             }
-            setTimeout(alertFunc, 1000);
+            setSuccess(true);
+           alert("Upload complete");
         } catch (err){
             console.log(err);
         }
 
-        function alertFunc() {
-            handleAddRecipe();
-        }
+
     }
 
 
@@ -85,6 +79,7 @@ function PostNewRecipe({handleAddRecipe, tags}) {
             >
                 <FormControl onSubmit={(e) =>postRecipe(e)}>
                     <FormTitle text="Add a new Recipe"/>
+                    { success ? <Alert severity="success">Upload Successfull</Alert> : null }
                     <InputTitle title={recipe.title} handleInput={handleInput}/>
                    {/* <DropZone image={image} handleInputPicture={handleInputPicture}/>*/}
 
@@ -96,11 +91,12 @@ function PostNewRecipe({handleAddRecipe, tags}) {
                     <InputInstructions instructions={recipe.instructions} handleInput={handleInput} />
                     <InputTags tags={tags} recipe={recipe} setRecipe={setRecipe} />
                     <Stack style={{justifyContent: 'center'}} direction="row" spacing={{xs: 1, sm: 2, md: 4}}>
+
                         <Button onClick={postRecipe}  type="submit" variant="contained" endIcon={<SendIcon />}>
                             Submit
                         </Button>
                     </Stack>
-                    { success ? <Alert severity="success">Upload Successfull</Alert> : null }
+
                 </FormControl>
             </Box>
         </div>

@@ -17,7 +17,7 @@ import NavbarUser from "./NavbarUser";
 
 const pages = ['Cousin', 'Course', 'Inspiration'];
 
-const Navbar = ({ addRecipe, handleAddRecipe}) => {
+const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -123,7 +123,7 @@ const Navbar = ({ addRecipe, handleAddRecipe}) => {
                         ))}
                     </Box>
                     <NavbarSearch/>
-                    <NavbarUser addRecipe={addRecipe} handleAddRecipe={handleAddRecipe}/>
+                    <NavbarUser/>
                 </Toolbar>
             </Container>
         </AppBar>

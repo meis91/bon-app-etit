@@ -5,57 +5,54 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import {AccountCircle} from "@mui/icons-material";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {useNavigate} from "react-router-dom";
+import UserMenu from "./UserMenu";
 
-const NavbarUser = ({ handleAddRecipe}) => {
-    const LOGIN_URL = "/login"
-    const menuId = 'primary-search-account-menu';
+const NavbarUser = () => {
+    const LOGIN_FORM_URL = "/login";
+
     const navigate = useNavigate();
 
     const [user, setUser] = useState("");
 
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-    const handleProfileMenuOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleMobileMenuClose = () => {
-        setMobileMoreAnchorEl(null);
-    };
-
-    const handleMenuClose = () => {
-        setAnchorEl(null);
-        handleMobileMenuClose();
-    };
-
-    const handleMobileMenuOpen = (event) => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
 
     useEffect(() => {
         let username = sessionStorage.getItem("username")
         if (username) {
             setUser(username)
         }
-    }, []);
+    }, [user]);
 
     const handleLoginNav = () => {
-        navigate(LOGIN_URL)
+        console.log();
+        navigate(LOGIN_FORM_URL)
     }
 
-    const mobileMenuId = 'primary-search-account-menu-mobile';
+    const [anchorEl, setAnchorEl] = useState(null);
+
+
+    const isMenuOpen = Boolean(anchorEl);
+
+
+    const handleProfileMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
+
+
+    const menuId = 'primary-search-account-menu';
 
     return (
         <div>
             <Box sx={{flexGrow: 1}}/>
             <Box sx={{display: {xs: 'none', md: 'flex'}}}>
-                {sessionStorage.getItem("loggedIn") === "true"
+                {user
                     ?   <IconButton
-                            onClick={(e) => handleAddRecipe(e)}
                             size="large"
                             aria-label="show 4 new mails"
                             color="inherit">
@@ -87,24 +84,16 @@ const NavbarUser = ({ handleAddRecipe}) => {
                         size="large"
                         edge="end"
                         aria-label="account of current user"
+
                         aria-controls={menuId}
                         aria-haspopup="true"
-                        onClick={handleLoginNav}
+                        onClick={handleProfileMenuOpen}
+                        /*onClick={handleLoginNav}*/
                         color="inherit"
                     >
                         <AccountCircle/>
                     </IconButton>}
-            </Box>
-            <Box sx={{display: {xs: 'flex', md: 'none'}}}>
-                <IconButton
-                    size="large"
-                    aria-label="show more"
-                    aria-controls={mobileMenuId}
-                    aria-haspopup="true"
-
-                    color="inherit"
-                >
-                </IconButton>
+                <UserMenu menuId={menuId} isMenuOpen={isMenuOpen} anchorEl={anchorEl} handleMenuClose={handleMenuClose}/>
             </Box>
         </div>
     );

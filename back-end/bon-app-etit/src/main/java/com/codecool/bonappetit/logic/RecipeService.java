@@ -43,7 +43,6 @@ public class RecipeService {
         for (Tag tag : tags) {
             tag.setId(tagService.saveIfNew(tag.getName()).getId());
         }
-        System.out.println("recipe = " + recipe);
         return recipeRepository.save(recipe);
     }
 

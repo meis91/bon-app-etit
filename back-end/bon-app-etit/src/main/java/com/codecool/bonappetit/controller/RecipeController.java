@@ -14,38 +14,27 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/recipes")
 @RequiredArgsConstructor
 @CrossOrigin("http://localhost:3000")
 public class RecipeController {
 
     private final RecipeService recipeService;
-    private final IngredientService ingredientService;
     private final ImageService imageService;
-    private String name = "bon-app-etit";
 
-    @GetMapping
-    public String name() {
-        return name;
-    }
 
-    @GetMapping("/recipes")
+
+    @GetMapping()
     public List<Recipe> getRecipes() {
         return recipeService.getAll();
     }
 
-    @PostMapping("/recipes")
+    @PostMapping("/save")
     Recipe addRecipe(@RequestBody Recipe recipe) {
         return recipeService.save(recipe);
     }
 
-    @PostMapping("/recipes/image")
-    Recipe addRecipeImage(@RequestParam("file") MultipartFile file, @RequestParam("recipe_id") long recipeId) {
-        System.out.println("recipeId = " + recipeId);
-        return imageService.saveImage(file, recipeId);
-    }
-
-    @GetMapping("/recipes/{id}")
+    @GetMapping("/search/{id}")
     public Recipe getRecipeById(@PathVariable Long id) {
         return recipeService.findById(id);
     }
@@ -56,11 +45,18 @@ public class RecipeController {
         return recipes;
     }
 
-    @GetMapping("/recipes-by-searchterm")
+    @GetMapping("/search")
     public List<Recipe> getRecipesBySearchTerm(@RequestParam String searchTerm) {
         List<Recipe> recipes = recipeService.findBySearchTerm(searchTerm);
         return recipes;
     }
+
+    @PostMapping("/save/image")
+    Recipe addRecipeImage(@RequestParam("file") MultipartFile file, @RequestParam("recipe_id") long recipeId) {
+        return imageService.saveImage(file, recipeId);
+    }
+
+
 
 //    @PostMapping()
 //    public Recipe saveRecipe(@RequestParam Recipe recipe){
