@@ -15,10 +15,11 @@ import InputPortions from "./InputPortions";
 import {DropzoneArea} from "mui-file-dropzone";
 import DropZone from "./DropZone";
 import {SAVE_RECIPE_URL, SAVE_RECIPE_IMG_URL} from "../../constants"
+import InputTags from "../Body/RecepieForm/Tags/InputTags";
 
 
 
-function PostNewRecipe() {
+function PostNewRecipe({tags}) {
     const [success, setSuccess] = useState(false);
     const [image, setImage] = useState("");
     const [imgPreview, setImagePreview] = useState("");
@@ -28,6 +29,7 @@ function PostNewRecipe() {
         portions: 4,
         quantities:[],
         instructions:"",
+        tags:[],
     });
 
     const handleInput = (e) => {
@@ -89,6 +91,7 @@ function PostNewRecipe() {
                     <InputPortions portions={recipe.portions} handleInput={handleInput}/>
                     <InputIngredients recipe={recipe} setRecipe={setRecipe}/>
                     <InputInstructions instructions={recipe.instructions} handleInput={handleInput} />
+                    <InputTags tags={tags} recipe={recipe} setRecipe={setRecipe} />
                     <Stack style={{justifyContent: 'center'}} direction="row" spacing={{xs: 1, sm: 2, md: 4}}>
 
                         <Button onClick={postRecipe}  type="submit" variant="contained" endIcon={<SendIcon />}>

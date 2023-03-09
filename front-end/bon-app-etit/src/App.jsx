@@ -1,9 +1,9 @@
-import React, { useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar/Navbar"
-import {ThemeProvider} from "@mui/material/styles";
+import {createTheme, ThemeProvider} from "@mui/material/styles";
 import {Route, Routes} from "react-router-dom";
-import Recipe from "./components/RecipeDetails/Recipe";
+
 import Login from "./components/User/Login";
 import Registration from "./components/User/Registration";
 import theme from "./context/theme/Theme";
@@ -12,20 +12,22 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import IndexPage from "./components/Body/Recipes/IndexPage";
 import {UserContext} from "./context/UserContext";
-
+import Recipe from "./components/RecipeDetails/Recipe";
+import axios from "./api/axios";
+import {TAGS_URL} from "./constants";
 
 
 function App() {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState("");
+    const[tags, setTags] = useState(null)
 
     useEffect(() => {
-        if(sessionStorage.getItem("loggedIn")){
-            setUser(sessionStorage.getItem("username"))
-        } else {
-            setUser(null);
-        }
-    }, );
+        axios.get(TAGS_URL).then((response) => {
+            setTags(response.data);
+        })
+    }, []);
 
+    if (!tags) return null;
     return (
         <div className="App">
             <ThemeProvider theme={theme}>
@@ -41,11 +43,11 @@ function App() {
                                }}
                     >
                         <Routes>
-                            <Route path="/" element={<IndexPage/>}/>
+                            <Route path="/" element={<IndexPage tags={tags}/>}/>
                             <Route path="/recipe/:id" element={<Recipe/>}/>
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/registration" element={<Registration/>}/>
-                            <Route path="/add-recipe" element={<PostNewRecipe/>}/>
+                            <Route path="/add-recipe" element={<PostNewRecipe tags={tags}/>}/>
                         </Routes>
                     </Container>
                 </React.Fragment>

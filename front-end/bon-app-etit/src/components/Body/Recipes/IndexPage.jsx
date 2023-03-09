@@ -4,52 +4,16 @@ import RecipeGrid from "./RecipeGrid";
 import axios from "../../../api/axios"
 import {ALL_RECIPE_URL, SEARCH_RECIPE_URL} from "../../../constants"
 
-function IndexPage() {
+function IndexPage({tags}) {
     const[recipes, setRecipes] = useState(null)
-    const popularSearchTerms = ['Pasta', 'Vegan', 'Quick Dinner', 'Cocktail'];
-    const filterOptions = [
-        { 'filter' : 'Dish Type',
-            'options' : ['Breakfast',
-                'Lunch',
-                'Dinner'
-            ]},
-        {  'filter' : 'Recipe Type',
-            'options' : ['Quick',
-                'Easy',
-                'Healthy',
-                'Low Budget'
-            ],
-        },
-        {  'filter' : 'Nutrition Type',
-            'options' : ['Vegetarian',
-                'Vegan',
-                'Gluten-free',
-                'Dairy-free'
-            ]},
-        {  'filter' : 'Season/Special',
-            'options' : ['Spring',
-                'Summer',
-                'Autumn',
-                'Winter',
-                'Christmas',
-                'Easter'
-            ]},
-        {  'filter' : 'Bakery',
-            'options' : ['Cookies',
-                'Cakes',
-                'Bread',
-                'Ice Cream'
-            ]},
-        {  'filter' : 'Country',
-            'options' : ['Juice/Lemonade',
-                'Smoothies',
-                'Cocktails',
-                'Winter Drinks'
-            ]},
-    ];
+    const popularSearchTerms = ['Pasta', 'Vegetarian', 'Cheese', 'Beef'];
 
     const handleSearch = async (event) => {
-        const params = new URLSearchParams([['searchTerm', event.target.value]]);
+        let searchTerm = event.target.getAttribute("data-value")
+        if (searchTerm === null) {
+            searchTerm = event.target.value
+        }
+        const params = new URLSearchParams([['searchTerm', searchTerm]]);
         let searchUrl = `${SEARCH_RECIPE_URL}?${params}`
         try {
             let response = await axios.get(
@@ -61,6 +25,10 @@ function IndexPage() {
         }
     }
 
+
+    useEffect(() => {
+        getAllRecipes()
+    }, []);
     const getAllRecipes = async () => {
         try {
             let response = await axios.get(
@@ -80,7 +48,7 @@ function IndexPage() {
     return (
         <>
             <SearchBar popularSearchTerms={popularSearchTerms}
-                       filterOptions={filterOptions}
+                       filterOptions={tags}
                        recipes={recipes}
                        handleSearch={handleSearch}
             />

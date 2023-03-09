@@ -7,17 +7,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Tag {
+public class TagCategory {
+
     @Id
     @GeneratedValue
     private long id;
 
-    @Column(unique = true)
-    private String name;
+    @Enumerated(value = EnumType.STRING)
+    private TagCategoryName tagCategoryName;
 
+    @OneToMany
+    private List<Tag> tags;
 }
