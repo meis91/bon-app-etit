@@ -78,7 +78,7 @@ function IndexPage({baseUrl}) {
     return (
         <>
             <SearchBar popularSearchTerms={popularSearchTerms}
-                       filterOptions={filterOptions}
+                       filterOptions={tags}
                        recipes={recipes}
                        handleSearch={handleSearch}
             />
