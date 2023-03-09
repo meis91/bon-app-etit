@@ -5,8 +5,11 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import SearchField from './SearchField.js'
 import CategoryFilter from './CategoryFilter.js'
+import axios from "../../../../api/axios";
 
 function SearchBar({ popularSearchTerms, filterOptions, handleSearch }) {
+
+
   return (
     <>
         <Container maxWidth="sm">
@@ -27,18 +30,18 @@ function SearchBar({ popularSearchTerms, filterOptions, handleSearch }) {
               justifyContent="center"
             >
               {popularSearchTerms.map((searchTerm) => (
-                <Button variant="outlined" key={searchTerm}>{searchTerm}</Button>
+                <Button variant="outlined" value={searchTerm} key={searchTerm} onClick={handleSearch}>{searchTerm}</Button>
               ))}
             </Stack>
           </Container>
-          <Container sx={{ py: 8 }} maxWidth="lg">    
-            <Grid container spacing={{ xs: 2, md: 3, lg: 3 }} columns={{ xs: 12, sm: 12, md: 12, lg: 12}}>
-            {filterOptions.map((option) => (
-                <Grid key={option.filter} item xs={5} sm={4} md={3} lg={2}>
-                  <CategoryFilter filterOption={option}  />
-                </Grid>
-              ))}
-            </Grid>
+          <Container sx={{ py: 8 }} maxWidth="lg">
+              <Grid container spacing={{ xs: 2, md: 3, lg: 3 }} columns={{ xs: 12, sm: 12, md: 12, lg: 12}}>
+                  {filterOptions.map((option) => (
+                      <Grid key={option.filter} item xs={5} sm={4} md={3} lg={2}>
+                          <CategoryFilter filterOption={option}  />
+                      </Grid>
+                  ))}
+              </Grid>
           </Container>
     </>
   )

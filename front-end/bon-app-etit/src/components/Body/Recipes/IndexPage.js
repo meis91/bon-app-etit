@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import SearchBar from "./SearchAndFilter/SearchBar";
 import RecipeGrid from "./RecipeGrid";
-import axios from "../../../api/axios"
+import axios from "../../../api/axios";
 
 function IndexPage({baseUrl}) {
     const[recipes, setRecipes] = useState(null)
-    const popularSearchTerms = ['Pasta', 'Vegan', 'Quick Dinner', 'Cocktail'];
+    const[tags, setTags] = useState(null)
+    const TAGS_URL = "/tags"
+    const popularSearchTerms = ['Pasta', 'Vegetarian', 'Cheese', 'Beef'];
 
     const filterOptions = [
         { 'filter' : 'Dish Type',
@@ -49,13 +51,14 @@ function IndexPage({baseUrl}) {
     ];
 
     const recipeUrl = "/recipes";
+    console.log(tags);
+    console.log(filterOptions);
 
     const handleSearch = (e) => {
-        const params = new URLSearchParams([['ingredient', e.target.value]]);
+        const params = new URLSearchParams([['searchTerm', e.target.value]]);
         axios
-            .get(`/recipes-by-ingredient?${params}`)
+            .get(`/recipes-by-searchterm?${params}`)
             .then(function (response) {
-                /*console.log(response.data);*/
                 setRecipes(response.data);
             });
     }
@@ -65,8 +68,10 @@ function IndexPage({baseUrl}) {
         axios.get(recipeUrl).then((response) => {
             setRecipes(response.data);
         });
+        axios.get(TAGS_URL).then((response) => {
+            setTags(response.data);
+        })
     }, []);
-    /*console.log(recipes)*/
 
     if (!recipes) return null;
 

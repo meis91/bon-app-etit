@@ -6,6 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import InputTitle from "./InputTitle";
 import FormTitle from "../../ReusableComponents/FormTitle";
 import InputDescription from "./InputDescription";
+import InputTags from "./Tags/InputTags";
 import ButtonUploadPicture from "../../ReusableComponents/ButtonUploadPicture";
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
@@ -91,8 +92,8 @@ function PostNewRecipe({handleAddRecipe}) {
                     <InputPortions portions={recipe.portions} handleInput={handleInput}/>
                     <InputIngredients recipe={recipe} setRecipe={setRecipe}/>
                     <InputInstructions instructions={recipe.instructions} handleInput={handleInput} />
+                    <InputTags />
                     <Stack style={{justifyContent: 'center'}} direction="row" spacing={{xs: 1, sm: 2, md: 4}}>
-
                         <Button onClick={postRecipe}  type="submit" variant="contained" endIcon={<SendIcon />}>
                             Submit
                         </Button>
