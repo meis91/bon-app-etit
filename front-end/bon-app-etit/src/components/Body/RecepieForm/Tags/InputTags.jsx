@@ -38,7 +38,7 @@ export default function InputTags({ tags, recipe, setRecipe }) {
             <FormSubtitle text="Tags"/>
             <Box sx={{ display: 'flex' }}>
                 {tags.map((category) => (
-                <FormControl key={category.tagCategoryName} sx={{ m: 3 }} component="fieldset" variant="standard">
+                <FormControl key={category.tagCategoryName} sx={{ m: 1 }} component="fieldset" variant="standard">
                     <FormLabel key={category.tagCategoryName} component="legend">{category.tagCategoryName}</FormLabel>
                                 {category.tags.map((option) => (
                                     <FormGroup key={option.name}>
