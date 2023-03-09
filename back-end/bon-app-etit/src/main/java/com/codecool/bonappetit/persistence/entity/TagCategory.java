@@ -19,7 +19,7 @@ public class TagCategory {
     @GeneratedValue
     private long id;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private TagCategoryName tagCategoryName;
 
     @OneToMany

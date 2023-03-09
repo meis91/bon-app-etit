@@ -8,13 +8,13 @@ public enum TagCategoryName {
     SEASON("Season/Special"),
     OTHER("Other");
 
-    private final String tagCategoryName;
+    private String nameString;
 
-    TagCategoryName(String tagCategoryName) {
-        this.tagCategoryName = tagCategoryName;
+    TagCategoryName(String nameString) {
+        this.nameString = nameString;
     }
 
-    public String getTagCategoryName() {
-        return tagCategoryName;
+    public String getNameString() {
+        return nameString;
     }
 }
