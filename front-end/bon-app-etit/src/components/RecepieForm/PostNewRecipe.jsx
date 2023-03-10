@@ -12,12 +12,8 @@ import Button from '@mui/material/Button';
 import axios from "../../api/axios"
 import Stack from "@mui/material/Stack";
 import InputPortions from "./InputPortions";
-import {DropzoneArea} from "mui-file-dropzone";
-import DropZone from "./DropZone";
-import {SAVE_RECIPE_URL, SAVE_RECIPE_IMG_URL} from "../../constants"
-import InputTags from "../Body/RecepieForm/Tags/InputTags";
-
-
+import {SAVE_RECIPE_URL, SAVE_RECIPE_IMG_URL} from "../../constants";
+import InputTags from "./Tags/InputTags";
 
 function PostNewRecipe({tags}) {
     const [success, setSuccess] = useState(false);

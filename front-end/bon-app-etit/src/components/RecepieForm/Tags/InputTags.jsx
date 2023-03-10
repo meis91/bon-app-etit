@@ -1,9 +1,9 @@
-import FormSubtitle from "../../../ReusableComponents/FormSubtitle";
+import FormSubtitle from "../../ReusableComponents/FormSubtitle";
 import {Box} from "@mui/material";
-import ButtonAdd from "../../../ReusableComponents/ButtonAdd";
-import ButtonRemove from "../../../ReusableComponents/ButtonRemove";
+import ButtonAdd from "../../ReusableComponents/ButtonAdd";
+import ButtonRemove from "../../ReusableComponents/ButtonRemove";
 import React, {useEffect, useState} from "react";
-import axios from "../../../../api/axios";
+import axios from "../../../api/axios";
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
