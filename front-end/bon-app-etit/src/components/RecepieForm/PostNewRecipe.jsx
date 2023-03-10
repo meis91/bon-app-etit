@@ -18,8 +18,6 @@ import {useNavigate} from "react-router-dom";
 
 
 function PostNewRecipe() {
-    const HOME_URL = "/"
-    const navigate = useNavigate();
     const [success, setSuccess] = useState(false);
     const [image, setImage] = useState("");
     const [imgPreview, setImagePreview] = useState("");
@@ -55,7 +53,6 @@ function PostNewRecipe() {
         try{
             let responseRecipe = await axios.post(
                 SAVE_RECIPE_URL, recipe);
-            console.log(responseRecipe.data)
             let formData = new FormData();
             formData.append("file", image);
             formData.append("recipe_id", responseRecipe.data.id)
@@ -91,9 +88,9 @@ function PostNewRecipe() {
                     <FormTitle text="Add a new Recipe"/>
                     { success ? <Alert severity="success">Upload Successfull</Alert> : null }
                     <InputTitle title={recipe.title} handleInput={handleInput}/>
-                    {/*<DropZone image={image} handleInputPicture={handleInputPicture}/>*/}
+                   {/* <DropZone image={image} handleInputPicture={handleInputPicture}/>*/}
 
-                    {/*<DropzoneArea dropzoneText="Drag & drop your image here or click" />*/}
+                    {/*<DropzoneArea dropzoneText="Drag & drop your image here or click" onChange={handleInputPicture}/>*/}
                     <ButtonUploadPicture image={imgPreview} handleInputPicture={handleInputPicture}/>
                     <InputDescription description={recipe.description} handleInput={handleInput} />
                     <InputPortions portions={recipe.portions} handleInput={handleInput}/>
