@@ -17,21 +17,24 @@ export default function InputTags({ tags, recipe, setRecipe }) {
     const [selected, setSelected] = useState([])
 
     const handleChange = (event) => {
+
         setChecked(event.target.checked);
         setState({
             ...state,
             [event.target.name]: event.target.checked,
         });
-        let newSelected = [...selected, {"name" : event.target.name}]
+        let newSelected;
+        if (selected.some(recipeTag => recipeTag.name === event.target.name)) {
+            newSelected = selected.filter(recipeTag => recipeTag.name !== event.target.name)
+        } else {
+            newSelected = [...selected, {"name" : event.target.name}]
+        }
         setSelected(newSelected)
         setRecipe({
             ...recipe,
-            "tags": selected
+            "tags": newSelected
         })
     };
-
-
-
 
     return (
         <div>
