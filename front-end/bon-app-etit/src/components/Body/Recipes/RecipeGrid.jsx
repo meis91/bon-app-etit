@@ -30,7 +30,9 @@ export default function RecipeGrid({recipes, image}) {
                 quantities: recipe.quantities,
                 imageName: recipe.imageName,
                 image: recipe.image,
-                tags: recipe.tags
+                tags: recipe.tags,
+                likes: recipe.likes,
+                user: recipe.user
             }
         });
     }

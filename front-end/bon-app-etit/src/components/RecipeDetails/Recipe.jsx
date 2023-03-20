@@ -6,19 +6,22 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import * as React from "react";
 import {Container} from "@mui/material";
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import Button from "@mui/material/Button";
+import axios from "../../api/axios";
+import {SAVE_RECIPE_IMG_URL, SAVE_RECIPE_URL, UPDATE_RECIPE_URL} from "../../constants";
+import {useState} from "react";
 export default function Recipe() {
     const location = useLocation();
+    console.log(location)
     const quantities = location.state.quantities
     const image = location.state.image
     const tags = location.state.tags
-    console.log(location.state.id)
-    console.log(quantities)
-    console.log(image)
-    console.log(tags)
+    const likes = location.state.likes
     const ingredients = quantities.map((quantity) => (
         <tbody key={quantity.ingredient.name}>
                         <td><li>{quantity.quantity}&nbsp;</li></td>
@@ -26,13 +29,59 @@ export default function Recipe() {
                         <td>{quantity.ingredient.name}</td>
         </tbody>
     ));
+    const [detailRecipe, setDetailRecipe] = useState({
+        id: location.state.id,
+        title: location.state.title,
+        description: location.state.description,
+        portions: location.state.portions,
+        quantities: location.state.quantities,
+        instructions: location.state.instructions,
+        tags: location.state.tags,
+        likes: location.state.likes,
+        user: location.state.user
+    });
+
+    async function handleLike() {
+        const newRecipe = {
+            id: location.state.id,
+            title: location.state.title,
+            description: location.state.description,
+            portions: location.state.portions,
+            quantities: location.state.quantities,
+            instructions: location.state.instructions,
+            tags: location.state.tags,
+            likes: likes + 1,
+            user: location.state.user
+        }
+        console.log(newRecipe)
+        try{
+            let responseRecipe = await axios.put(
+                UPDATE_RECIPE_URL, newRecipe);
+
+        } catch (err){
+            console.log(err);
+        }
+    }
 
     return (
         <div>
             <Container sx={{ py: 8 }} maxWidth="md" text>
-                <Card  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                >
-                    <h1> {location.state.title} </h1>
+                <Card  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <div style={{display: 'flex', justifyContent:'space-between'}}>
+                        <Typography noWrap variant="h3">
+                            {location.state.title}
+                        </Typography>
+                        <Button variant="contained" endIcon={<
+                            FavoriteIcon />} onClick={handleLike}>
+                            Like
+                        </Button>
+                    </div>
+                    <div style={{display: 'flex'}}>
+                        <FavoriteIcon color="error" /> <div>&nbsp;</div>
+                        {likes}
+                    </div>
+
+
                     <CardMedia
                         align="center"
                         component="img"
