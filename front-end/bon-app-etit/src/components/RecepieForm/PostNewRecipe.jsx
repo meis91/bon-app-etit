@@ -14,10 +14,11 @@ import Stack from "@mui/material/Stack";
 import InputPortions from "./InputPortions";
 import {SAVE_RECIPE_URL, SAVE_RECIPE_IMG_URL} from "../../constants"
 import {useNavigate} from "react-router-dom";
+import InputTags from "./Tags/InputTags";
 
 
 
-function PostNewRecipe() {
+function PostNewRecipe({tags}) {
     const navigate = useNavigate();
     const HOME_URL = "/";
     const [success, setSuccess] = useState(false);
@@ -29,6 +30,7 @@ function PostNewRecipe() {
         portions: 4,
         quantities:[],
         instructions:"",
+        tags:[],
         userId: sessionStorage.getItem("userId")
     });
 
@@ -63,6 +65,7 @@ function PostNewRecipe() {
                     SAVE_RECIPE_IMG_URL,
                     formData);
             }
+
             setSuccess(true);
             alert("Upload complete");
             navigate(HOME_URL);
@@ -79,7 +82,7 @@ function PostNewRecipe() {
             <Box
                 container="true"
                 maxWidth="lg"
-                component="form"type="file"
+                component="form" type="file"
                 sx={{
                     '& .MuiTextField-root': { m: 1, width: '25ch',  },
                 }}
@@ -98,6 +101,7 @@ function PostNewRecipe() {
                     <InputPortions portions={recipe.portions} handleInput={handleInput}/>
                     <InputIngredients recipe={recipe} setRecipe={setRecipe}/>
                     <InputInstructions instructions={recipe.instructions} handleInput={handleInput} />
+                    <InputTags tags={tags} recipe={recipe} setRecipe={setRecipe} />
                     <Stack style={{justifyContent: 'center'}} direction="row" spacing={{xs: 1, sm: 2, md: 4}}>
 
                         <Button onClick={postRecipe}  type="submit" variant="contained" endIcon={<SendIcon />}>

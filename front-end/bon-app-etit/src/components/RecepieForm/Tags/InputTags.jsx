@@ -1,14 +1,10 @@
-import FormSubtitle from "../../../ReusableComponents/FormSubtitle";
+import FormSubtitle from "../../ReusableComponents/FormSubtitle";
 import {Box} from "@mui/material";
-import ButtonAdd from "../../../ReusableComponents/ButtonAdd";
-import ButtonRemove from "../../../ReusableComponents/ButtonRemove";
-import React, {useEffect, useState} from "react";
-import axios from "../../../../api/axios";
+import React, {useState} from "react";
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
 
 export default function InputTags({ tags, recipe, setRecipe }) {
@@ -22,16 +18,18 @@ export default function InputTags({ tags, recipe, setRecipe }) {
             ...state,
             [event.target.name]: event.target.checked,
         });
-        let newSelected = [...selected, {"name" : event.target.name}]
+        let newSelected;
+        if (selected.some(recipeTag => recipeTag.name === event.target.name)) {
+            newSelected = selected.filter(recipeTag => recipeTag.name !== event.target.name)
+        } else {
+            newSelected = [...selected, {"name" : event.target.name}]
+        }
         setSelected(newSelected)
         setRecipe({
             ...recipe,
-            "tags": selected
+            "tags": newSelected
         })
     };
-
-
-
 
     return (
         <div>
