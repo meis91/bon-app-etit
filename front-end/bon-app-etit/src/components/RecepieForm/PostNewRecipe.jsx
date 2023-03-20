@@ -49,22 +49,24 @@ function PostNewRecipe({tags}) {
 
     async function postRecipe(e) {
         e.preventDefault()
-        console.log(sessionStorage.getItem("userId"))
+        const config = {
+            headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}`
+           }
+        };
         setRecipe({
             ...recipe,
             userId: sessionStorage.getItem("userId"),
         })
-        console.log(recipe)
         try{
             let responseRecipe = await axios.post(
-                SAVE_RECIPE_URL, recipe);
+                SAVE_RECIPE_URL, recipe, config);
             let formData = new FormData();
             formData.append("file", image);
             formData.append("recipe_id", responseRecipe.data.id)
             if(image){
                 let responseFile = await axios.post(
                     SAVE_RECIPE_IMG_URL,
-                    formData);
+                    formData, config);
             }
 
             setSuccess(true);
