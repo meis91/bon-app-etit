@@ -36,4 +36,6 @@ public class Recipe {
     private User user;
     @ManyToMany
     private List<Tag> tags;
+
+    private int likes;
 }

@@ -31,6 +31,7 @@ function PostNewRecipe({tags}) {
         quantities:[],
         instructions:"",
         tags:[],
+        likes:0,
         userId: sessionStorage.getItem("userId")
     });
 
