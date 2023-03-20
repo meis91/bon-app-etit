@@ -18,6 +18,8 @@ import {useNavigate} from "react-router-dom";
 
 
 function PostNewRecipe() {
+    const navigate = useNavigate();
+    const HOME_URL = "/";
     const [success, setSuccess] = useState(false);
     const [image, setImage] = useState("");
     const [imgPreview, setImagePreview] = useState("");

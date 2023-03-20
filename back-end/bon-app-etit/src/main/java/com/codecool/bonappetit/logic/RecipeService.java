@@ -1,9 +1,7 @@
 package com.codecool.bonappetit.logic;
 
 import com.codecool.bonappetit.logic.exception.RecipeNotFoundException;
-import com.codecool.bonappetit.persistence.entity.Ingredient;
-import com.codecool.bonappetit.persistence.entity.IngredientQuantity;
-import com.codecool.bonappetit.persistence.entity.Recipe;
+import com.codecool.bonappetit.persistence.entity.*;
 import com.codecool.bonappetit.persistence.repository.RecipeRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -52,5 +50,9 @@ public class RecipeService {
     @Transactional
     public List<Recipe> findBySearchTerm(String searchTerm) {
         return recipeRepository.findByTitleContainsIgnoreCaseOrQuantitiesIngredientNameContainsIgnoreCaseOrTagsNameContainsIgnoreCase(searchTerm, searchTerm, searchTerm);
+    }
+
+    public Recipe update(Recipe recipe) {
+        return recipeRepository.save(recipe);
     }
 }
