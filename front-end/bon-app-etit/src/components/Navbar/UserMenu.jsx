@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import {Menu} from "@mui/material";
 import {useNavigate} from "react-router-dom";
@@ -11,18 +11,26 @@ function UserMenu({anchorEl, menuId, isMenuOpen, handleMenuClose}) {
     const REGISTRATION_FORM_URL = "/registration";
     const ADD_RECIPE_FORM_URL = "/add-recipe";
     const USER_PROFILE_URL = "/user-profile";
+    const INDEX_URL = "/";
     const navigate = useNavigate();
-
     const {user, setUser} = useContext(UserContext);
+    const [loggedIn, setLoggedIn] = useState(false);
 
-    /*const user = useContext(UserContext);*/
+
+    useEffect(() => {
+        console.log(user);
+        if(sessionStorage.getItem("loggedIn")){
+            setLoggedIn(true);
+        }
+    } );
+
     const navigateToLogin = () => {
         handleMenuClose();
-        navigate(LOGIN_FORM_URL)
+        navigate(LOGIN_FORM_URL);
     }
     const navigateToRegistration = () => {
         handleMenuClose();
-        navigate(REGISTRATION_FORM_URL)
+        navigate(REGISTRATION_FORM_URL);
     }
     const navigateToAddRecipe = () => {
         handleMenuClose();
@@ -31,12 +39,13 @@ function UserMenu({anchorEl, menuId, isMenuOpen, handleMenuClose}) {
 
     const navigateToUserProfile = () => {
         handleMenuClose();
-        navigate(USER_PROFILE_URL)
+        navigate(USER_PROFILE_URL);
     }
     function handleLogout() {
-        console.log(user)
-        setUser(null)
-        sessionStorage.clear()
+        setUser(null);
+        sessionStorage.clear();
+        handleMenuClose();
+        navigate(INDEX_URL);
     }
 
     return (

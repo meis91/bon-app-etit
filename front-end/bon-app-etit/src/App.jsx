@@ -23,6 +23,11 @@ function App() {
     const[tags, setTags] = useState(null)
 
     useEffect(() => {
+        setUser(sessionStorage.getItem("username"));
+    });
+
+    useEffect(() => {
+
         axios.get(TAGS_URL).then((response) => {
             setTags(response.data);
         })
