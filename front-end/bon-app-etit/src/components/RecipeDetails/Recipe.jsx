@@ -12,6 +12,7 @@ import {Container} from "@mui/material";
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Button from "@mui/material/Button";
+import IconButton from '@mui/material/IconButton';
 import axios from "../../api/axios";
 import {SAVE_RECIPE_IMG_URL, SAVE_RECIPE_URL, UPDATE_RECIPE_URL} from "../../constants";
 import {useState} from "react";
@@ -70,20 +71,20 @@ export default function Recipe() {
         <div>
             <Container sx={{ py: 8 }} maxWidth="md" text>
                 <Card  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                    <div style={{display: 'flex', justifyContent:'space-between'}}>
-                        <Typography noWrap variant="h3">
-                            {detailRecipe.title}
+                    <CardContent sx={{ flexGrow: 1 }} align="left">
+                        <Typography variant="h3">
+                            <b>{detailRecipe.title}</b>
                         </Typography>
-                        <Button variant="contained" endIcon={<
-                            FavoriteIcon />} onClick={handleLike}>
-                            Like
-                        </Button>
-                    </div>
-                    <div style={{display: 'flex'}}>
-                        <FavoriteIcon color="error" /> <div>&nbsp;</div>
-                        {detailRecipe.likes}
-                    </div>
+                        <Typography variant="h5">
+                            <div style={{display: 'inline-block', verticalAlign: 'middle'}}>
+                                <IconButton aria-label="like" size="large" onClick={handleLike}>
+                                    <FavoriteIcon color="error" />
+                                </IconButton>
 
+                                {detailRecipe.likes}
+                            </div>
+                        </Typography>
+                    </CardContent>
 
                     <CardMedia
                         align="center"
