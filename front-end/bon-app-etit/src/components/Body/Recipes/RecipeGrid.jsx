@@ -13,6 +13,7 @@ import Ingredient from "../../RecepieForm/Ingredients/Ingredient";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export default function RecipeGrid({recipes, image}) {
 
@@ -61,7 +62,10 @@ export default function RecipeGrid({recipes, image}) {
                      {/* {recipe.image ? <img src={createImageUrl(recipe.image)}/> : null }*/}
                   </CardContent>
                   <CardActions>
-                    <FavoriteOutlinedIcon color="error" />
+                      <div style={{display: 'flex'}}>
+                          <FavoriteIcon color="error" /> <div>&nbsp;</div>
+                          {recipe.likes}
+                      </div>
                   </CardActions>
                 </Card>
               </Grid>
