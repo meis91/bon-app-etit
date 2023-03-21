@@ -1,24 +1,18 @@
 import { useLocation } from "react-router-dom";
-import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import CardActions from "@mui/material/CardActions";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import * as React from "react";
 import {Container} from "@mui/material";
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import {useState} from "react";
+import RecipeLike from "../Body/Recipes/RecipeLike";
 export default function Recipe() {
     const location = useLocation();
     const quantities = location.state.quantities
-    const image = location.state.image
     const tags = location.state.tags
-    console.log(location.state.id)
-    console.log(quantities)
-    console.log(image)
-    console.log(tags)
     const ingredients = quantities.map((quantity) => (
         <tbody key={quantity.ingredient.name}>
                         <td><li>{quantity.quantity}&nbsp;</li></td>
@@ -26,13 +20,32 @@ export default function Recipe() {
                         <td>{quantity.ingredient.name}</td>
         </tbody>
     ));
+    const [detailRecipe, setDetailRecipe] = useState({
+        id: location.state.id,
+        title: location.state.title,
+        description: location.state.description,
+        portions: location.state.portions,
+        quantities: location.state.quantities,
+        imageName: location.state.imageName,
+        image: location.state.image,
+        instructions: location.state.instructions,
+        tags: location.state.tags,
+        likes: location.state.likes,
+        user: location.state.user
+    });
 
     return (
         <div>
             <Container sx={{ py: 8 }} maxWidth="md" text>
-                <Card  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                >
-                    <h1> {location.state.title} </h1>
+                <Card  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <CardContent sx={{ flexGrow: 1 }} align="left">
+                        <Typography variant="h3">
+                            <b>{detailRecipe.title}</b>
+                        </Typography>
+                        <Typography variant="h5">
+                            <RecipeLike recipe={detailRecipe} setRecipe={setDetailRecipe} />
+                        </Typography>
+                    </CardContent>
                     <CardMedia
                         align="center"
                         component="img"
@@ -50,14 +63,14 @@ export default function Recipe() {
                     <CardContent sx={{ flexGrow: 1 }} align="left">
                         <Typography variant="h6">
                             <b>Description:</b>
-                            <p>{location.state.description}</p>
+                            <p>{detailRecipe.description}</p>
                             <br />
                             <b>Ingredients:</b>
-                            <p>&nbsp; Portions: {location.state.portions}</p>
+                            <p>&nbsp; Portions: {detailRecipe.portions}</p>
                             <table>{ingredients}</table>
                             <br />
                             <b>Instructions:</b>
-                            <p>{location.state.instructions}</p>
+                            <p>{detailRecipe.instructions}</p>
                         </Typography>
                         <Stack direction="row" spacing={1}>
                             {tags.map((tag) => (

@@ -7,7 +7,6 @@ import {ALL_RECIPE_URL, SEARCH_RECIPE_URL} from "../../../constants"
 function IndexPage({tags}) {
     const[recipes, setRecipes] = useState(null)
     const popularSearchTerms = ['Pasta', 'Vegetarian', 'Cheese', 'Beef'];
-
     const handleSearch = async (event) => {
         let searchTerm = event.target.getAttribute("data-value")
         if (searchTerm === null) {

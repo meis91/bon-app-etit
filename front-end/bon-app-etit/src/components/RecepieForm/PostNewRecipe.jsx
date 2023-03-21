@@ -75,8 +75,6 @@ function PostNewRecipe({tags}) {
         } catch (err){
             console.log(err);
         }
-
-
     }
 
 
