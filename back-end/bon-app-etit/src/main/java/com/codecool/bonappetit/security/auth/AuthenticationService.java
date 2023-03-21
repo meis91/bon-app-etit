@@ -40,12 +40,11 @@ public class AuthenticationService {
         );
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow();
-        System.out.println("user = " + user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .id(user.getId())
-                .username(user.getUsername())
-                .email(user.getEmail())
+                .username(user.getRealUsername())
+                .email(user.getUsername())
                 .role(user.getRole())
                 .token(jwtToken)
                 .build();
