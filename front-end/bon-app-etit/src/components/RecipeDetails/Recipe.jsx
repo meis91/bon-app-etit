@@ -1,27 +1,18 @@
 import { useLocation } from "react-router-dom";
-import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import CardActions from "@mui/material/CardActions";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import * as React from "react";
 import {Container} from "@mui/material";
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import Button from "@mui/material/Button";
-import IconButton from '@mui/material/IconButton';
-import axios from "../../api/axios";
-import {SAVE_RECIPE_IMG_URL, SAVE_RECIPE_URL, UPDATE_RECIPE_URL} from "../../constants";
 import {useState} from "react";
+import RecipeLike from "../Body/Recipes/RecipeLike";
 export default function Recipe() {
     const location = useLocation();
     const quantities = location.state.quantities
-    const image = location.state.image
     const tags = location.state.tags
-    const likes = location.state.likes
     const ingredients = quantities.map((quantity) => (
         <tbody key={quantity.ingredient.name}>
                         <td><li>{quantity.quantity}&nbsp;</li></td>
@@ -43,30 +34,6 @@ export default function Recipe() {
         user: location.state.user
     });
 
-    async function handleLike() {
-        const newRecipe = {
-            id: detailRecipe.id,
-            title: detailRecipe.title,
-            description: detailRecipe.description,
-            portions: detailRecipe.portions,
-            quantities: detailRecipe.quantities,
-            imageName: location.state.imageName,
-            image: location.state.image,
-            instructions: detailRecipe.instructions,
-            tags: detailRecipe.tags,
-            likes: detailRecipe.likes + 1,
-            userId: detailRecipe.userId,
-        }
-        try{
-            let responseRecipe = (await axios.put(
-                UPDATE_RECIPE_URL, newRecipe)).data;
-
-            setDetailRecipe(responseRecipe)
-        } catch (err){
-            console.log(err);
-        }
-    }
-
     return (
         <div>
             <Container sx={{ py: 8 }} maxWidth="md" text>
@@ -76,16 +43,9 @@ export default function Recipe() {
                             <b>{detailRecipe.title}</b>
                         </Typography>
                         <Typography variant="h5">
-                            <div style={{display: 'inline-block', verticalAlign: 'middle'}}>
-                                <IconButton aria-label="like" size="large" onClick={handleLike}>
-                                    <FavoriteIcon color="error" />
-                                </IconButton>
-
-                                {detailRecipe.likes}
-                            </div>
+                            <RecipeLike recipe={detailRecipe} setRecipe={setDetailRecipe} />
                         </Typography>
                     </CardContent>
-
                     <CardMedia
                         align="center"
                         component="img"
