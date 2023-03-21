@@ -55,4 +55,11 @@ public class RecipeService {
     public Recipe update(Recipe recipe) {
         return recipeRepository.save(recipe);
     }
+
+    @Transactional
+    public List<Recipe> findByUser(long id) {
+        User user = userService.findById(id);
+        System.out.println("user = " + user);
+        return recipeRepository.findByUser(user);
+    }
 }

@@ -9,7 +9,8 @@ import {UserContext} from "../../context/UserContext";
 function UserMenu({anchorEl, menuId, isMenuOpen, handleMenuClose}) {
     const LOGIN_FORM_URL = "/login";
     const REGISTRATION_FORM_URL = "/registration";
-    const ADD_RECIPE_FORM = "/add-recipe";
+    const ADD_RECIPE_FORM_URL = "/add-recipe";
+    const USER_PROFILE_URL = "/user-profile";
     const navigate = useNavigate();
 
     const {user, setUser} = useContext(UserContext);
@@ -25,9 +26,13 @@ function UserMenu({anchorEl, menuId, isMenuOpen, handleMenuClose}) {
     }
     const navigateToAddRecipe = () => {
         handleMenuClose();
-        navigate(ADD_RECIPE_FORM)
+        navigate(ADD_RECIPE_FORM_URL)
     }
 
+    const navigateToUserProfile = () => {
+        handleMenuClose();
+        navigate(USER_PROFILE_URL)
+    }
     function handleLogout() {
         console.log(user)
         setUser(null)
@@ -56,7 +61,7 @@ function UserMenu({anchorEl, menuId, isMenuOpen, handleMenuClose}) {
                     <MenuItem onClick={navigateToRegistration}>Registration</MenuItem>
                 </div>
                 : <div>
-                    <MenuItem onClick={navigateToRegistration}>Profile</MenuItem>
+                    <MenuItem onClick={navigateToUserProfile}>Profile</MenuItem>
                     <MenuItem onClick={navigateToAddRecipe}>Add Recipe</MenuItem>
                     <MenuItem onClick={handleLogout}>Logout</MenuItem>
 
