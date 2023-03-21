@@ -32,7 +32,7 @@ export default function RecipeGrid({recipes, image}) {
                 image: recipe.image,
                 tags: recipe.tags,
                 likes: recipe.likes,
-                user: recipe.user
+                userId: recipe.userId
             }
         });
     }

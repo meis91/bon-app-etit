@@ -17,7 +17,6 @@ import {SAVE_RECIPE_IMG_URL, SAVE_RECIPE_URL, UPDATE_RECIPE_URL} from "../../con
 import {useState} from "react";
 export default function Recipe() {
     const location = useLocation();
-    console.log(location)
     const quantities = location.state.quantities
     const image = location.state.image
     const tags = location.state.tags
@@ -43,21 +42,21 @@ export default function Recipe() {
 
     async function handleLike() {
         const newRecipe = {
-            id: location.state.id,
-            title: location.state.title,
-            description: location.state.description,
-            portions: location.state.portions,
-            quantities: location.state.quantities,
-            instructions: location.state.instructions,
-            tags: location.state.tags,
-            likes: likes + 1,
-            user: location.state.user
+            id: detailRecipe.id,
+            title: detailRecipe.title,
+            description: detailRecipe.description,
+            portions: detailRecipe.portions,
+            quantities: detailRecipe.quantities,
+            instructions: detailRecipe.instructions,
+            tags: detailRecipe.tags,
+            likes: detailRecipe.likes + 1,
+            userId: detailRecipe.userId,
         }
-        console.log(newRecipe)
         try{
-            let responseRecipe = await axios.put(
-                UPDATE_RECIPE_URL, newRecipe);
+            let responseRecipe = (await axios.put(
+                UPDATE_RECIPE_URL, newRecipe)).data;
 
+            setDetailRecipe(responseRecipe)
         } catch (err){
             console.log(err);
         }
@@ -69,7 +68,7 @@ export default function Recipe() {
                 <Card  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                     <div style={{display: 'flex', justifyContent:'space-between'}}>
                         <Typography noWrap variant="h3">
-                            {location.state.title}
+                            {detailRecipe.title}
                         </Typography>
                         <Button variant="contained" endIcon={<
                             FavoriteIcon />} onClick={handleLike}>
@@ -78,7 +77,7 @@ export default function Recipe() {
                     </div>
                     <div style={{display: 'flex'}}>
                         <FavoriteIcon color="error" /> <div>&nbsp;</div>
-                        {likes}
+                        {detailRecipe.likes}
                     </div>
 
 
@@ -99,14 +98,14 @@ export default function Recipe() {
                     <CardContent sx={{ flexGrow: 1 }} align="left">
                         <Typography variant="h6">
                             <b>Description:</b>
-                            <p>{location.state.description}</p>
+                            <p>{detailRecipe.description}</p>
                             <br />
                             <b>Ingredients:</b>
-                            <p>&nbsp; Portions: {location.state.portions}</p>
+                            <p>&nbsp; Portions: {detailRecipe.portions}</p>
                             <table>{ingredients}</table>
                             <br />
                             <b>Instructions:</b>
-                            <p>{location.state.instructions}</p>
+                            <p>{detailRecipe.instructions}</p>
                         </Typography>
                         <Stack direction="row" spacing={1}>
                             {tags.map((tag) => (
