@@ -14,7 +14,7 @@ function UserMenu({anchorEl, menuId, isMenuOpen, handleMenuClose}) {
     const INDEX_URL = "/";
     const navigate = useNavigate();
     const {user, setUser} = useContext(UserContext);
-    const [loggedIn, setLoggedIn] = useState(false);
+  /*  const [loggedIn, setLoggedIn] = useState(false);
 
 
     useEffect(() => {
@@ -23,7 +23,7 @@ function UserMenu({anchorEl, menuId, isMenuOpen, handleMenuClose}) {
             setLoggedIn(true);
         }
     } );
-
+*/
     const navigateToLogin = () => {
         handleMenuClose();
         navigate(LOGIN_FORM_URL);

@@ -16,8 +16,8 @@ public class UserController {
 
     private final UserService userService;
 
-   /* @GetMapping("/search")
-    public List<Recipe> getUsersRecipes(@RequestParam Long id){
-        return userService.findRecipesFromUser(id);
+   /* @GetMapping("/likes")
+    public List<Recipe> getUsersLikes(@RequestParam Long id){
+        return userService.getUserLikes(id);
     }*/
 }

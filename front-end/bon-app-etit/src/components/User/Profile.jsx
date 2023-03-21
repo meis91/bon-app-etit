@@ -7,8 +7,16 @@ import RecipeGrid from "../Body/Recipes/RecipeGrid";
 
 const Profile = () => {
     const [recipes, setRecipes] = useState(null);
+    const [userLikes, setUserLikes] = useState(0);
     const user = useContext(UserContext);
     const userName = user.user;
+    /*function calculateLikes (){
+        recipes.map((recipe) => {
+            setUserLikes(userLikes + recipe.likes)
+        });
+    }*/
+
+
     console.log(user.user);
 
     useEffect(() => {
@@ -22,7 +30,9 @@ const Profile = () => {
         axios.get(searchUrl, config).then((response) => {
             console.log(response.data);
             setRecipes(response.data);
+            //calculateLikes();
         })
+
     }, []);
 
     if (!recipes) return null;
@@ -31,6 +41,9 @@ const Profile = () => {
         <>
             <div align="center" >
                 <Typography gutterBottom variant="h3" > {userName} 's Profile</Typography>
+            </div>
+            <div>
+                <Typography gutterBottom variant="h5"> You got {userLikes} likes </Typography>
             </div>
             {!recipes ?"No Recipes" : <RecipeGrid recipes={recipes} /> }
         </>

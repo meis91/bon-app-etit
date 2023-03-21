@@ -29,4 +29,8 @@ public class UserService {
     public User save(User user) {
         return userRepository.save(user);
     }
+
+    public List<Recipe> getUserLikes(Long id) {
+        return null;
+    }
 }
