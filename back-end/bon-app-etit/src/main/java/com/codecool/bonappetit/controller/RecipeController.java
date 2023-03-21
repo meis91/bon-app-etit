@@ -40,6 +40,11 @@ public class RecipeController {
         return imageService.saveImage(file, recipeId);
     }
 
+    @PutMapping("/update")
+    public Recipe updateRecipe(@RequestBody Recipe recipe) {
+        return recipeService.update(recipe);
+    }
+
   /*  @GetMapping("/search/{id}")
     public Recipe getRecipeById(@PathVariable Long id) {
         return recipeService.findById(id);
