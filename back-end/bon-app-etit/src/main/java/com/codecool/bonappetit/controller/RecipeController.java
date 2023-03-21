@@ -3,10 +3,8 @@ package com.codecool.bonappetit.controller;
 import com.codecool.bonappetit.logic.ImageService;
 import com.codecool.bonappetit.logic.IngredientService;
 import com.codecool.bonappetit.logic.RecipeService;
-import com.codecool.bonappetit.persistence.entity.Image;
-import com.codecool.bonappetit.persistence.entity.Ingredient;
-import com.codecool.bonappetit.persistence.entity.IngredientQuantity;
-import com.codecool.bonappetit.persistence.entity.Recipe;
+import com.codecool.bonappetit.logic.UserService;
+import com.codecool.bonappetit.persistence.entity.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +19,7 @@ public class RecipeController {
 
     private final RecipeService recipeService;
     private final ImageService imageService;
+    private final UserService userService;
 
 
 
@@ -62,5 +61,14 @@ public class RecipeController {
         List<Recipe> recipes = recipeService.findBySearchTerm(searchTerm);
         return recipes;
     }
+
+    @GetMapping("/search/user")
+    public List<Recipe> getRecipesByUserId(@RequestParam long id){
+        System.out.println("id = " + id);
+       /* User user = userService.findById(id);
+        System.out.println("user = " + user);*/
+        return recipeService.findByUser(id);
+    }
+
 
 }

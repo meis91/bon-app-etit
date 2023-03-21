@@ -15,6 +15,7 @@ import {UserContext} from "./context/UserContext";
 import Recipe from "./components/RecipeDetails/Recipe";
 import axios from "./api/axios";
 import {TAGS_URL} from "./constants";
+import Profile from "./components/User/Profile";
 
 
 function App() {
@@ -22,6 +23,11 @@ function App() {
     const[tags, setTags] = useState(null)
 
     useEffect(() => {
+        setUser(sessionStorage.getItem("username"));
+    });
+
+    useEffect(() => {
+
         axios.get(TAGS_URL).then((response) => {
             setTags(response.data);
         })
@@ -47,6 +53,7 @@ function App() {
                             <Route path="/recipe/:id" element={<Recipe/>}/>
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/registration" element={<Registration/>}/>
+                            <Route path="/user-profile" element={<Profile/>}/>
                             <Route path="/add-recipe" element={<PostNewRecipe tags={tags}/>}/>
                         </Routes>
                     </Container>

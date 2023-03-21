@@ -38,9 +38,7 @@ function Login(props) {
                 AUTHENTICATION_URL,
                 data,
             )
-            if(!user){
-                setUser(response.data.username);
-            }
+            setUser(response.data.username);
             sessionStorage.setItem("token", response.data.token);
             sessionStorage.setItem("userId", response.data.id);
             sessionStorage.setItem("username", response.data.username);

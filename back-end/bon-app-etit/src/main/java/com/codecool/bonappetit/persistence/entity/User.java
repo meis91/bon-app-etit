@@ -38,10 +38,10 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
-    public String getEmail() { return email; }
+    public String getRealUsername() { return username; } // It needs to be like this, because Spring JWT checks the emails as Username
 
     @Override
     public boolean isAccountNonExpired() {
@@ -61,5 +61,9 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void addRecipe(Recipe recipe){
+        recipes.add(recipe);
     }
 }
