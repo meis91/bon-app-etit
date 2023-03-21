@@ -30,7 +30,7 @@ public class RecipeController {
 
     @PostMapping("/save")
     Recipe addRecipe(@RequestBody Recipe recipe) {
-        System.out.println("recipeService.save(recipe) = " + recipeService.save(recipe));
+        System.out.println(recipe);
         return recipeService.save(recipe);
     }
 
@@ -42,6 +42,7 @@ public class RecipeController {
 
     @PutMapping("/update")
     public Recipe updateRecipe(@RequestBody Recipe recipe) {
+        System.out.println("1 recipe = " + recipe);
         return recipeService.update(recipe);
     }
 

@@ -16,14 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class ImageService {
     private final ImageRepository imageRepository;
     private final RecipeService recipeService;
-    private final RecipeRepository recipeRepository;
-
-
-   /* @Autowired
-    public ImageService(ImageRepository imageRepository, RecipeService recipeService) {
-        this.imageRepository = imageRepository;
-        this.recipeService = recipeService;
-    }*/
 
     public Recipe saveImage (MultipartFile file, long recipeId){
         Recipe recipe = recipeService.findById(recipeId);
@@ -36,7 +28,7 @@ public class ImageService {
             recipe.setImage(image);
             imageRepository.save(image);
             recipe.setImage(image);
-            recipeService.update(recipe);
+            recipeService.updatePiture(recipe);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

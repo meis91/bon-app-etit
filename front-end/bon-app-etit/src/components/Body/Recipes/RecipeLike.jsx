@@ -6,6 +6,7 @@ import {UPDATE_RECIPE_URL} from "../../../constants";
 
 export default function RecipeLike({recipe, setRecipe}) {
     async function handleLike() {
+        console.log(recipe.user)
         const newRecipe = {
             id: recipe.id,
             title: recipe.title,
@@ -17,13 +18,14 @@ export default function RecipeLike({recipe, setRecipe}) {
             instructions: recipe.instructions,
             tags: recipe.tags,
             likes: recipe.likes + 1,
-            userId: recipe.userId,
+            /*user: recipe.user,*/
+            userId: recipe.user.id
         }
         try{
+            console.log(newRecipe);
             let responseRecipe = (await axios.put(
                 UPDATE_RECIPE_URL, newRecipe)).data;
-
-            setRecipe(responseRecipe)
+            setRecipe(responseRecipe);
         } catch (err){
             console.log(err);
         }

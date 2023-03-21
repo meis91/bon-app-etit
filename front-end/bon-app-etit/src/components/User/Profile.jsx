@@ -10,29 +10,34 @@ const Profile = () => {
     const [userLikes, setUserLikes] = useState(0);
     const user = useContext(UserContext);
     const userName = user.user;
-    /*function calculateLikes (){
-        recipes.map((recipe) => {
-            setUserLikes(userLikes + recipe.likes)
-        });
-    }*/
+    function calculateLikes (recipesResponse) {
+       let likes = 0;
+        recipesResponse.map((recipe) => (
+           likes += recipe.likes
+        ))
+        setUserLikes(likes);
+    }
 
+    const loginRequest = async () => {
+        try {
+            let userId = sessionStorage.getItem("userId")
+            const params = new URLSearchParams([['id', userId]]);
+            let searchUrl = `${SEARCH_USER_URL}?${params}`;
+            const config = {
+                headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}`
+                }
+            };
+            let response = await axios.get(searchUrl, config);
+            calculateLikes(response.data);
+            setRecipes(response.data);
+        } catch (error){
+            console.log(error);
+        }
+    }
 
-    console.log(user.user);
 
     useEffect(() => {
-        let userId = sessionStorage.getItem("userId")
-        const params = new URLSearchParams([['id', userId]]);
-        let searchUrl = `${SEARCH_USER_URL}?${params}`;
-        const config = {
-            headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}`
-            }
-        };
-        axios.get(searchUrl, config).then((response) => {
-            console.log(response.data);
-            setRecipes(response.data);
-            //calculateLikes();
-        })
-
+        loginRequest()
     }, []);
 
     if (!recipes) return null;

@@ -26,13 +26,12 @@ public class RecipeService {
             .orElseThrow(() -> new RecipeNotFoundException(id));
     }
 
-    @Transactional
+/*    @Transactional
     public List<Recipe> findByIngredient(String ingredient) {
         return recipeRepository.findByQuantitiesIngredientNameIgnoreCase(ingredient);
-    }
+    }*/
 
     public Recipe save(Recipe recipe) {
-        System.out.println("recipe.getUserId() = " + recipe.getUserId());
         User user = userService.findById(recipe.getUserId());
         recipe.setUser(user);
         List<IngredientQuantity> ingredientQuantities = recipe.getQuantities();
@@ -44,7 +43,7 @@ public class RecipeService {
         for (Tag tag : tags) {
             tag.setId(tagService.saveIfNew(tag.getName()).getId());
         }
-        return recipeRepository.save(recipe);
+        return recipeRepository.saveAndFlush(recipe);
     }
 
     @Transactional
@@ -53,13 +52,18 @@ public class RecipeService {
     }
 
     public Recipe update(Recipe recipe) {
+        User user = userService.findById(recipe.getUserId());
+        recipe.setUser(user);
         return recipeRepository.save(recipe);
     }
 
     @Transactional
     public List<Recipe> findByUser(long id) {
         User user = userService.findById(id);
-        System.out.println("user = " + user);
         return recipeRepository.findByUser(user);
+    }
+
+    public Recipe updatePiture(Recipe recipe) {
+        return recipeRepository.save(recipe);
     }
 }
