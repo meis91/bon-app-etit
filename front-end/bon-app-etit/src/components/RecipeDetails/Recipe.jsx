@@ -77,6 +77,10 @@ export default function Recipe() {
                                 <Chip key={tag.name} label={tag.name} variant="outlined" />
                             ))}
                         </Stack>
+                        <Typography variant="h6">
+                            <br />
+                            <b>Posted by: </b> {location.state.user.username}
+                        </Typography>
                     </CardContent>
                 </Card>
             </Container>

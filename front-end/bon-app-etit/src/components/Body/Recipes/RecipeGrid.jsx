@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 import RecipeCard from "./RecipeCard";
 
 
-export default function RecipeGrid({recipes, setUserLikes}) {
+export default function RecipeGrid({recipes}) {
 
     return (
       <div>
@@ -12,7 +12,7 @@ export default function RecipeGrid({recipes, setUserLikes}) {
           <Grid container spacing={4}>
             {recipes.map((recipe) => (
               <Grid item key={recipe.id} xs={12} sm={6} md={4} lg={3}>
-                <RecipeCard recipe={recipe} setUserLikes={setUserLikes} />
+                <RecipeCard recipe={recipe} />
               </Grid>
             ))}
           </Grid>

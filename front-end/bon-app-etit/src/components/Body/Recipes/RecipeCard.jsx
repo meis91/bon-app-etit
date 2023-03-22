@@ -12,6 +12,7 @@ export default function RecipeCard({recipe}) {
 
     const navigate = useNavigate();
     const showRecipe = (recipe) => {
+        console.log(recipe)
         const navigationUrl = "/recipe/" + recipe.id
         navigate(navigationUrl, {
             state: {
@@ -25,7 +26,7 @@ export default function RecipeCard({recipe}) {
                 image: recipe.image,
                 tags: recipe.tags,
                 likes: recipe.likes,
-                userId: recipe.userId
+                user: recipe.user
             }
         });
     }
