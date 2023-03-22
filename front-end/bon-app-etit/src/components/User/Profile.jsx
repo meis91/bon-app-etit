@@ -39,6 +39,7 @@ const Profile = () => {
     useEffect(() => {
         loginRequest()
     }, []);
+    
 
     if (!recipes) return null;
 

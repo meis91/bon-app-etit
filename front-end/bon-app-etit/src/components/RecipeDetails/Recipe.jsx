@@ -43,7 +43,7 @@ export default function Recipe() {
                             <b>{detailRecipe.title}</b>
                         </Typography>
                         <Typography variant="h5">
-                            <RecipeLike recipe={detailRecipe} setRecipe={setDetailRecipe} />
+                            <RecipeLike recipeId={detailRecipe.id} recipe={detailRecipe} setRecipe={setDetailRecipe} />
                         </Typography>
                     </CardContent>
                     <CardMedia
