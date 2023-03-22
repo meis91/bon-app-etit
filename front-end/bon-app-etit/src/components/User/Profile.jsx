@@ -8,6 +8,7 @@ import RecipeGrid from "../Body/Recipes/RecipeGrid";
 const Profile = () => {
     const [recipes, setRecipes] = useState(null);
     const [userLikes, setUserLikes] = useState(0);
+    const [recipesAmount, setRecipesAmount] = useState(0);
     const user = useContext(UserContext);
     const userName = user.user;
     function calculateLikes (recipesResponse) {
@@ -15,7 +16,11 @@ const Profile = () => {
         recipesResponse.map((recipe) => (
            likes += recipe.likes
         ))
-        setUserLikes(likes);
+        setRecipesAmount(likes);
+    }
+
+    function calculateRecipesAmount (recipesResponse) {
+        setRecipesAmount(recipesResponse.length)
     }
 
     const loginRequest = async () => {
@@ -28,6 +33,7 @@ const Profile = () => {
                 }
             };
             let response = await axios.get(searchUrl, config);
+            calculateLikes(response.data);
             calculateLikes(response.data);
             setRecipes(response.data);
         } catch (error){
@@ -47,8 +53,8 @@ const Profile = () => {
             <div align="center" >
                 <Typography gutterBottom variant="h3" > {userName} 's Profile</Typography>
             </div>
-            <div>
-                <Typography gutterBottom variant="h5"> You got {userLikes} likes </Typography>
+            <div align="center">
+                <Typography gutterBottom variant="h5"> You uploaded {recipesAmount} recipes and got {userLikes} likes </Typography>
             </div>
             {!recipes ?"No Recipes" : <RecipeGrid recipes={recipes} /> }
         </>
