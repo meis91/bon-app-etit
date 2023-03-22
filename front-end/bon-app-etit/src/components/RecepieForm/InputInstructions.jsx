@@ -19,7 +19,7 @@ function InputInstructions({instructions, handleInput}) {
                         sx={{
                             width: { sm: 0, md: 0 },
                             "& .MuiInputBase-root": {
-                                height: 300,
+                                height: 200,
                                 width: 730
                             }
                         }}

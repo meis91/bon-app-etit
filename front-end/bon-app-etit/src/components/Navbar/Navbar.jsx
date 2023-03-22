@@ -54,7 +54,7 @@ const Navbar = () => {
                             textDecoration: 'none',
                         }}
                     >
-                       Guten APPetit
+                       Bon APPetit
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

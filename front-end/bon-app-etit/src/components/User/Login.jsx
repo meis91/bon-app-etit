@@ -9,7 +9,6 @@ import Container from "@mui/material/Container";
 import axios from "../../api/axios"
 import {useNavigate} from "react-router-dom";
 import { useFormik} from "formik";
-import * as yup from "yup";
 import {UserContext} from "../../context/UserContext";
 import {loginValidationSchema} from "../../schemas";
 

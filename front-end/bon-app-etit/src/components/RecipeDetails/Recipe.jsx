@@ -15,9 +15,11 @@ export default function Recipe() {
     const tags = location.state.tags
     const ingredients = quantities.map((quantity) => (
         <tbody key={quantity.ingredient.name}>
-                        <td><li>{quantity.quantity}&nbsp;</li></td>
-                        <td>{quantity.unit}&emsp;</td>
-                        <td>{quantity.ingredient.name}</td>
+                        <tr>
+                            <td><li>{quantity.quantity}&nbsp;</li></td>
+                            <td>{quantity.unit}&emsp;</td>
+                            <td>{quantity.ingredient.name}</td>
+                        </tr>
         </tbody>
     ));
     const [detailRecipe, setDetailRecipe] = useState({
@@ -31,20 +33,18 @@ export default function Recipe() {
         instructions: location.state.instructions,
         tags: location.state.tags,
         likes: location.state.likes,
-        user: location.state.user
+        user: location.state.user.realUsername,
     });
 
     return (
         <div>
             <Container sx={{ py: 8 }} maxWidth="md" text>
                 <Card  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                    <CardContent sx={{ flexGrow: 1 }} align="left">
+                    <CardContent sx={{ flexGrow: 1 }} align="center">
                         <Typography variant="h3">
                             <b>{detailRecipe.title}</b>
                         </Typography>
-                        <Typography variant="h5">
-                            <RecipeLike recipeId={detailRecipe.id} recipe={detailRecipe} setRecipe={setDetailRecipe} />
-                        </Typography>
+
                     </CardContent>
                     <CardMedia
                         align="center"
@@ -61,6 +61,9 @@ export default function Recipe() {
                     }}
                     />
                     <CardContent sx={{ flexGrow: 1 }} align="left">
+                        <Typography variant="h5" align="center">
+                            <RecipeLike recipeId={detailRecipe.id} recipe={detailRecipe} setRecipe={setDetailRecipe} />
+                        </Typography>
                         <Typography variant="h6">
                             <b>Description:</b>
                             <p>{detailRecipe.description}</p>
@@ -77,10 +80,10 @@ export default function Recipe() {
                                 <Chip key={tag.name} label={tag.name} variant="outlined" />
                             ))}
                         </Stack>
-                        <Typography variant="h6">
-                            <br />
-                            <b>Posted by: </b> {location.state.user.username}
-                        </Typography>
+                            <Typography variant="h6">
+                                <br />
+                                <b>Posted by: </b> { !detailRecipe.user ? "Sample Data"  : detailRecipe.user}
+                            </Typography>
                     </CardContent>
                 </Card>
             </Container>

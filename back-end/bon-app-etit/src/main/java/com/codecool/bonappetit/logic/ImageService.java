@@ -4,9 +4,7 @@ import com.codecool.bonappetit.persistence.entity.Image;
 
 import com.codecool.bonappetit.persistence.entity.Recipe;
 import com.codecool.bonappetit.persistence.repository.ImageRepository;
-import com.codecool.bonappetit.persistence.repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,12 +26,10 @@ public class ImageService {
             recipe.setImage(image);
             imageRepository.save(image);
             recipe.setImage(image);
-            recipeService.updatePiture(recipe);
+            recipeService.updatePicture(recipe);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return null;
     }
-    
-
 }

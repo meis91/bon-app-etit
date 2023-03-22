@@ -11,19 +11,20 @@ const Profile = () => {
     const [recipesAmount, setRecipesAmount] = useState(0);
     const user = useContext(UserContext);
     const userName = user.user;
+
     function calculateLikes (recipesResponse) {
        let likes = 0;
         recipesResponse.map((recipe) => (
            likes += recipe.likes
         ))
-        setRecipesAmount(likes);
+        setUserLikes(likes);
     }
 
     function calculateRecipesAmount (recipesResponse) {
         setRecipesAmount(recipesResponse.length)
     }
 
-    const loginRequest = async () => {
+    const getUserRecipes = async () => {
         try {
             let userId = sessionStorage.getItem("userId")
             const params = new URLSearchParams([['id', userId]]);
@@ -34,16 +35,15 @@ const Profile = () => {
             };
             let response = await axios.get(searchUrl, config);
             calculateLikes(response.data);
-            calculateLikes(response.data);
+            calculateRecipesAmount(response.data);
             setRecipes(response.data);
         } catch (error){
             console.log(error);
         }
     }
 
-
     useEffect(() => {
-        loginRequest()
+        getUserRecipes()
     }, []);
 
 

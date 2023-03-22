@@ -20,8 +20,6 @@ public class RecipeController {
 
     private final RecipeService recipeService;
     private final ImageService imageService;
-    private final UserService userService;
-
 
 
     @GetMapping()
@@ -46,16 +44,6 @@ public class RecipeController {
         return recipeService.updateLikes(id).orElseThrow(() -> new RecipeNotFoundException(id));
     }
 
-  /*  @GetMapping("/search/{id}")
-    public Recipe getRecipeById(@PathVariable Long id) {
-        return recipeService.findById(id);
-    }
-
-    @GetMapping("/recipes-by-ingredient")
-    public List<Recipe> getRecipesByIngredient(@RequestParam String ingredient) {
-        List<Recipe> recipes = recipeService.findByIngredient(ingredient);
-        return recipes;
-   */
 
     @GetMapping("/search")
     public List<Recipe> getRecipesBySearchTerm(@RequestParam String searchTerm) {

@@ -6,7 +6,6 @@ import com.codecool.bonappetit.persistence.repository.RecipeRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,11 +26,6 @@ public class RecipeService {
     public Recipe findById(Long id) { return recipeRepository.findById(id)
             .orElseThrow(() -> new RecipeNotFoundException(id));
     }
-
-/*    @Transactional
-    public List<Recipe> findByIngredient(String ingredient) {
-        return recipeRepository.findByQuantitiesIngredientNameIgnoreCase(ingredient);
-    }*/
 
     public Recipe save(Recipe recipe) {
         User user = userService.findById(recipe.getUserId());
@@ -59,7 +53,7 @@ public class RecipeService {
         return recipeRepository.findByUser(user);
     }
 
-    public Recipe updatePiture(Recipe recipe) {
+    public Recipe updatePicture(Recipe recipe) {
         return recipeRepository.save(recipe);
     }
 

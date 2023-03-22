@@ -8,8 +8,6 @@ import axios from "../../api/axios"
 import {useNavigate} from "react-router-dom";
 import {useFormik} from "formik";
 import * as yup from 'yup';
-import {registrationValidationSchema} from "../../schemas";
-
 function Registration() {
     const REGISTRATION_URL = "/v1/auth/register";
     const LOGIN_URL = "/login";

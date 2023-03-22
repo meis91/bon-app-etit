@@ -6,7 +6,9 @@ import {UPDATE_RECIPE_LIKES_URL} from "../../../constants";
 
 export default function RecipeLike({recipeId, recipe, setRecipe}) {
     async function handleLike() {
+        console.log(UPDATE_RECIPE_LIKES_URL)
         const url = UPDATE_RECIPE_LIKES_URL.replace("id", recipeId);
+        console.log(url)
         try{
             let responseRecipe = (await axios.put(
                 url)).data;
