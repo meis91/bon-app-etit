@@ -14,7 +14,7 @@ function InputDescription({description, handleInput}) {
             <FormSubtitle text={"Description"}/>
             <TextField
                 name="description"
-                value={description}
+                value={description.replace(/↵/g, " \n ")}
                 onChange={event => handleInput(event)}
                 sx={{
                     width: { sm: 0, md: 0 },

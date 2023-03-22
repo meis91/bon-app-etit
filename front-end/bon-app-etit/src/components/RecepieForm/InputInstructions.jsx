@@ -14,7 +14,7 @@ function InputInstructions({instructions, handleInput}) {
                     <FormSubtitle text={"Instructions"}/>
                     <TextField
                         name="instructions"
-                        value={instructions}
+                        value={instructions.replace(/↵/g, "\n")}
                         onChange={event => handleInput(event)}
                         sx={{
                             width: { sm: 0, md: 0 },

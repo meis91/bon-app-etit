@@ -9,6 +9,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import {useState} from "react";
 import RecipeLike from "../Body/Recipes/RecipeLike";
+import TextField from "@mui/material/TextField";
 export default function Recipe() {
     const location = useLocation();
     const quantities = location.state.quantities
@@ -36,6 +37,9 @@ export default function Recipe() {
         user: location.state.user.realUsername,
     });
 
+    const instructionsWithLinebreaks = detailRecipe.instructions.replace(/\n/g , "<br/>");
+
+
     return (
         <div>
             <Container sx={{ py: 8 }} maxWidth="md" text>
@@ -60,7 +64,7 @@ export default function Recipe() {
                             maxWidth: 500
                     }}
                     />
-                    <CardContent sx={{ flexGrow: 1 }} align="left">
+                    <CardContent sx={{ flexGrow: 1}} align="left">
                         <Typography variant="h5" align="center">
                             <RecipeLike recipeId={detailRecipe.id} recipe={detailRecipe} setRecipe={setDetailRecipe} />
                         </Typography>
@@ -73,7 +77,7 @@ export default function Recipe() {
                             <table>{ingredients}</table>
                             <br />
                             <b>Instructions:</b>
-                            <p>{detailRecipe.instructions}</p>
+                            <p dangerouslySetInnerHTML={{__html: instructionsWithLinebreaks}} />
                         </Typography>
                         <Stack direction="row" spacing={1}>
                             {tags.map((tag) => (
