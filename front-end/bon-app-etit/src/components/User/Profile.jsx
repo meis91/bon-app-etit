@@ -46,6 +46,7 @@ const Profile = () => {
         loginRequest()
     }, []);
 
+
     if (!recipes) return null;
 
     return (

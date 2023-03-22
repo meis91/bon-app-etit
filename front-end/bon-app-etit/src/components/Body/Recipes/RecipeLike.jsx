@@ -2,29 +2,18 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import * as React from "react";
 import IconButton from '@mui/material/IconButton';
 import axios from "../../../api/axios";
-import {UPDATE_RECIPE_URL} from "../../../constants";
+import {UPDATE_RECIPE_LIKES_URL} from "../../../constants";
 
-export default function RecipeLike({recipe, setRecipe}) {
+export default function RecipeLike({recipeId, recipe, setRecipe}) {
     async function handleLike() {
-        console.log(recipe.user)
-        const newRecipe = {
-            id: recipe.id,
-            title: recipe.title,
-            description: recipe.description,
-            portions: recipe.portions,
-            quantities: recipe.quantities,
-            imageName: recipe.imageName,
-            image: recipe.image,
-            instructions: recipe.instructions,
-            tags: recipe.tags,
-            likes: recipe.likes + 1,
-            /*user: recipe.user,*/
-            userId: recipe.user.id
-        }
+        const url = UPDATE_RECIPE_LIKES_URL.replace("id", recipeId);
         try{
-            console.log(newRecipe);
             let responseRecipe = (await axios.put(
-                UPDATE_RECIPE_URL, newRecipe)).data;
+                url)).data;
+            setRecipe({
+                ...recipe,
+                likes: responseRecipe.likes,
+            })
             setRecipe(responseRecipe);
         } catch (err){
             console.log(err);

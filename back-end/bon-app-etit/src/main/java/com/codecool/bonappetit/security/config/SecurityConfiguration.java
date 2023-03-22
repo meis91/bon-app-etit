@@ -32,7 +32,7 @@ public class SecurityConfiguration {
                 .disable()
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests()// basically Whitelisting
-                .requestMatchers( "/api/recipes", "/api/recipes/search", "/api/recipes/update", "/api/tags", "/api/v1/**", "/api/v1/auth/**", "/api/recipes/search/user**")
+                .requestMatchers( "/api/recipes", "/api/recipes/search", "/api/recipes/update-likes/**", "/api/tags", "/api/v1/**", "/api/v1/auth/**", "/api/recipes/search/user**")
                 .permitAll()
                 .anyRequest()//until here
                 .authenticated()

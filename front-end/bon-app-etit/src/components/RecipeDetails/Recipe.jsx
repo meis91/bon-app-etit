@@ -43,7 +43,7 @@ export default function Recipe() {
                             <b>{detailRecipe.title}</b>
                         </Typography>
                         <Typography variant="h5">
-                            <RecipeLike recipe={detailRecipe} setRecipe={setDetailRecipe} />
+                            <RecipeLike recipeId={detailRecipe.id} recipe={detailRecipe} setRecipe={setDetailRecipe} />
                         </Typography>
                     </CardContent>
                     <CardMedia
@@ -77,6 +77,10 @@ export default function Recipe() {
                                 <Chip key={tag.name} label={tag.name} variant="outlined" />
                             ))}
                         </Stack>
+                        <Typography variant="h6">
+                            <br />
+                            <b>Posted by: </b> {location.state.user.username}
+                        </Typography>
                     </CardContent>
                 </Card>
             </Container>

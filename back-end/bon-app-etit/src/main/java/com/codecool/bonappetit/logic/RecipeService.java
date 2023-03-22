@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class RecipeService {
@@ -51,12 +53,6 @@ public class RecipeService {
         return recipeRepository.findByTitleContainsIgnoreCaseOrQuantitiesIngredientNameContainsIgnoreCaseOrTagsNameContainsIgnoreCase(searchTerm, searchTerm, searchTerm);
     }
 
-    public Recipe update(Recipe recipe) {
-        User user = userService.findById(recipe.getUserId());
-        recipe.setUser(user);
-        return recipeRepository.save(recipe);
-    }
-
     @Transactional
     public List<Recipe> findByUser(long id) {
         User user = userService.findById(id);
@@ -65,5 +61,12 @@ public class RecipeService {
 
     public Recipe updatePiture(Recipe recipe) {
         return recipeRepository.save(recipe);
+    }
+
+    public Optional<Recipe> updateLikes(long id) {
+        Optional<Recipe> oRecipe = recipeRepository.findById(id);
+        oRecipe.ifPresent((r) -> r.setLikes(r.getLikes() +1 ));
+        oRecipe.ifPresent(recipeRepository::save);
+        return oRecipe;
     }
 }
