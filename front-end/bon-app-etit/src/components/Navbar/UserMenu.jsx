@@ -41,7 +41,7 @@ function UserMenu({anchorEl, menuId, isMenuOpen, handleMenuClose}) {
         handleMenuClose();
         navigate(USER_PROFILE_URL);
     }
-    function handleLogout() {
+    const handleLogout = () => {
         setUser(null);
         sessionStorage.clear();
         handleMenuClose();
