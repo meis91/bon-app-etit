@@ -14,8 +14,13 @@ import {
 import {useState} from "react";
 import NavbarSearch from "./NavbarSearch";
 import NavbarUser from "./NavbarUser";
+import Logo from "./Logo";
+/*import { ReactComponent as Logo } from "bonappetit.svg"*/
+import { ReactComponent as IconMenu } from "./../../logo/bonappetit.svg";
+
 
 const pages = ['Cousin', 'Course', 'Inspiration'];
+
 
 const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = useState(null);
@@ -38,8 +43,14 @@ const Navbar = () => {
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
+               {/* */}
                 <Toolbar disableGutters>
-                    <Typography
+                    <Logo/>
+                   {/* <IconButton>
+                        <img src={Logo} alt="Bon Appetit Logo"/>
+                    </IconButton>
+                    <IconMenu/>*/}
+                   {/* <Typography
                         variant="h6"
                         noWrap
                         component="a"
@@ -55,7 +66,7 @@ const Navbar = () => {
                         }}
                     >
                        Bon APPetit
-                    </Typography>
+                    </Typography>*/}
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
