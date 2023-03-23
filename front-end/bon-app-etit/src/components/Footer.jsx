@@ -4,7 +4,7 @@ function Footer() {
   return (
     <div>
         <Typography variant="h5" align="center" gutterBottom>
-          Bon APPetit
+          Guten APPetit
         </Typography>
         <Typography
           variant="subtitle1"
