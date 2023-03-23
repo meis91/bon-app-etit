@@ -34,11 +34,10 @@ export default function Recipe() {
         instructions: location.state.instructions,
         tags: location.state.tags,
         likes: location.state.likes,
-        user: location.state.user.realUsername,
+        user: location.state.user,
     });
 
     const instructionsWithLinebreaks = detailRecipe.instructions.replace(/\n/g , "<br/>");
-
 
     return (
         <div>
@@ -48,7 +47,6 @@ export default function Recipe() {
                         <Typography variant="h3">
                             <b>{detailRecipe.title}</b>
                         </Typography>
-
                     </CardContent>
                     <CardMedia
                         align="center"
@@ -86,7 +84,7 @@ export default function Recipe() {
                         </Stack>
                             <Typography variant="h6">
                                 <br />
-                                <b>Posted by: </b> { !detailRecipe.user ? "Sample Data"  : detailRecipe.user}
+                                <b>Posted by: </b> { !detailRecipe.user.realUsername ? "unknown"  : detailRecipe.user.realUsername}
                             </Typography>
                     </CardContent>
                 </Card>

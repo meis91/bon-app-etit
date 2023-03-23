@@ -15,9 +15,9 @@ import org.springframework.context.annotation.PropertySource;
 
 import java.util.List;
 
-@Configuration
-@ConfigurationProperties(prefix = "datasets")
-@PropertySource("classpath:recipes.properties")
+//@Configuration
+//@ConfigurationProperties(prefix = "datasets")
+//@PropertySource("classpath:recipes.properties")
 public class DatabasePopulator {
 
     List<Ingredient> ingredients;
@@ -33,14 +33,14 @@ public class DatabasePopulator {
                                    TagRepository tagRepository,
                                    TagCategoryRepository tagCategoryRepository) {
         return args -> {
-            ingredientRepository.saveAll(ingredients);
-            tagRepository.saveAll(tags);
-            createTagCategories();
-            tagCategoryRepository.saveAll(tagCategories);
-            createIngredientQuantities();
-            setRecipesIngredientsLists();
-            setRecipesTags();
-            recipeRepository.saveAll(recipes);
+//            ingredientRepository.saveAll(ingredients);
+//            tagRepository.saveAll(tags);
+//            createTagCategories();
+//            tagCategoryRepository.saveAll(tagCategories);
+//            createIngredientQuantities();
+//            setRecipesIngredientsLists();
+//            setRecipesTags();
+//            recipeRepository.saveAll(recipes);
         };
     }
 

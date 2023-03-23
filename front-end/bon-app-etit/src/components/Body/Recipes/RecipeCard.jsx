@@ -12,7 +12,6 @@ export default function RecipeCard({recipe}) {
 
     const navigate = useNavigate();
     const showRecipe = (recipe) => {
-        console.log(recipe)
         const navigationUrl = "/recipe/" + recipe.id
         navigate(navigationUrl, {
             state: {
